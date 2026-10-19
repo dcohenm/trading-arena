@@ -1,0 +1,89 @@
+# ============================================================
+#  GROK ARENA — configuración
+#  Todo en paper trading: no se envían órdenes reales.
+# ============================================================
+
+market:
+  exchange: bingx              # datos públicos de BingX: no hace falta API key para paper trading
+  symbols: [BTC/USDT, ETH/USDT, SOL/USDT]
+  timeframe: 15m               # velas de 15 minutos
+  warmup_bars: 300             # historia mínima antes de que los bots operen
+
+capital:
+  starting_cash: 10000         # USDT por bot (todos arrancan igual)
+
+costs:                         # costos realistas: sin esto cualquier backtest miente
+  fee_rate: 0.001              # 0,10% por operación (taker)
+  slippage_bps: 5              # 0,05% de deslizamiento por operación
+
+risk:                          # código duro: ningún bot (ni Grok) puede saltearlo
+  max_weight_per_symbol: 0.50  # máx. 50% del capital en un solo activo
+  max_gross_exposure: 1.00     # sin apalancamiento
+  min_trade_notional: 15       # no operar montos ridículos
+  rebalance_threshold: 0.03    # ignorar cambios menores al 3% del capital (evita churn)
+  max_trades_per_day: 24       # por bot
+  default_stop_loss: 0.08      # stop del 8% si el bot no define uno
+  daily_loss_limit: 0.05       # -5% en el día (UTC) -> el bot solo puede reducir hasta mañana
+  max_drawdown_kill: 0.30      # -30% desde el máximo -> bot eliminado y liquidado
+  kill_file: KILL              # si existe este archivo, se liquida todo y se frena
+
+llm:
+  base_url: https://api.x.ai/v1
+  model: grok-4.3              # verificá los modelos vigentes con: python main.py models
+  api_key_env: XAI_API_KEY
+  temperature: 0.2
+  timeout_s: 90
+  max_retries: 2
+  # Precios por millón de tokens (completalos con los de console.x.ai para medir el costo real)
+  price_input_per_m: 0.0
+  price_output_per_m: 0.0
+  daily_budget_usd: 5.0        # si se supera, los bots de Grok mantienen posiciones y no consultan
+  extra_body: {}               # parámetros extra que se pasan tal cual a la API (p. ej. búsqueda en X)
+
+luck:
+  random_bots: 30              # bots al azar para medir cuánto se puede ganar por pura suerte
+
+bots:
+  - name: buy_and_hold
+    type: buy_hold
+  - name: momentum
+    type: momentum
+    every: 1h
+    params: {fast: 48, slow: 240, target_vol: 0.60}
+  - name: mean_reversion
+    type: mean_reversion
+    every: 1h
+    params: {rsi_len: 14, entry: 28, exit: 55, weight: 0.25}
+  - name: grok_trader          # Grok decide directamente las posiciones
+    type: grok_trader
+    every: 4h
+  - name: grok_overlay         # momentum + Grok ajusta cuánto arriesgar según el contexto
+    type: grok_overlay
+    every: 1h                  # el momentum se recalcula cada hora…
+    params: {fast: 48, slow: 240, target_vol: 0.60, llm_every: 6h}   # …y Grok se consulta cada 6 h
+
+# ============================================================
+#  PILOTO AUTOMÁTICO (GitHub Actions): corre solo cada hora
+# ============================================================
+autopilot:
+  exchanges: [bingx, coinbase, okx]   # si el primero falla, prueba el siguiente
+  history_days: 40                    # contexto que se baja en cada corrida
+  luck_bots: 20
+  min_days_for_verdict: 30            # antes de esto, ningún bot puede ser "candidato"
+  alert_after_failures: 6             # horas seguidas sin datos -> abre un aviso en GitHub
+  initial_population:
+    - {name: buy_and_hold, type: buy_hold, every: 1d}
+    - {name: momentum, type: momentum, every: 1h, params: {fast: 48, slow: 240, band: 0.01, target_vol: 0.6}}
+    - {name: mean_reversion, type: mean_reversion, every: 1h, params: {rsi_len: 14, entry: 28, exit: 55, weight: 0.25}}
+    - {name: breakout, type: breakout, every: 1h, params: {entry: 192, exit: 96, target_vol: 0.6, stop: 0.1}}
+  grok_population:                    # se suman solos si configurás el secreto XAI_API_KEY en GitHub
+    - {name: grok_trader, type: grok_trader, every: 4h}
+    - {name: grok_overlay, type: grok_overlay, every: 1h, params: {fast: 48, slow: 240, target_vol: 0.6, llm_every: 6h}}
+  evolution:
+    every_days: 7
+    data_days: 180                    # se elige con los primeros 120 días y se examina con los últimos 60
+    max_active: 8                     # bots evolutivos activos como máximo
+    min_days_before_retire: 21
+    n_mutations: 4
+    n_random: 6
+    max_promote: 2

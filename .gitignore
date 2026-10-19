@@ -1,0 +1,11 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+arena.db
+data/
+reports/
+arena.log
+state/_tmp.db
+state/*.tmp
