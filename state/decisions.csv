@@ -1,0 +1,3 @@
+ts,bot,targets,reason,meta
+1792452600000,buy_and_hold,"{""BTC/USDT"": 0.3333, ""ETH/USDT"": 0.3333, ""SOL/USDT"": 0.3333}",compra inicial y mantener,{}
+1792452600000,momentum,"{""BTC/USDT"": 0.0, ""ETH/USDT"": 0.0, ""SOL/USDT"": 0.0}",momentum EMA + ajuste por volatilidad,{}

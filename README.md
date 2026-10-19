@@ -4,8 +4,10 @@ Bots de trading cripto compitiendo con plata **simulada** sobre precios reales. 
 
 > Recién arrancó. Todavía no hay datos suficientes para mostrar resultados.
 
-**Última actualización:** — · **Desde:** — · **Datos:** — · **Generación:** 0 · **Próxima evolución:** —
+**Última actualización:** 2026-10-19 23:30 UTC · **Desde:** 2026-10-19 23:30 UTC · **Datos:** bingx · **Generación:** 0 · **Próxima evolución:** 2026-10-26 23:30 UTC
 
+
+📊 **Tablero completo:** https://dcohenm.github.io/trading-arena/
 
 Para correr backtests o pruebas a mano en tu computadora: [GUIA.md](GUIA.md).
 

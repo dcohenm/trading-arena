@@ -1,0 +1,1064 @@
+{
+ "created_ts": 1792452600000,
+ "last_ts": 1792452600000,
+ "exchange": "bingx",
+ "generation": 0,
+ "last_evolution_ts": null,
+ "population": [
+  {
+   "name": "buy_and_hold",
+   "type": "buy_hold",
+   "every": "1d",
+   "born_ts": 1792452600000,
+   "status": "active",
+   "origin": "inicial"
+  },
+  {
+   "name": "momentum",
+   "type": "momentum",
+   "every": "1h",
+   "params": {
+    "fast": 48,
+    "slow": 240,
+    "band": 0.01,
+    "target_vol": 0.6
+   },
+   "born_ts": 1792452600000,
+   "status": "active",
+   "origin": "inicial"
+  },
+  {
+   "name": "mean_reversion",
+   "type": "mean_reversion",
+   "every": "1h",
+   "params": {
+    "rsi_len": 14,
+    "entry": 28,
+    "exit": 55,
+    "weight": 0.25
+   },
+   "born_ts": 1792452600000,
+   "status": "active",
+   "origin": "inicial"
+  },
+  {
+   "name": "breakout",
+   "type": "breakout",
+   "every": "1h",
+   "params": {
+    "entry": 192,
+    "exit": 96,
+    "target_vol": 0.6,
+    "stop": 0.1
+   },
+   "born_ts": 1792452600000,
+   "status": "active",
+   "origin": "inicial"
+  }
+ ],
+ "arena": {
+  "halted": false,
+  "bots": {
+   "buy_and_hold": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": null,
+     "day_start_equity": null,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 0.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [
+     {
+      "bot": "buy_and_hold",
+      "symbol": "BTC/USDT",
+      "side": "buy",
+      "notional": 3333.333333333333,
+      "reason": "compra inicial y mantener",
+      "stop": 0.5
+     },
+     {
+      "bot": "buy_and_hold",
+      "symbol": "ETH/USDT",
+      "side": "buy",
+      "notional": 3333.333333333333,
+      "reason": "compra inicial y mantener",
+      "stop": 0.5
+     },
+     {
+      "bot": "buy_and_hold",
+      "symbol": "SOL/USDT",
+      "side": "buy",
+      "notional": 3333.333333333333,
+      "reason": "compra inicial y mantener",
+      "stop": 0.5
+     }
+    ],
+    "bot": {
+     "done": true
+    }
+   },
+   "momentum": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [],
+    "bot": {}
+   },
+   "mean_reversion": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [],
+    "bot": {}
+   },
+   "breakout": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [],
+    "bot": {}
+   },
+   "_luck_00": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [
+     {
+      "bot": "_luck_00",
+      "symbol": "BTC/USDT",
+      "side": "buy",
+      "notional": 1999.2532707325308,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_00",
+      "symbol": "ETH/USDT",
+      "side": "buy",
+      "notional": 4040.55055975147,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_00",
+      "symbol": "SOL/USDT",
+      "side": "buy",
+      "notional": 661.5093488563681,
+      "reason": "azar",
+      "stop": 0.08
+     }
+    ],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 270109969640607057309869347933645115098,
+       "inc": 119065948144835586474643535142778641169
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_01": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [
+     {
+      "bot": "_luck_01",
+      "symbol": "ETH/USDT",
+      "side": "buy",
+      "notional": 523.4957824498026,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_01",
+      "symbol": "SOL/USDT",
+      "side": "buy",
+      "notional": 2941.9589408445463,
+      "reason": "azar",
+      "stop": 0.08
+     }
+    ],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 232055028333567730830893347852517191405,
+       "inc": 75832438150325598680414078138474848963
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_02": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [
+     {
+      "bot": "_luck_02",
+      "symbol": "BTC/USDT",
+      "side": "buy",
+      "notional": 1900.6740209111906,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_02",
+      "symbol": "ETH/USDT",
+      "side": "buy",
+      "notional": 2338.7087118227464,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_02",
+      "symbol": "SOL/USDT",
+      "side": "buy",
+      "notional": 1120.5355748628203,
+      "reason": "azar",
+      "stop": 0.08
+     }
+    ],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 170510811654396075366757711816166702113,
+       "inc": 197198657951681906595493522535810024969
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_03": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 333764822547731067865515784108083130103,
+       "inc": 7655035171595702973151705712429245107
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_04": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 87299776506832671533322849359792849843,
+       "inc": 87209435796639942783298437561837911585
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_05": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 125929317120233874878177067703518432818,
+       "inc": 74998529993919507045113652320865009249
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_06": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [
+     {
+      "bot": "_luck_06",
+      "symbol": "BTC/USDT",
+      "side": "buy",
+      "notional": 5000.0,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_06",
+      "symbol": "ETH/USDT",
+      "side": "buy",
+      "notional": 731.0083785888747,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_06",
+      "symbol": "SOL/USDT",
+      "side": "buy",
+      "notional": 562.583851355161,
+      "reason": "azar",
+      "stop": 0.08
+     }
+    ],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 283787216285299994265495552105577504521,
+       "inc": 272805706557021918735839566777376432947
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_07": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 144563823539962699961408182641853463478,
+       "inc": 18381029212780586314372238719141899557
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_08": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 301385420842289732297031574084502572861,
+       "inc": 337480822318074430338768326692577996673
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_09": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 137520129714813280386300800979347701539,
+       "inc": 69638357737728766731816322719585108907
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_10": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 251673805420581111253911628797221117780,
+       "inc": 48782832526147306474557262504581723413
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_11": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 53480835756445645676887902851751680552,
+       "inc": 324210970585247618310255348273088273641
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_12": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [
+     {
+      "bot": "_luck_12",
+      "symbol": "BTC/USDT",
+      "side": "buy",
+      "notional": 2801.3118260569527,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_12",
+      "symbol": "ETH/USDT",
+      "side": "buy",
+      "notional": 1284.5626666645396,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_12",
+      "symbol": "SOL/USDT",
+      "side": "buy",
+      "notional": 2370.2104014347074,
+      "reason": "azar",
+      "stop": 0.08
+     }
+    ],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 75638002332787198077189402080312926121,
+       "inc": 178385831028144661716924146491043988063
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_13": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [
+     {
+      "bot": "_luck_13",
+      "symbol": "BTC/USDT",
+      "side": "buy",
+      "notional": 329.06888530054704,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_13",
+      "symbol": "ETH/USDT",
+      "side": "buy",
+      "notional": 4885.394982328203,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_13",
+      "symbol": "SOL/USDT",
+      "side": "buy",
+      "notional": 2770.330588534395,
+      "reason": "azar",
+      "stop": 0.08
+     }
+    ],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 326831352004847870298070746234053580508,
+       "inc": 56286383781653464389927538260182756999
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_14": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [
+     {
+      "bot": "_luck_14",
+      "symbol": "BTC/USDT",
+      "side": "buy",
+      "notional": 1140.8988854957834,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_14",
+      "symbol": "ETH/USDT",
+      "side": "buy",
+      "notional": 315.71677657038913,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_14",
+      "symbol": "SOL/USDT",
+      "side": "buy",
+      "notional": 3174.128196104464,
+      "reason": "azar",
+      "stop": 0.08
+     }
+    ],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 61085462877144268480562790321380555899,
+       "inc": 261589992294453736422047922721330709929
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_15": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [
+     {
+      "bot": "_luck_15",
+      "symbol": "BTC/USDT",
+      "side": "buy",
+      "notional": 1978.7649246414599,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_15",
+      "symbol": "ETH/USDT",
+      "side": "buy",
+      "notional": 819.827885944014,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_15",
+      "symbol": "SOL/USDT",
+      "side": "buy",
+      "notional": 414.83358425781165,
+      "reason": "azar",
+      "stop": 0.08
+     }
+    ],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 207277127025451210938056617152717414030,
+       "inc": 146865313688123060595698135238114799161
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_16": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 299119443992675328083084759788815022284,
+       "inc": 317042671548171294320325743098533005027
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_17": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [
+     {
+      "bot": "_luck_17",
+      "symbol": "BTC/USDT",
+      "side": "buy",
+      "notional": 1681.8463985668864,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_17",
+      "symbol": "ETH/USDT",
+      "side": "buy",
+      "notional": 796.1207883090354,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_17",
+      "symbol": "SOL/USDT",
+      "side": "buy",
+      "notional": 1002.3456564567737,
+      "reason": "azar",
+      "stop": 0.08
+     }
+    ],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 288635207285359969642511229571763354479,
+       "inc": 19614488437661986123140039600044052395
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_18": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [
+     {
+      "bot": "_luck_18",
+      "symbol": "BTC/USDT",
+      "side": "buy",
+      "notional": 1842.2384351724822,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_18",
+      "symbol": "ETH/USDT",
+      "side": "buy",
+      "notional": 1921.8031328807037,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_18",
+      "symbol": "SOL/USDT",
+      "side": "buy",
+      "notional": 2933.6513833369745,
+      "reason": "azar",
+      "stop": 0.08
+     }
+    ],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 126691572088179134925289127863217654269,
+       "inc": 13708559077665599984281177253827397143
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   },
+   "_luck_19": {
+    "broker": {
+     "cash": 10000.0,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 0.0,
+     "traded_notional": 0.0,
+     "n_trades": 0
+    },
+    "risk": {
+     "day": "2026-10-19",
+     "day_start_equity": 10000.0,
+     "trades_today": 0,
+     "halted_today": false,
+     "killed": false,
+     "peak_equity": 10000.0
+    },
+    "last_ts": 1792452600000,
+    "pending": [],
+    "bot": {
+     "rng": {
+      "bit_generator": "PCG64",
+      "state": {
+       "state": 91917648590006619034885364806494188175,
+       "inc": 9274808657310356333543417939344116773
+      },
+      "has_uint32": 0,
+      "uinteger": 0
+     }
+    }
+   }
+  }
+ },
+ "failures": 0,
+ "alerts": [],
+ "llm_spent": {}
+}
