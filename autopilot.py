@@ -48,8 +48,19 @@ def fmt_ts(ms) -> str:
     return datetime.fromtimestamp(int(ms) / 1000, tz=timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
 
+RUN_LOG: list[str] = []
+
+
 def log(msg: str) -> None:
     print(msg, flush=True)
+    RUN_LOG.append(msg)
+
+
+def save_run_log() -> None:
+    """Deja el registro de la última corrida en state/last_run.log (para ver qué pasó sin entrar a Actions)."""
+    STATE_DIR.mkdir(exist_ok=True)
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    (STATE_DIR / "last_run.log").write_text(f"Corrida: {stamp}\n" + "\n".join(RUN_LOG) + "\n", encoding="utf-8")
 
 
 # ---------------- estado ----------------
@@ -390,14 +401,21 @@ def _md_to_html(s: str) -> str:
 def main():
     cfg = load_config(ROOT / "config.yaml")
     cmd = sys.argv[1] if len(sys.argv) > 1 else "tick"
-    if cmd == "tick":
-        tick(cfg)
-    elif cmd == "evolve":
-        tick(cfg, force_evolve=True)
-    elif cmd == "report":
-        write_outputs(cfg, load_state(cfg))
-    else:
-        raise SystemExit(__doc__)
+    try:
+        if cmd == "tick":
+            tick(cfg)
+        elif cmd == "evolve":
+            tick(cfg, force_evolve=True)
+        elif cmd == "report":
+            write_outputs(cfg, load_state(cfg))
+        else:
+            raise SystemExit(__doc__)
+    except Exception as e:
+        log(f"✗ error inesperado: {e.__class__.__name__}: {e}")
+        raise
+    finally:
+        if cmd in ("tick", "evolve"):
+            save_run_log()
 
 
 if __name__ == "__main__":
