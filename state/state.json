@@ -1,6 +1,6 @@
 {
  "created_ts": 1792452600000,
- "last_ts": 1792506600000,
+ "last_ts": 1792507500000,
  "exchange": "bingx",
  "generation": 0,
  "last_evolution_ts": null,
@@ -189,7 +189,7 @@
      "trades_today": 6,
      "halted_today": false,
      "killed": false,
-     "peak_equity": 10118.280400510344
+     "peak_equity": 10121.372664092658
     },
     "last_ts": 1792495800000,
     "pending": [],
@@ -265,7 +265,7 @@
      "trades_today": 0,
      "halted_today": false,
      "killed": false,
-     "peak_equity": 10100.846510060814
+     "peak_equity": 10106.276981529376
     },
     "last_ts": 1792452600000,
     "pending": [],
@@ -338,7 +338,7 @@
      "trades_today": 2,
      "halted_today": false,
      "killed": false,
-     "peak_equity": 10184.946193227457
+     "peak_equity": 10193.722765922612
     },
     "last_ts": 1792495800000,
     "pending": [],
@@ -382,7 +382,7 @@
      "trades_today": 3,
      "halted_today": false,
      "killed": false,
-     "peak_equity": 10282.72643285546
+     "peak_equity": 10290.506377312147
     },
     "last_ts": 1792495800000,
     "pending": [],
@@ -426,7 +426,7 @@
      "trades_today": 0,
      "halted_today": false,
      "killed": false,
-     "peak_equity": 10091.970298410124
+     "peak_equity": 10096.137437860212
     },
     "last_ts": 1792452600000,
     "pending": [],
@@ -502,7 +502,7 @@
      "trades_today": 9,
      "halted_today": false,
      "killed": false,
-     "peak_equity": 10242.48469111123
+     "peak_equity": 10251.739269943842
     },
     "last_ts": 1792495800000,
     "pending": [],
@@ -546,7 +546,7 @@
      "trades_today": 3,
      "halted_today": false,
      "killed": false,
-     "peak_equity": 10212.577183936704
+     "peak_equity": 10216.633833576961
     },
     "last_ts": 1792495800000,
     "pending": [],
@@ -654,7 +654,7 @@
      "trades_today": 9,
      "halted_today": false,
      "killed": false,
-     "peak_equity": 10138.401337939482
+     "peak_equity": 10145.239189191427
     },
     "last_ts": 1792495800000,
     "pending": [],
@@ -730,7 +730,7 @@
      "trades_today": 0,
      "halted_today": false,
      "killed": false,
-     "peak_equity": 10091.45186190218
+     "peak_equity": 10093.52954878468
     },
     "last_ts": 1792452600000,
     "pending": [],
@@ -774,7 +774,7 @@
      "trades_today": 0,
      "halted_today": false,
      "killed": false,
-     "peak_equity": 10052.449927787124
+     "peak_equity": 10055.077541626277
     },
     "last_ts": 1792452600000,
     "pending": [],
@@ -850,7 +850,7 @@
      "trades_today": 1,
      "halted_today": false,
      "killed": false,
-     "peak_equity": 10086.645857183128
+     "peak_equity": 10090.624862980967
     },
     "last_ts": 1792495800000,
     "pending": [],
@@ -894,7 +894,7 @@
      "trades_today": 0,
      "halted_today": false,
      "killed": false,
-     "peak_equity": 10130.795781009889
+     "peak_equity": 10135.984863559268
     },
     "last_ts": 1792452600000,
     "pending": [],
