@@ -1,0 +1,18 @@
+[14:50:49] Bajando historia de funding…
+[14:50:50]   Binance: no disponible (ExchangeNotAvailable: binanceusdm GET https://fapi.binance.com/fapi/v1/exchangeInfo 451  {
+  "code": 0,
+  "msg": "Service unavailable from a r)
+[14:50:50]   Bybit: no disponible (RateLimitExceeded: bybit GET https://api.bybit.com/v5/market/instruments-info?category=spot 403 Forbidden {
+    error:The Amazon CloudFront)
+[14:51:38]   Hyperliquid: no disponible (RateLimitExceeded: hyperliquid POST https://api.hyperliquid.xyz/info 429 Too Many Requests null)
+[14:51:43]   Kraken Futures: cobertura BTC 33%, ETH 33%, SOL 33%  → insuficiente, solo como referencia
+[14:51:51]   OKX: cobertura BTC 8%, ETH 8%, SOL 8%  → insuficiente, solo como referencia
+[14:51:51] Bajando precios diarios de contado…
+[14:51:54] ✗ SystemExit: Ningún exchange dio historia suficiente de funding. Ver log.
+Traceback (most recent call last):
+  File "/home/runner/work/trading-arena/trading-arena/carry.py", line 459, in <module>
+    main()
+  File "/home/runner/work/trading-arena/trading-arena/carry.py", line 444, in main
+    raise SystemExit("Ningún exchange dio historia suficiente de funding. Ver log.")
+SystemExit: Ningún exchange dio historia suficiente de funding. Ver log.
+
