@@ -29,6 +29,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Correr el estudio de carry
+        timeout-minutes: 40
         run: python carry.py
 
       - name: Guardar resultados

@@ -78,10 +78,20 @@ CFG = {
 LOG: list[str] = []
 
 
+import threading                                   # noqa: E402
+
+_LOCK = threading.Lock()
+
+
 def log(msg):
+    """Imprime y además escribe al instante en study/carry/log.txt (queda aunque el proceso se corte)."""
     line = f"[{time.strftime('%H:%M:%S')}] {msg}"
-    print(line, flush=True)
-    LOG.append(line)
+    with _LOCK:
+        print(line, flush=True)
+        LOG.append(line)
+        OUT.mkdir(parents=True, exist_ok=True)
+        with open(OUT / "log.txt", "a", encoding="utf-8") as fh:
+            fh.write(line + "\n")
 
 
 # ------------------------------------------------------------------ datos
@@ -97,7 +107,7 @@ def _call(fn, *args, **kw):
             time.sleep(15 * (attempt + 1))
 
 
-def fetch_funding(ex_id: str, symbol: str, since: int) -> pd.Series:
+def fetch_funding(ex_id: str, symbol: str, since: int, deadline: float = float("inf")) -> pd.Series:
     """Historia de funding (tasa por período). Usa la paginación de ccxt y, si no alcanza,
     pagina a mano hacia adelante."""
     import ccxt
@@ -109,14 +119,16 @@ def fetch_funding(ex_id: str, symbol: str, since: int) -> pd.Series:
         raise ValueError(f"{symbol} no existe")
     rows = {}
     try:                                          # 1) paginación incorporada de ccxt
-        got = _call(ex.fetch_funding_rate_history, symbol, since, None, {"paginate": True, "paginationCalls": 400})
+        if ex_id in SLOW:
+            raise RuntimeError("se pagina a mano")
+        got = _call(ex.fetch_funding_rate_history, symbol, since, None, {"paginate": True, "paginationCalls": 60})
         rows.update({int(b["timestamp"]): float(b["fundingRate"]) for b in got
                      if b.get("timestamp") and b.get("fundingRate") is not None and b["timestamp"] >= since})
     except Exception:
         pass
     cur, now = (max(rows) + 1 if rows else since), ex.milliseconds()
     for _ in range(3000):                         # 2) completar a mano lo que falte
-        if cur > now - DAY:
+        if cur > now - DAY or time.time() > deadline:
             break
         batch = _call(ex.fetch_funding_rate_history, symbol, since=cur,
                       limit={"binanceusdm": 1000, "bybit": 200, "hyperliquid": 500, "okx": 100,
@@ -142,27 +154,35 @@ def to_daily(s: pd.Series) -> pd.Series:
     return pd.Series(s.values, index=idx).groupby(level=0).sum()
 
 
-def load_sources(since: int, start_day: pd.Timestamp, end_day: pd.Timestamp) -> dict:
-    out = {}
+def _load_one(ex_id, tpl, label, since, start_day, end_day, budget_s=420):
     expected = (end_day - start_day).days
-    for ex_id, tpl, label in SOURCES:
-        try:
-            cols, cov = {}, {}
-            for c in COINS:
-                d = to_daily(fetch_funding(ex_id, tpl.format(c=c), since))
-                d = d[(d.index >= start_day) & (d.index < end_day)]
-                cols[c], cov[c] = d, len(d) / expected
-            df = pd.DataFrame(cols)
-            apr = (df.mean() * 365).abs().max()
-            if apr > 1.0:
-                raise ValueError(f"funding anualizado de {apr:.0%}: no parece una tasa, se descarta")
-            ok = min(cov.values()) >= CFG["min_coverage"]
-            log(f"  {label}: cobertura " + ", ".join(f"{c} {v:.0%}" for c, v in cov.items())
-                + ("" if ok else "  → insuficiente, solo como referencia"))
-            out[label] = {"funding": df, "coverage": cov, "full": ok, "id": ex_id}
-        except Exception as e:
-            log(f"  {label}: no disponible ({e.__class__.__name__}: {str(e)[:120]})")
-    return out
+    deadline = time.time() + budget_s
+    try:
+        cols, cov = {}, {}
+        for c in COINS:
+            d = to_daily(fetch_funding(ex_id, tpl.format(c=c), since, deadline))
+            d = d[(d.index >= start_day) & (d.index < end_day)]
+            cols[c], cov[c] = d, len(d) / expected
+        df = pd.DataFrame(cols)
+        apr = (df.mean() * 365).abs().max()
+        if apr > 1.0:
+            raise ValueError(f"funding anualizado de {apr:.0%}: no parece una tasa, se descarta")
+        ok = min(cov.values()) >= CFG["min_coverage"]
+        log(f"  {label}: cobertura " + ", ".join(f"{c} {v:.0%}" for c, v in cov.items())
+            + ("" if ok else "  → incompleta"))
+        return label, {"funding": df, "coverage": cov, "full": ok, "id": ex_id}
+    except Exception as e:
+        log(f"  {label}: no disponible ({e.__class__.__name__}: {str(e)[:120]})")
+        return label, None
+
+
+def load_sources(since: int, start_day: pd.Timestamp, end_day: pd.Timestamp) -> dict:
+    """Consulta todos los exchanges en paralelo (cada uno tiene su propio límite de velocidad)."""
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=7) as pool:
+        futs = [pool.submit(_load_one, ex_id, tpl, label, since, start_day, end_day) for ex_id, tpl, label in SOURCES]
+        got = dict(f.result() for f in futs)
+    return {label: got[label] for _, _, label in SOURCES if got.get(label)}       # respeta el orden de preferencia
 
 
 # ------------------------------------------------------------------ simulación
@@ -363,7 +383,6 @@ def write_report(src: dict, primary: str, res: dict, prices: pd.DataFrame, meta:
                            for k, v in res.items()},
                "funding_apr_by_year": fy.to_dict(), "recent_apr": recent_apr.to_dict(), "big_up_days": liq}
     (OUT / "resumen.json").write_text(json.dumps(summary, indent=1, default=float, ensure_ascii=False))
-    (OUT / "log.txt").write_text("\n".join(LOG) + "\n", encoding="utf-8")
     write_html(P, rf, concl, meta, primary, fy)
     log("Reportes escritos: CARRY.md, study/carry/, docs/carry/index.html")
 
@@ -459,6 +478,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--synthetic", action="store_true")
     a = ap.parse_args()
+    shutil.rmtree(OUT, ignore_errors=True)        # cada corrida arranca con el registro limpio
     now = pd.Timestamp.now(tz="UTC").floor("D")
     start = now - pd.Timedelta(days=CFG["days"])
     if a.synthetic:
@@ -506,5 +526,4 @@ if __name__ == "__main__":
         LOG.append(traceback.format_exc())
         raise
     finally:
-        OUT.mkdir(parents=True, exist_ok=True)
-        (OUT / "log.txt").write_text("\n".join(LOG) + "\n", encoding="utf-8")
+        pass
