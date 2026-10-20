@@ -4,16 +4,18 @@ Bots de trading cripto compitiendo con plata **simulada** sobre precios reales. 
 
 > Lleva 0.6 días. En las primeras semanas los números son ruido: todavía no se puede sacar ninguna conclusión.
 
-**Última actualización:** 2026-10-20 13:30 UTC · **Desde:** 2026-10-19 23:30 UTC · **Datos:** bingx · **Evolución:** apagada
+**Última actualización:** 2026-10-20 14:15 UTC · **Desde:** 2026-10-19 23:30 UTC · **Datos:** bingx · **Evolución:** apagada
 
 ## Ranking (bots activos)
 
 | Bot | Días | Retorno | Sharpe | Caída máx. | Trades | Veredicto |
 |---|---:|---:|---:|---:|---:|---|
-| `buy_and_hold` | 1 | -0.4% | -6.18 | 1.1% | 3 | Referencia |
+| `buy_and_hold` | 1 | +2.5% | 19.07 | 1.1% | 3 | Referencia |
 | `breakout` | 1 | +0.0% | — | 0.0% | 0 | En observación (1 de 30 días mínimos) |
 | `mean_reversion` | 1 | +0.0% | — | 0.0% | 0 | En observación (1 de 30 días mínimos) |
 | `momentum` | 1 | +0.0% | — | 0.0% | 0 | En observación (1 de 30 días mínimos) |
+
+📊 **Tablero completo:** https://dcohenm.github.io/trading-arena/
 
 Para correr backtests o pruebas a mano en tu computadora: [GUIA.md](GUIA.md).
 
