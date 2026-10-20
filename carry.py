@@ -289,22 +289,22 @@ def num(v):
 
 
 def verdict(A: dict, B: dict, rf_total: float) -> list[str]:
-    out = []
-    best_name, best = max((("A (siempre)", A), ("B (solo cuando paga)", B)), key=lambda kv: kv[1]["sharpe_excess"])
-    beats_rf = best["return_pct"] > rf_total
+    best_name, best = max((("A (siempre)", A), ("B (solo cuando paga)", B)), key=lambda kv: kv[1]["cagr_pct"])
+    rf_apr = CFG["risk_free"] * 100
+    excess = best["cagr_pct"] - rf_apr                 # puntos por año por encima de los bonos
     solid = best["psr_excess"] >= 0.95
-    if beats_rf and solid:
-        out.append(f"**Sí hay algo:** la regla {best_name} rindió {pct(best['return_pct'])} contra {pct(rf_total)} de los "
-                   f"bonos del Tesoro, con una caída máxima de {pct(best['max_dd_pct'], False)} y una ventaja sobre los bonos "
-                   f"estadísticamente sólida ({best['psr_excess'] * 100:.0f}%). Vale la pena seguir mirándolo, sabiendo los riesgos de abajo.")
-    elif beats_rf:
-        out.append(f"**Le ganó a los bonos, pero sin evidencia sólida:** la regla {best_name} rindió {pct(best['return_pct'])} "
-                   f"contra {pct(rf_total)} de los bonos del Tesoro, pero la ventaja no es estadísticamente firme "
-                   f"({best['psr_excess'] * 100:.0f}%, hace falta 95%).")
+    if excess >= 3 and solid:
+        txt = (f"**Sí hay algo:** la regla {best_name} rindió {pct(best['cagr_pct'])} por año contra ~{rf_apr:.1f}% de los "
+               f"bonos del Tesoro ({excess:.1f} puntos más por año), con una caída máxima de {pct(best['max_dd_pct'], False)}. "
+               "Vale la pena seguir mirándolo, sabiendo los riesgos de abajo.")
+    elif excess > 0:
+        txt = (f"**Le ganó a los bonos por muy poco:** la regla {best_name} rindió {pct(best['cagr_pct'])} por año contra "
+               f"~{rf_apr:.1f}% de los bonos del Tesoro: apenas {excess:.1f} puntos más por año. Es una diferencia chica "
+               "para el riesgo de tener la plata depositada en un exchange cripto.")
     else:
-        out.append(f"**No conviene:** ni siempre ni eligiendo cuándo, el carry le ganó a dejar la plata en bonos del Tesoro "
-                   f"({pct(best['return_pct'])} contra {pct(rf_total)}), y con bastante más riesgo.")
-    return out
+        txt = (f"**No conviene:** ni siempre ni eligiendo cuándo, el carry le ganó a los bonos del Tesoro "
+               f"({pct(best['cagr_pct'])} por año contra ~{rf_apr:.1f}%), y con bastante más riesgo.")
+    return [txt]
 
 
 def write_report(src: dict, primary: str, res: dict, prices: pd.DataFrame, meta: dict) -> None:
@@ -361,6 +361,17 @@ def write_report(src: dict, primary: str, res: dict, prices: pd.DataFrame, meta:
         for k, v in others.items():
             cov = min(src[k]["coverage"].values()) * 100
             md.append(f"| {k} | {cov:.0f}% | {pct(v['A']['m']['return_pct'])} | {pct(v['B']['m']['return_pct'])} |")
+    partial = {k: v for k, v in src.items() if k != primary and len(v["funding"]) >= 30}
+    if partial:
+        md += ["", "## ¿Pasa lo mismo en otros exchanges? (funding promedio, % anual, en el período que cada uno tiene)", "",
+               f"| Exchange | Desde | Días | {' | '.join(COINS)} | {primary} mismo período |", "|---|---|---:|" + "---:|" * (len(COINS) + 1)]
+        for k, v in partial.items():
+            f2_ = v["funding"]
+            lo = f2_.index.min()
+            mine = (f2_.mean() * 365 * 100)
+            ref = (fund[fund.index >= lo].mean() * 365 * 100)
+            md.append(f"| {k} | {lo.strftime('%Y-%m-%d')} | {len(f2_)} | " + " | ".join(f"{mine[c]:.1f}" for c in COINS)
+                      + " | " + ", ".join(f"{c} {ref[c]:.1f}" for c in COINS) + " |")
     sens = P.get("sens", {})
     if sens:
         md += ["", "## Sensibilidad de la regla B (no es optimización: solo muestra si el resultado depende del umbral)", "",
@@ -371,6 +382,8 @@ def write_report(src: dict, primary: str, res: dict, prices: pd.DataFrame, meta:
            f"- Capital = 1,5 veces lo invertido (50% extra como garantía de los futuros). Lo que no se invierte no rinde nada.",
            f"- Costos por entrar o salir de una moneda: {(CFG['spot_fee'] + CFG['perp_fee'] + 2 * CFG['slippage']) * 100:.2f}% (comisión y deslizamiento en las dos patas). Rebalanceo cuando una posición se desvía más de 10%.",
            "- Reglas fijadas antes de mirar los resultados. Nada se ajustó sobre estos datos.",
+           "- El Sharpe sale muy alto porque no se simulan las oscilaciones de la diferencia de precio entre contado y futuro; en la realidad la curva es más irregular.",
+           f"- Solo {primary} dio 3 años completos de historia desde los servidores de GitHub (Binance y Bybit los bloquean). Los demás exchanges sirven para comparar el último tramo.",
            "- No incluye: quiebra o congelamiento del exchange, cambios en las reglas del exchange, impuestos.",
            "", "📊 Tablero: https://dcohenm.github.io/trading-arena/carry/", "",
            f"*Generado el {meta['generated']}. Todo es simulado; no es asesoramiento financiero.*"]
