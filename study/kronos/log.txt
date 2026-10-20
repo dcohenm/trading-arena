@@ -1,0 +1,20 @@
+[16:22:50] Cargando modelo NeoQuasar/Kronos-small…
+[16:23:47] 15m: 38068 velas de coinbase
+[16:23:47]   15m: 2299 momentos × 3 monedas para predecir
+[16:28:03]     24/6897 · 4.3 min · 0.1 pred/s
+[17:09:50]     264/6897 · 46.0 min · 0.1 pred/s
+[17:51:43]     504/6897 · 87.9 min · 0.1 pred/s
+[18:16:53]   15m: se acabó el tiempo asignado; se evalúa con 648 predicciones
+[18:17:07] 1h: 10545 velas de coinbase
+[18:17:07]   1h: 414 momentos × 3 monedas para predecir
+[18:23:33]     24/1242 · 6.4 min · 0.1 pred/s
+[19:26:45]     264/1242 · 69.6 min · 0.1 pred/s
+[19:32:59]   1h: se acabó el tiempo asignado; se evalúa con 288 predicciones
+[19:33:02] 1d: 823 velas de coinbase
+[19:33:02]   1d: 414 momentos × 3 monedas para predecir
+[19:34:49]     24/1242 · 1.8 min · 0.2 pred/s
+[19:52:53]     264/1242 · 19.9 min · 0.2 pred/s
+[19:58:23]   1d: se acabó el tiempo asignado; se evalúa con 336 predicciones
+[19:58:23] Reportes escritos: KRONOS.md, study/kronos/, docs/kronos/index.html
+[19:58:23] **Predice algo:** en 15m→4h (56.8% de aciertos), 1h→1d (60.8% de aciertos) acertó la dirección más que una moneda al aire y más que las reglas simples, con significancia estadística aun corrigiendo por haber probado 5 combinaciones.
+[19:58:23] **Con costos:** operar según Kronos no le ganó a comprar y mantener ni a seguir la tendencia en ninguna combinación.
