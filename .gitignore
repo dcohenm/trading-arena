@@ -11,3 +11,4 @@ state/_tmp.db
 state/*.tmp
 study/run/
 study/data/
+vendor/

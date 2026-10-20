@@ -1,0 +1,49 @@
+name: Estudio Kronos
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["kronos_eval.py", ".github/workflows/kronos.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kronos
+  cancel-in-progress: true
+
+jobs:
+  kronos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar (torch para CPU + Kronos en una versión fija)
+        run: |
+          pip install -r requirements.txt
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install einops==0.8.1 "huggingface_hub>=0.33" safetensors tqdm
+          git clone https://github.com/shiyu-coder/Kronos.git vendor/Kronos
+          git -C vendor/Kronos checkout 67b630e67f6a18c9e9be918d9b4337c960db1e9a
+
+      - name: Correr la evaluación
+        timeout-minutes: 300
+        run: python kronos_eval.py
+
+      - name: Guardar resultados
+        if: always()
+        run: |
+          git config user.name "arena-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for p in KRONOS.md study/kronos docs/kronos; do [ -e "$p" ] && git add -A "$p"; done
+          if git diff --cached --quiet; then echo "sin cambios"; exit 0; fi
+          git commit -q -m "estudio Kronos: $(date -u '+%Y-%m-%d %H:%M') UTC"
+          for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && exit 0; sleep 10; done
+          exit 1
