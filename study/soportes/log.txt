@@ -1,0 +1,10 @@
+[23:10:02] 27195 velas de 1 h por moneda (coinbase)
+[23:10:05]   BTC: A 789 · B 304 · C 348 operaciones; 142 acercamientos y 1228 cruces de números redondos
+[23:10:07]   ETH: A 882 · B 323 · C 439 operaciones; 118 acercamientos y 1341 cruces de números redondos
+[23:10:10]   SOL: A 942 · B 365 · C 684 operaciones; 195 acercamientos y 2082 cruces de números redondos
+[23:10:10] Reportes escritos: SOPORTES.md, study/soportes/, docs/soportes/index.html
+[23:10:10] **Rebote en soporte:** 2613 operaciones, -0.299% promedio por operación con costos (las mismas operaciones en momentos al azar dan -0.253%). No se distingue del azar (le ganó al 10% de las versiones al azar; hace falta más de 98.3%).
+[23:10:10] **Ruptura con volumen:** 992 operaciones, -0.306% promedio por operación con costos (las mismas operaciones en momentos al azar dan -0.194%). No se distingue del azar (le ganó al 10% de las versiones al azar; hace falta más de 98.3%).
+[23:10:10] **Comprar al cruzar un número redondo:** 1471 operaciones, -0.258% promedio por operación con costos (las mismas operaciones en momentos al azar dan -0.194%). No se distingue del azar (le ganó al 19% de las versiones al azar; hace falta más de 98.3%).
+[23:10:10] **¿El precio se frena en los números redondos?** Cerca de un número redondo lo cruzó el 78.0% de las veces; cerca de un nivel no redondo, el 78.2% (p=0.935). No se ve un efecto claro.
+[23:10:10] **¿Después de cruzarlo sigue de largo?** Al cruzar hacia arriba, las 24 h siguientes promediaron 0.089% en números redondos contra 0.071% en los de control (p=0.877); al cruzar hacia abajo, 0.247% contra 0.252% (p=0.964).
