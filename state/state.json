@@ -1,6 +1,6 @@
 {
  "created_ts": 1792452600000,
- "last_ts": 1792481400000,
+ "last_ts": 1792489500000,
  "exchange": "bingx",
  "generation": 0,
  "last_evolution_ts": null,
@@ -113,7 +113,7 @@
      "killed": false,
      "peak_equity": 10000.0
     },
-    "last_ts": 1792481400000,
+    "last_ts": 1792488600000,
     "pending": [],
     "bot": {}
    },
@@ -135,7 +135,7 @@
      "killed": false,
      "peak_equity": 10000.0
     },
-    "last_ts": 1792481400000,
+    "last_ts": 1792488600000,
     "pending": [],
     "bot": {}
    },
@@ -157,7 +157,7 @@
      "killed": false,
      "peak_equity": 10000.0
     },
-    "last_ts": 1792481400000,
+    "last_ts": 1792488600000,
     "pending": [],
     "bot": {}
    },
@@ -452,61 +452,24 @@
    },
    "_luck_08": {
     "broker": {
-     "cash": 6837.684501547191,
-     "qty": {
-      "BTC/USDT": 0.004422103221714923,
-      "ETH/USDT": 0.3850298895882158,
-      "SOL/USDT": 17.73908506156204
-     },
-     "avg_cost": {
-      "BTC/USDT": 82055.17708499999,
-      "ETH/USDT": 2411.9753849999997,
-      "SOL/USDT": 105.28261499999999
-     },
-     "stop_price": {
-      "BTC/USDT": 75490.7629182,
-      "ETH/USDT": 2219.0173541999998,
-      "SOL/USDT": 96.8600058
-     },
-     "fees_paid": 3.159156342110699,
-     "traded_notional": 3159.1563421106985,
-     "n_trades": 3
+     "cash": 9967.710007555377,
+     "qty": {},
+     "avg_cost": {},
+     "stop_price": {},
+     "fees_paid": 6.292315006783558,
+     "traded_notional": 6292.315006783558,
+     "n_trades": 6
     },
     "risk": {
      "day": "2026-10-20",
      "day_start_equity": 10000.0,
-     "trades_today": 3,
+     "trades_today": 6,
      "halted_today": false,
      "killed": false,
      "peak_equity": 10000.0
     },
     "last_ts": 1792481400000,
-    "pending": [
-     {
-      "bot": "_luck_08",
-      "symbol": "BTC/USDT",
-      "side": "sell",
-      "notional": 360.72422610495136,
-      "reason": "azar: afuera",
-      "stop": null
-     },
-     {
-      "bot": "_luck_08",
-      "symbol": "ETH/USDT",
-      "side": "sell",
-      "notional": 920.902939020407,
-      "reason": "azar: afuera",
-      "stop": null
-     },
-     {
-      "bot": "_luck_08",
-      "symbol": "SOL/USDT",
-      "side": "sell",
-      "notional": 1852.492652978924,
-      "reason": "azar: afuera",
-      "stop": null
-     }
-    ],
+    "pending": [],
     "bot": {
      "rng": {
       "bit_generator": "PCG64",
@@ -617,61 +580,36 @@
    },
    "_luck_12": {
     "broker": {
-     "cash": 2094.8643159930216,
+     "cash": 3409.248106565701,
      "qty": {
-      "BTC/USDT": 0.051149508477913434,
-      "ETH/USDT": 0.1469201128935157,
-      "SOL/USDT": 31.72483394673232
+      "BTC/USDT": 0.009365622407817284,
+      "ETH/USDT": 0.32830102435383196,
+      "SOL/USDT": 47.53952798024363
      },
      "avg_cost": {
       "BTC/USDT": 82092.02688939183,
-      "ETH/USDT": 2412.24552,
-      "SOL/USDT": 105.31100353037546
+      "ETH/USDT": 2401.6933358044257,
+      "SOL/USDT": 105.04528025709841
      },
      "stop_price": {
       "BTC/USDT": 75524.66473824048,
-      "ETH/USDT": 2219.2658784,
-      "SOL/USDT": 96.88612324794542
+      "ETH/USDT": 2209.557868940072,
+      "SOL/USDT": 96.64165783653054
      },
-     "fees_paid": 9.753625124672668,
-     "traded_notional": 9753.625124672668,
-     "n_trades": 6
+     "fees_paid": 15.247302469416187,
+     "traded_notional": 15247.302469416189,
+     "n_trades": 9
     },
     "risk": {
      "day": "2026-10-20",
      "day_start_equity": 9963.350905140045,
-     "trades_today": 3,
+     "trades_today": 6,
      "halted_today": false,
      "killed": false,
      "peak_equity": 10000.0
     },
     "last_ts": 1792481400000,
-    "pending": [
-     {
-      "bot": "_luck_12",
-      "symbol": "BTC/USDT",
-      "side": "sell",
-      "notional": 3406.7774063304714,
-      "reason": "azar",
-      "stop": null
-     },
-     {
-      "bot": "_luck_12",
-      "symbol": "ETH/USDT",
-      "side": "buy",
-      "notional": 434.07099820308724,
-      "reason": "azar",
-      "stop": 0.08
-     },
-     {
-      "bot": "_luck_12",
-      "symbol": "SOL/USDT",
-      "side": "buy",
-      "notional": 1652.8289402099615,
-      "reason": "azar",
-      "stop": 0.08
-     }
-    ],
+    "pending": [],
     "bot": {
      "rng": {
       "bit_generator": "PCG64",
@@ -818,10 +756,10 @@
    },
    "_luck_16": {
     "broker": {
-     "cash": 3605.2768376429576,
+     "cash": 4697.525409494161,
      "qty": {
       "BTC/USDT": 0.028717494891977148,
-      "ETH/USDT": 1.0098593838231154,
+      "ETH/USDT": 0.5525384288725245,
       "SOL/USDT": 15.160715020595994
      },
      "avg_cost": {
@@ -834,29 +772,20 @@
       "ETH/USDT": 2219.0173541999998,
       "SOL/USDT": 96.8600058
      },
-     "fees_paid": 6.388334827529514,
-     "traded_notional": 6388.334827529514,
-     "n_trades": 3
+     "fees_paid": 7.481676741294482,
+     "traded_notional": 7481.676741294483,
+     "n_trades": 4
     },
     "risk": {
      "day": "2026-10-20",
      "day_start_equity": 10000.0,
-     "trades_today": 3,
+     "trades_today": 4,
      "halted_today": false,
      "killed": false,
      "peak_equity": 10000.0
     },
     "last_ts": 1792481400000,
-    "pending": [
-     {
-      "bot": "_luck_16",
-      "symbol": "ETH/USDT",
-      "side": "sell",
-      "notional": 1093.3419137649687,
-      "reason": "azar",
-      "stop": null
-     }
-    ],
+    "pending": [],
     "bot": {
      "rng": {
       "bit_generator": "PCG64",
