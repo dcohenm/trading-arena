@@ -1,0 +1,38 @@
+[18:15:13] Cargando modelo NeoQuasar/Kronos-small…
+[18:15:36] Dispositivo: mps
+[18:16:34] 15m: 41103 velas de binance
+[18:16:34]   15m: 2490 momentos × 3 monedas para predecir
+[18:16:51]     64/7470 · 0.3 min · 3.9 pred/s
+[18:19:27]     704/7470 · 2.9 min · 4.1 pred/s
+[18:22:00]     1344/7470 · 5.4 min · 4.1 pred/s
+[18:24:31]     1984/7470 · 8.0 min · 4.2 pred/s
+[18:27:03]     2624/7470 · 10.5 min · 4.2 pred/s
+[18:29:35]     3264/7470 · 13.0 min · 4.2 pred/s
+[18:32:08]     3904/7470 · 15.6 min · 4.2 pred/s
+[18:34:40]     4544/7470 · 18.1 min · 4.2 pred/s
+[18:37:13]     5184/7470 · 20.6 min · 4.2 pred/s
+[18:39:45]     5824/7470 · 23.2 min · 4.2 pred/s
+[18:42:17]     6464/7470 · 25.7 min · 4.2 pred/s
+[18:44:49]     7104/7470 · 28.2 min · 4.2 pred/s
+[18:46:35] 1h: 10575 velas de binance
+[18:46:35]   1h: 415 momentos × 3 monedas para predecir
+[18:46:57]     64/1245 · 0.4 min · 2.8 pred/s
+[18:50:47]     704/1245 · 4.2 min · 2.8 pred/s
+[18:54:05] 1d: 823 velas de binance
+[18:54:05]   1d: 414 momentos × 3 monedas para predecir
+[18:54:12]     64/1242 · 0.1 min · 9.5 pred/s
+[18:55:19]     704/1242 · 1.2 min · 9.6 pred/s
+[18:56:16] Reportes escritos: KRONOS_MAC_SMALL.md, study/kronos_mac_small/, docs/kronos_mac_small/index.html
+[18:56:16] **Predice algo:** en 1h→4h (56.2% de aciertos) acertó la dirección más que el azar y que las reglas simples, con significancia aun corrigiendo por las 5 pruebas.
+[18:56:16] **Qué hace Kronos en el fondo:** sus predicciones se parecen mucho a la regla simple "lo que subió, baja" (correlación promedio 0.41). Gran parte de lo que acierta lo acierta también esa regla.
+[18:56:16] **Con costos:** alguna combinación le ganó a comprar y mantener; hay que confirmarlo con más datos.
+[22:04:45] Reportes escritos: KRONOS_MAC_SMALL.md, study/kronos_mac_small/, docs/kronos_mac_small/index.html
+[22:04:45] **Predice algo:** en 1h→4h (56.2% de aciertos) acertó la dirección más que el azar y que las reglas simples, con significancia aun corrigiendo por las 5 pruebas.
+[22:04:45] **Qué hace Kronos en el fondo:** sus predicciones se parecen mucho a la regla simple "lo que subió, baja" (correlación promedio 0.41). Gran parte de lo que acierta lo acierta también esa regla.
+[22:04:45] **Ojo:** en 1h→4h, 1h→1d todas las predicciones arrancan a la misma hora (00:00 UTC), así que el resultado vale para esa franja del día y no necesariamente para cualquier momento.
+[22:04:45] **Con costos no sirve:** la mejor ganancia bruta por operación fue 0.794% (1d→1w), y entrar y salir cuesta 0.30%. Ninguna combinación le ganó a comprar y mantener después de costos de forma apreciable.
+[22:05:01] Reportes escritos: KRONOS_MAC_SMALL.md, study/kronos_mac_small/, docs/kronos_mac_small/index.html
+[22:05:01] **Predice algo:** en 1h→4h (56.2% de aciertos) acertó la dirección más que el azar y que las reglas simples, con significancia aun corrigiendo por las 5 pruebas.
+[22:05:01] **Qué hace Kronos en el fondo:** sus predicciones se parecen mucho a la regla simple "lo que subió, baja" (correlación promedio 0.41). Gran parte de lo que acierta lo acierta también esa regla.
+[22:05:01] **Ojo:** en 1h→4h, 1h→1d todas las predicciones arrancan a la misma hora (00:00 UTC), así que el resultado vale para esa franja del día y no necesariamente para cualquier momento.
+[22:05:01] **Con costos no sirve:** la mejor ganancia bruta por operación fue 0.113% (1h→4h, entre las combinaciones con suficientes datos), y entrar y salir cuesta 0.30%. Ninguna combinación le ganó a comprar y mantener después de costos de forma apreciable.

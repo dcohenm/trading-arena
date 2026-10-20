@@ -199,8 +199,9 @@ def evaluate(df: pd.DataFrame, g: dict) -> list[dict]:
         long_flat = np.where(p > 0, r, 0.0) - np.where(p > 0, 2 * COST, 0.0)
         long_flat_f = np.where(p > 2 * COST, r, 0.0) - np.where(p > 2 * COST, 2 * COST, 0.0)
         mom = np.where(m > 0, r, 0.0) - np.where(m > 0, 2 * COST, 0.0)
+        hours = sorted(pd.to_datetime(d.t, unit="ms", utc=True).dt.hour.unique().tolist())
         out.append({
-            "input": g["tf"], "horizon": name, "n": n, "moments": nm,
+            "input": g["tf"], "horizon": name, "n": n, "moments": nm, "origin_hours": hours,
             "hit_kronos": float(d.hk.mean() * 100), "p_kronos": binom_p(wins("hk"), nm),
             "hit_momentum": float(d.hm.mean() * 100), "hit_reversal": float(d.hr.mean() * 100),
             "p_reversal": binom_p(wins("hr"), nm),
@@ -240,11 +241,20 @@ def conclusions(res: list[dict]) -> list[str]:
     avg_corr = np.nanmean([r["corr_with_reversal"] for r in res])
     out.append(f"**Qué hace Kronos en el fondo:** sus predicciones se parecen mucho a la regla simple \"lo que subió, baja\" "
                f"(correlación promedio {avg_corr:.2f}). Gran parte de lo que acierta lo acierta también esa regla.")
-    best = max(res, key=lambda r: r["ls_gross_kronos"])
+    one_hour = [r for r in res if r["input"] != "1d" and len(r.get("origin_hours", [])) == 1]
+    if one_hour:
+        h = one_hour[0]["origin_hours"][0]
+        out.append("**Ojo:** en " + ", ".join(f"{r['input']}→{r['horizon']}" for r in one_hour)
+                   + f" todas las predicciones arrancan a la misma hora ({h:02d}:00 UTC), así que el resultado vale para esa franja "
+                   "del día y no necesariamente para cualquier momento.")
+    big = [r for r in res if r["moments"] >= 200] or res       # las muestras chicas son puro ruido
+    best = max(big, key=lambda r: r["ls_gross_kronos"])
     out.append(f"**Con costos no sirve:** la mejor ganancia bruta por operación fue {f(best['ls_gross_kronos'], 3)}% "
-               f"({best['input']}→{best['horizon']}), y entrar y salir cuesta {2 * COST * 100:.2f}%. Ninguna combinación le ganó "
-               "a comprar y mantener después de costos." if not any(r["ret_kronos_net"] > max(r["ret_buyhold"], 0) for r in res)
-               else "**Con costos:** alguna combinación le ganó a comprar y mantener; hay que confirmarlo con más datos.")
+               f"({best['input']}→{best['horizon']}, entre las combinaciones con suficientes datos), y entrar y salir cuesta {2 * COST * 100:.2f}%. Ninguna combinación le ganó "
+               "a comprar y mantener después de costos de forma apreciable." if not any(r["ret_kronos_net"] > max(r["ret_buyhold"], 0.05) for r in res)
+               else "**Con costos:** " + ", ".join(f"{r['input']}→{r['horizon']} ({f(r['ret_kronos_net'], 3)}% por operación)"
+                                                   for r in res if r["ret_kronos_net"] > max(r["ret_buyhold"], 0.05))
+               + " ganó plata después de costos; hay que confirmarlo con más datos antes de creerlo.")
     return out
 
 
