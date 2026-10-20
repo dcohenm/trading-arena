@@ -1,0 +1,44 @@
+name: Estudio acciones
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["acciones_study.py", ".github/workflows/acciones.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: acciones
+  cancel-in-progress: true
+
+jobs:
+  carry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar
+        run: pip install -r requirements.txt yfinance
+
+      - name: Correr el estudio de acciones
+        timeout-minutes: 40
+        run: python acciones_study.py
+
+      - name: Guardar resultados
+        if: always()
+        run: |
+          git config user.name "arena-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for p in ACCIONES.md study/acciones docs/acciones; do [ -e "$p" ] && git add -A "$p"; done
+          if git diff --cached --quiet; then echo "sin cambios"; exit 0; fi
+          git commit -q -m "estudio acciones: $(date -u '+%Y-%m-%d %H:%M') UTC"
+          for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && exit 0; sleep 10; done
+          exit 1
