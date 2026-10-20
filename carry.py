@@ -45,13 +45,22 @@ OUT = ROOT / "study" / "carry"
 DOCS = ROOT / "docs" / "carry"
 DAY = 86_400_000
 COINS = ["BTC", "ETH", "SOL"]
-SOURCES = [  # (exchange en ccxt, símbolo del perpetuo, nombre para mostrar)
-    ("binanceusdm", "{c}/USDT:USDT", "Binance"),
-    ("bybit", "{c}/USDT:USDT", "Bybit"),
+SOURCES = [  # (exchange en ccxt, símbolo del perpetuo, nombre para mostrar), en orden de preferencia
+    ("binanceusdm", "{c}/USDT:USDT", "Binance"),        # bloquea servidores de EE.UU. (GitHub), se intenta igual
+    ("bybit", "{c}/USDT:USDT", "Bybit"),                # ídem
+    ("bitget", "{c}/USDT:USDT", "Bitget"),
+    ("gate", "{c}/USDT:USDT", "Gate"),
+    ("kucoinfutures", "{c}/USDT:USDT", "KuCoin"),
+    ("mexc", "{c}/USDT:USDT", "MEXC"),
+    ("htx", "{c}/USDT:USDT", "HTX"),
+    ("bingx", "{c}/USDT:USDT", "BingX"),
     ("hyperliquid", "{c}/USDC:USDC", "Hyperliquid"),
+    ("woo", "{c}/USDT:USDT", "WOO X"),
+    ("phemex", "{c}/USDT:USDT", "Phemex"),
     ("krakenfutures", "{c}/USD:USD", "Kraken Futures"),
     ("okx", "{c}/USDT:USDT", "OKX"),
 ]
+SLOW = {"hyperliquid": 2500, "krakenfutures": 1000, "htx": 300, "mexc": 300}   # ms entre pedidos
 CFG = {
     "days": 3 * 365 + 30,
     "margin": 0.5,                 # garantía extra para los futuros, como fracción de lo invertido
@@ -76,17 +85,42 @@ def log(msg):
 
 
 # ------------------------------------------------------------------ datos
+def _call(fn, *args, **kw):
+    """Pedido con reintentos ante límites de velocidad o cortes momentáneos."""
+    import ccxt
+    for attempt in range(4):
+        try:
+            return fn(*args, **kw)
+        except (ccxt.RateLimitExceeded, ccxt.DDoSProtection, ccxt.RequestTimeout, ccxt.NetworkError) as e:
+            if attempt == 3 or "451" in str(e) or "CloudFront" in str(e):
+                raise
+            time.sleep(15 * (attempt + 1))
+
+
 def fetch_funding(ex_id: str, symbol: str, since: int) -> pd.Series:
-    """Historia de funding (tasa por período) paginando hacia adelante."""
+    """Historia de funding (tasa por período). Usa la paginación de ccxt y, si no alcanza,
+    pagina a mano hacia adelante."""
     import ccxt
     ex = getattr(ccxt, ex_id)({"enableRateLimit": True})
-    ex.load_markets()
+    if ex_id in SLOW:
+        ex.rateLimit = SLOW[ex_id]
+    _call(ex.load_markets)
     if symbol not in ex.markets:
         raise ValueError(f"{symbol} no existe")
-    rows, cur, now = {}, since, ex.milliseconds()
-    for _ in range(2000):
-        batch = ex.fetch_funding_rate_history(symbol, since=cur, limit=None if ex_id == "krakenfutures" else
-                                              {"binanceusdm": 1000, "bybit": 200, "hyperliquid": 500, "okx": 100}.get(ex_id))
+    rows = {}
+    try:                                          # 1) paginación incorporada de ccxt
+        got = _call(ex.fetch_funding_rate_history, symbol, since, None, {"paginate": True, "paginationCalls": 400})
+        rows.update({int(b["timestamp"]): float(b["fundingRate"]) for b in got
+                     if b.get("timestamp") and b.get("fundingRate") is not None and b["timestamp"] >= since})
+    except Exception:
+        pass
+    cur, now = (max(rows) + 1 if rows else since), ex.milliseconds()
+    for _ in range(3000):                         # 2) completar a mano lo que falte
+        if cur > now - DAY:
+            break
+        batch = _call(ex.fetch_funding_rate_history, symbol, since=cur,
+                      limit={"binanceusdm": 1000, "bybit": 200, "hyperliquid": 500, "okx": 100,
+                             "gate": 1000, "bingx": 1000, "htx": 50, "bitget": 100, "mexc": 100}.get(ex_id))
         new = [(b["timestamp"], b["fundingRate"]) for b in batch
                if b.get("timestamp") and b["timestamp"] >= cur and b.get("fundingRate") is not None]
         if not new:
@@ -94,7 +128,7 @@ def fetch_funding(ex_id: str, symbol: str, since: int) -> pd.Series:
         for t, r in new:
             rows[int(t)] = float(r)
         nxt = max(t for t, _ in new) + 1
-        if nxt <= cur or nxt > now:
+        if nxt <= cur:
             break
         cur = nxt
     if not rows:
@@ -439,9 +473,18 @@ def main():
                                             CFG["days"], min_coverage=0.9, log=log)
         prices = pd.DataFrame({c: frames[f"{c}/USDT"].set_index(pd.to_datetime(frames[f"{c}/USDT"].ts, unit="ms", utc=True)).close
                                for c in COINS})
+    for v in src.values():                        # empezar cuando hay datos de las tres monedas
+        f = v["funding"]
+        first = f.dropna().index.min() if f.dropna().size else None
+        v["funding"] = f[f.index >= first] if first is not None else f.iloc[0:0]
     full = [k for k, v in src.items() if v["full"]]
     if not full:
-        raise SystemExit("Ningún exchange dio historia suficiente de funding. Ver log.")
+        best = sorted(src, key=lambda k: -len(src[k]["funding"]))
+        if best and len(src[best[0]]["funding"]) >= 300:
+            full = best[:1]
+            log(f"⚠ Ningún exchange dio 3 años completos: se usa {best[0]} con {len(src[best[0]]['funding'])} días.")
+        else:
+            raise SystemExit("Ningún exchange dio historia suficiente de funding. Ver log.")
     primary = full[0]
     res = run_all({k: src[k] for k in full}, prices)
     f = src[primary]["funding"]
