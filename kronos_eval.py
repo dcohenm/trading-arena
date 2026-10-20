@@ -52,6 +52,18 @@ GROUPS = [  # marco de entrada, minutos por vela, horizontes (en velas), separac
     {"tf": "1d", "minutes": 1440, "horizons": {"1w": 7}, "spacing": 1, "budget_min": 25},
 ]
 LOG: list[str] = []
+REPORT_MD = ROOT / "KRONOS.md"
+TAG = ""
+
+
+def set_output(tag: str) -> None:
+    """Con un sufijo (p. ej. mac_small) los resultados van a archivos aparte y no pisan los de GitHub."""
+    global OUT, DOCS, REPORT_MD, TAG
+    TAG = tag
+    if tag:
+        OUT = ROOT / "study" / f"kronos_{tag}"
+        DOCS = ROOT / "docs" / f"kronos_{tag}"
+        REPORT_MD = ROOT / f"KRONOS_{tag.upper()}.md"
 
 
 def log(msg):
@@ -78,7 +90,7 @@ class StubPredictor:
         return out
 
 
-def load_predictor(stub: bool):
+def load_predictor(stub: bool, device: str = "cpu"):
     if stub:
         return StubPredictor()
     import torch
@@ -89,7 +101,10 @@ def load_predictor(stub: bool):
     tok = KronosTokenizer.from_pretrained(CFG["tokenizer"])
     model = Kronos.from_pretrained(CFG["model"])
     model.eval()
-    return KronosPredictor(model, tok, device="cpu", max_context=512)
+    if device == "auto":
+        device = "mps" if torch.backends.mps.is_available() else ("cuda:0" if torch.cuda.is_available() else "cpu")
+    log(f"Dispositivo: {device}")
+    return KronosPredictor(model, tok, device=device, max_context=512)
 
 
 # ------------------------------------------------------------------ predicciones
@@ -242,7 +257,8 @@ def write_reports(res: list[dict], meta: dict) -> None:
     hdr = ("| Entrada → horizonte | Momentos independientes | Aciertos Kronos | p-valor | \"Lo que subió, baja\" | Seguir tendencia | "
            "\"Siempre sube\" | Parecido de Kronos a \"lo que subió, baja\" |")
     md = ["# ¿Kronos predice las velas?", "",
-          f"Kronos-small usado tal como viene, sin reentrenar, sobre BTC, ETH y SOL. Solo se evalúan resultados posteriores al "
+          f"{CFG['model'].split('/')[-1]} usado tal como viene, sin reentrenar, sobre BTC, ETH y SOL"
+          f"{' (corrido en ' + meta.get('device', '') + ', datos de ' + meta.get('source', '') + ')' if TAG else ''}. Solo se evalúan resultados posteriores al "
           f"**{EVAL_START.date()}** (Kronos se publicó en agosto de 2025, así que no pudo verlos). Período: {meta['start']} → {meta['end']}.",
           "", "## Conclusiones", ""] + [f"- {c}" for c in concl] + [
           "", "## ¿Acierta la dirección?", "", hdr, "|---|---:|---:|---:|---:|---:|---:|---:|"]
@@ -263,11 +279,11 @@ def write_reports(res: list[dict], meta: dict) -> None:
            "- **Correlación**: qué tan bien ordena las subas grandes y chicas (0 = nada, 1 = perfecto). En finanzas, 0,02-0,05 ya se considera una señal.",
            "- **Operando con eso**: comprar cuando Kronos predice suba y quedarse afuera cuando predice baja, pagando 0,15% al entrar y al salir.",
            f"- Configuración fija: {CFG['model']}, contexto {CFG['lookback']} velas, promedio de {CFG['samples']} trayectorias, temperatura {CFG['T']}.",
-           "", "📊 Tablero: https://dcohenm.github.io/trading-arena/kronos/", "",
+           "", f"📊 Tablero: https://dcohenm.github.io/trading-arena/{DOCS.name}/", "",
            f"*Generado el {meta['generated']} en {meta['minutes']:.0f} minutos. Todo es simulado; no es asesoramiento financiero.*"]
-    (ROOT / "KRONOS.md").write_text("\n".join(md) + "\n", encoding="utf-8")
+    REPORT_MD.write_text("\n".join(md) + "\n", encoding="utf-8")
     write_html(res, concl, meta)
-    log("Reportes escritos: KRONOS.md, study/kronos/, docs/kronos/index.html")
+    log(f"Reportes escritos: {REPORT_MD.name}, {OUT.relative_to(ROOT)}/, {DOCS.relative_to(ROOT)}/index.html")
 
 
 def write_html(res, concl, meta):
@@ -332,20 +348,32 @@ def main():
     ap.add_argument("--stub", action="store_true", help="predictor falso, para probar sin torch")
     ap.add_argument("--quick", action="store_true", help="pocas predicciones, para chequear que todo anda")
     ap.add_argument("--from-csv", action="store_true", help="recalcular métricas con las predicciones ya guardadas")
+    ap.add_argument("--full", action="store_true", help="todas las predicciones, sin tiempo máximo (para la Mac)")
+    ap.add_argument("--device", default="cpu", help="cpu, mps, cuda o auto")
+    ap.add_argument("--model", default="small", choices=["small", "base"])
+    ap.add_argument("--tag", default="", help="sufijo para los archivos de salida (p. ej. mac_small)")
+    ap.add_argument("--exchanges", default="coinbase,okx,bingx")
+    ap.add_argument("--batch", type=int, default=None)
     a = ap.parse_args()
+    set_output(a.tag)
+    CFG["model"] = f"NeoQuasar/Kronos-{a.model}"
+    if a.batch:
+        CFG["batch"] = a.batch
+    elif a.device in ("mps", "auto") or a.device.startswith("cuda"):
+        CFG["batch"] = 64
     if a.from_csv:
         return reevaluate()
     shutil.rmtree(OUT, ignore_errors=True)
     t0 = time.time()
     log(f"Cargando modelo {'(falso, prueba)' if a.stub else CFG['model']}…")
-    pred = load_predictor(a.stub)
+    pred = load_predictor(a.stub, a.device)
     now = pd.Timestamp.now(tz="UTC")
     results, all_preds, span = [], [], []
     for g in GROUPS:
         days = (now - EVAL_START).days + CFG["lookback"] * g["minutes"] / 1440 + 10
-        frames, src = fetch_recent(["coinbase", "okx", "bingx"], COINS, g["tf"], days, min_coverage=0.85, log=log)
+        frames, src = fetch_recent(a.exchanges.split(","), COINS, g["tf"], days, min_coverage=0.85, log=log)
         log(f"{g['tf']}: {len(frames[COINS[0]])} velas de {src}")
-        budget = (2 if a.quick else g["budget_min"]) * 60
+        budget = (2 if a.quick else (100_000 if a.full else g["budget_min"])) * 60
         df = run_group(pred, g, frames, time.time() + budget)
         if len(df):
             df.round(6).to_csv(OUT / f"predicciones_{g['tf']}.csv", index=False)
@@ -355,7 +383,8 @@ def main():
     if not results:
         raise SystemExit("No se generó ninguna predicción.")
     day = lambda t: datetime.fromtimestamp(int(t) / 1000, tz=timezone.utc).strftime("%Y-%m-%d")   # noqa: E731
-    meta = {"start": day(min(span)), "end": day(max(span)), "stub": a.stub, "quick": a.quick,
+    meta = {"start": day(min(span)), "end": day(max(span)), "stub": a.stub, "quick": a.quick, "tag": a.tag,
+            "model": CFG["model"], "device": a.device, "source": src,
             "minutes": (time.time() - t0) / 60, "generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}
     write_reports(results, meta)
     for c in conclusions(results):
