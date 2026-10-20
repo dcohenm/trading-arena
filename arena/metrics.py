@@ -76,7 +76,8 @@ def load_run(db_path: str, run_id: str | None = None):
     return data
 
 
-def leaderboard(data: dict, starting_cash: float, min_days: float = 0) -> tuple[pd.DataFrame, pd.DataFrame]:
+def leaderboard(data: dict, starting_cash: float, min_days: float = 0,
+                trade_override: dict | None = None) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Ranking. Cada bot se compara contra los bots al azar EN SU MISMA VENTANA de tiempo
     (importa cuando hay bots que entraron después, como los que crea la evolución)."""
     eq = data["equity"]
@@ -114,6 +115,10 @@ def leaderboard(data: dict, starting_cash: float, min_days: float = 0) -> tuple[
         if c not in table:
             table[c] = 0.0
         table[c] = table[c].fillna(0.0)
+    for bot, vals in (trade_override or {}).items():    # p. ej. carteras que agregan varios bots
+        if bot in table.index:
+            for c, v in vals.items():
+                table.loc[bot, c] = v
 
     # con muy poca historia el Sharpe es puro ruido (y engaña): no se muestra
     few = (table["days"] < 7) | (table["trades"] < 5)

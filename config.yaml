@@ -87,3 +87,11 @@ autopilot:
     n_mutations: 4
     n_random: 6
     max_promote: 2
+
+# ============================================================
+#  ESTUDIO HISTÓRICO (study.py): la misma arena sobre años de datos reales
+# ============================================================
+study:
+  years: 3.5                          # ~3 años de simulación + 180 días iniciales de historia
+  exchanges: [coinbase, okx, bingx]   # los que tienen historia larga de velas de 15 min
+  record_every_min: 240               # registrar capital cada 4 horas

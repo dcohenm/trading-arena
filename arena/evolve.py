@@ -9,6 +9,7 @@ examinar en la segunda) es la forma de no engañarse.
 from __future__ import annotations
 
 import copy
+import os
 import random
 
 import pandas as pd
@@ -85,28 +86,47 @@ class _MemLedger:
     def save_state(self, *a, **k): pass
 
 
-def evaluate(specs: list[dict], cfg: dict, frames: dict[str, pd.DataFrame], split_frac: float) -> pd.DataFrame:
-    """Corre cada candidato sobre todo el período y mide su desempeño por separado en la parte
-    de selección (antes del corte) y en la de examen (después del corte)."""
+_W: dict = {}
+
+
+def _init_worker(cfg, frames, split_frac):
     market = Market(frames)
-    split_ts = int(market.ts[int(len(market) * split_frac)])
+    _W.update(cfg=cfg, market=market, split_ts=int(market.ts[int(len(market) * split_frac)]))
+
+
+def _eval_one(sp: dict) -> dict | None:
+    cfg, market, split_ts = _W["cfg"], _W["market"], _W["split_ts"]
+    bot = bot_from_spec({**sp, "name": sp.get("name", "cand")}, cfg)
+    if bot is None:
+        return None
+    led = _MemLedger()
+    arena = Arena(cfg, [bot], market, led, record_every_min=60)
+    arena.run_backtest(progress=False)
+    eq = pd.Series({ts: e for ts, _, e in led.eq}).sort_index()
+    ins, oos = eq[eq.index < split_ts], eq[eq.index >= split_ts]
     ppy = 365 * 24
-    rows = []
-    for sp in specs:
-        bot = bot_from_spec({**sp, "name": sp.get("name", "cand")}, cfg)
-        if bot is None:
-            continue
-        led = _MemLedger()
-        arena = Arena(cfg, [bot], market, led, record_every_min=60)
-        arena.run_backtest(progress=False)
-        eq = pd.Series({ts: e for ts, _, e in led.eq}).sort_index()
-        ins, oos = eq[eq.index < split_ts], eq[eq.index >= split_ts]
-        a, b = stats_from_equity(ins, ppy), stats_from_equity(oos, ppy)
-        rows.append({"spec": sp, "trades": led.trades,
-                     "is_sharpe": a.get("sharpe", float("nan")), "is_return": a.get("return_pct", float("nan")),
-                     "oos_sharpe": b.get("sharpe", float("nan")), "oos_return": b.get("return_pct", float("nan")),
-                     "oos_dd": b.get("max_dd_pct", float("nan"))})
-    return pd.DataFrame(rows)
+    a, b = stats_from_equity(ins, ppy), stats_from_equity(oos, ppy)
+    return {"spec": sp, "trades": led.trades,
+            "is_sharpe": a.get("sharpe", float("nan")), "is_return": a.get("return_pct", float("nan")),
+            "oos_sharpe": b.get("sharpe", float("nan")), "oos_return": b.get("return_pct", float("nan")),
+            "oos_dd": b.get("max_dd_pct", float("nan"))}
+
+
+def evaluate(specs: list[dict], cfg: dict, frames: dict[str, pd.DataFrame], split_frac: float,
+             workers: int | None = None) -> pd.DataFrame:
+    """Corre cada candidato sobre todo el período y mide su desempeño por separado en la parte
+    de selección (antes del corte) y en la de examen (después del corte).
+    Usa varios núcleos del procesador si hay (cada candidato es independiente)."""
+    workers = workers if workers is not None else min(len(specs), os.cpu_count() or 1)
+    if workers <= 1:
+        _init_worker(cfg, frames, split_frac)
+        rows = [_eval_one(sp) for sp in specs]
+    else:
+        import multiprocessing as mp
+        ctx = mp.get_context("fork") if "fork" in mp.get_all_start_methods() else mp.get_context()
+        with ctx.Pool(workers, initializer=_init_worker, initargs=(cfg, frames, split_frac)) as pool:
+            rows = pool.map(_eval_one, specs, chunksize=1)
+    return pd.DataFrame([r for r in rows if r is not None])
 
 
 def run_generation(cfg: dict, frames: dict[str, pd.DataFrame], parents: list[dict], incumbents: list[dict],

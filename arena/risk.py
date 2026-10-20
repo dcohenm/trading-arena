@@ -6,14 +6,20 @@ y no se pueden "convencer": si Grok alucina un 300% en SOL, se recorta al máxim
 from __future__ import annotations
 
 from datetime import datetime, timezone
+from functools import lru_cache
 from pathlib import Path
 
 from .broker import PaperBroker
 from .core import Order, Proposal
 
 
+@lru_cache(maxsize=8192)
+def _day_from_index(day_index: int) -> str:
+    return datetime.fromtimestamp(day_index * 86400, tz=timezone.utc).strftime("%Y-%m-%d")
+
+
 def utc_day(ts_ms: int) -> str:
-    return datetime.fromtimestamp(ts_ms / 1000, tz=timezone.utc).strftime("%Y-%m-%d")
+    return _day_from_index(int(ts_ms // 86_400_000))
 
 
 class RiskManager:
@@ -33,9 +39,10 @@ class RiskManager:
                 "halted_today": False, "killed": False, "peak_equity": 0.0}
 
     def _st(self, bot: str) -> dict:
-        st = self.state.setdefault(bot, {})
-        for k, v in self.DEFAULTS.items():
-            st.setdefault(k, v)
+        st = self.state.get(bot)
+        if st is None or len(st) < len(self.DEFAULTS):       # completar estados viejos o nuevos
+            st = {**self.DEFAULTS, **(st or {})}
+            self.state[bot] = st
         return st
 
     # ---------- chequeos por vela ----------

@@ -38,13 +38,15 @@ def _nn(values) -> list:
 
 def build_report(db_path: str, out_path: str, starting_cash: float, run_id: str | None = None,
                  note: str = "", min_days: float = 0, status: dict | None = None,
-                 extra_html: str = "", inline_chartjs: bool = True) -> str:
+                 extra_html: str = "", inline_chartjs: bool = True,
+                 trade_override: dict | None = None, labels_map: dict | None = None) -> str:
     status = status or {}
     data = load_run(db_path, run_id)
     if not note and len(data["run"]):
         note = data["run"]["note"].iloc[0] or ""
-    table, wide = leaderboard(data, starting_cash, min_days=min_days)
+    table, wide = leaderboard(data, starting_cash, min_days=min_days, trade_override=trade_override)
     bots = list(table.index)
+    labels_map = labels_map or {}
 
     step = max(1, len(wide) // 1500)
     w = wide.iloc[::step]
@@ -60,8 +62,8 @@ def build_report(db_path: str, out_path: str, starting_cash: float, run_id: str 
     for i, b in enumerate(bots):
         col = SERIES[i % len(SERIES)]
         e = w[b]
-        series.append({"name": b, "light": col[0], "dark": col[1], "data": _nn(e)})
-        dds.append({"name": b, "light": col[0], "dark": col[1], "data": _nn((e / e.cummax() - 1) * 100)})
+        series.append({"name": labels_map.get(b, b), "light": col[0], "dark": col[1], "data": _nn(e)})
+        dds.append({"name": labels_map.get(b, b), "light": col[0], "dark": col[1], "data": _nn((e / e.cummax() - 1) * 100)})
 
     # tabla
     rows = []
@@ -69,7 +71,7 @@ def build_report(db_path: str, out_path: str, starting_cash: float, run_id: str 
         cls, icon = VERDICT_CLASS.get(r["verdict"], ("warn", "!"))
         sw = SERIES[i % len(SERIES)][0]
         rows.append(f"""<tr>
-<td class="bot"><span class="sw" style="--c:{sw}"></span>{html.escape(b)}{' <span class="muted">(retirado)</span>' if status.get(b) == 'retired' else ''}</td>
+<td class="bot"><span class="sw" style="--c:{sw}"></span>{html.escape(labels_map.get(b, b))}{' <span class="muted">(retirado)</span>' if status.get(b) == 'retired' else ''}</td>
 <td class="num">{_fmt(r['days'], 0)}</td>
 <td class="num {'pos' if r['return_pct'] > 0 else 'neg'}">{_fmt(r['return_pct'], 1, '%')}</td>
 <td class="num">{_fmt(r['sharpe'])}</td><td class="num">{_fmt(r['sortino'])}</td>
@@ -113,7 +115,7 @@ def build_report(db_path: str, out_path: str, starting_cash: float, run_id: str 
         shutil.copyfile(asset, Path(out_path).parent / "chart.umd.js")
         chartjs = ""
     page = TEMPLATE.replace("__PAYLOAD__", payload).replace("__ROWS__", "\n".join(rows)) \
-        .replace("__DEC__", "\n".join(dec_rows) or "<tr><td colspan=5 class='muted'>Sin decisiones de Grok en esta corrida.</td></tr>") \
+        .replace("__DECCARD__", DEC_CARD.replace("__DEC__", "\n".join(dec_rows)) if dec_rows else "") \
         .replace("__RISK__", risk_rows or "<tr><td colspan=4 class='muted'>Sin eventos de riesgo.</td></tr>") \
         .replace("__PERIOD__", period).replace("__MODE__", html.escape(mode)).replace("__RUN__", html.escape(data["run_id"])) \
         .replace("__NOTE__", f"<p class='note'>{html.escape(note)}</p>" if note else "") \
@@ -127,9 +129,13 @@ def build_report(db_path: str, out_path: str, starting_cash: float, run_id: str 
     return out_path
 
 
+DEC_CARD = """<div class="card"><h2>Últimas decisiones de Grok</h2><div class="scroll"><table>
+<thead><tr><th>Hora (UTC)</th><th>Bot</th><th>Pesos objetivo</th><th>Razonamiento</th><th class="num">Costo</th></tr></thead>
+<tbody>__DEC__</tbody></table></div></div>"""
+
 TEMPLATE = r"""<!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Grok Arena</title>
+<title>Trading Arena</title>
 <script>__CHARTJS__</script>
 <style>
 :root{--surface:#fcfcfb;--page:#f9f9f7;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;
@@ -159,7 +165,7 @@ td{padding:8px;border-bottom:1px solid var(--grid);vertical-align:top}
 details summary{cursor:pointer;color:var(--ink2);margin-bottom:8px}
 .help{color:var(--ink2);font-size:12.5px;margin:10px 0 0}.help b{color:var(--ink)}
 </style></head><body><main>
-<h1>Grok Arena</h1>
+<h1>Trading Arena</h1>
 <p class="sub">Corrida <b>__RUN__</b> · modo <b>__MODE__</b> · __PERIOD__</p>
 __NOTE__
 <div class="tiles">
@@ -180,9 +186,7 @@ __EXTRA__
 
 <div class="card"><h2>Caída desde el máximo (%)</h2><div class="chart small"><canvas id="dd"></canvas></div></div>
 
-<div class="card"><h2>Últimas decisiones de Grok</h2><div class="scroll"><table>
-<thead><tr><th>Hora (UTC)</th><th>Bot</th><th>Pesos objetivo</th><th>Razonamiento</th><th class="num">Costo</th></tr></thead>
-<tbody>__DEC__</tbody></table></div></div>
+__DECCARD__
 
 <div class="card"><details><summary><h2 style="display:inline">Eventos de riesgo</h2></summary><div class="scroll"><table>
 <thead><tr><th>Hora (UTC)</th><th>Bot</th><th>Tipo</th><th>Detalle</th></tr></thead><tbody>__RISK__</tbody></table></div></details></div>

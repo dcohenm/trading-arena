@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import re
+from functools import lru_cache
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -10,6 +11,7 @@ import yaml
 TF_MINUTES = {"m": 1, "h": 60, "d": 1440}
 
 
+@lru_cache(maxsize=256)
 def parse_minutes(spec: str) -> int:
     """'15m' -> 15, '4h' -> 240, '1d' -> 1440."""
     m = re.fullmatch(r"\s*(\d+)\s*([mhd])\s*", str(spec))

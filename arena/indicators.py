@@ -1,18 +1,30 @@
 """Indicadores técnicos simples, sobre arrays de numpy."""
 from __future__ import annotations
 
+from functools import lru_cache
+
 import numpy as np
 
 
+@lru_cache(maxsize=4096)
+def _decay_weights(m: int, a: float) -> np.ndarray:
+    """Pesos de un suavizado exponencial: el último dato pesa a, el anterior a(1-a), etc."""
+    w = a * (1 - a) ** np.arange(m - 1, -1, -1)
+    w.flags.writeable = False
+    return w
+
+
 def ema(x: np.ndarray, n: int) -> float:
+    """Media móvil exponencial del último dato. Equivale al bucle clásico
+    e = a*x + (1-a)*e arrancando en x[0], pero calculada de una vez (mucho más rápido)."""
     if len(x) == 0:
         return float("nan")
     a = 2 / (n + 1)
-    x = x[-(n * 5):]                    # suficiente para converger, mucho más rápido
-    e = x[0]
-    for v in x[1:]:
-        e = a * v + (1 - a) * e
-    return float(e)
+    x = np.asarray(x[-(n * 5):], dtype=float)
+    m = len(x)
+    if m == 1:
+        return float(x[0])
+    return float((1 - a) ** (m - 1) * x[0] + _decay_weights(m - 1, a) @ x[1:])
 
 
 def realized_vol(close: np.ndarray, n: int, per_year: float) -> float:
@@ -29,9 +41,12 @@ def rsi(close: np.ndarray, n: int = 14) -> float:
     up, dn = np.clip(d, 0, None), np.clip(-d, 0, None)
     a = 1 / n
     au, ad = up[:n].mean(), dn[:n].mean()
-    for u, w in zip(up[n:], dn[n:]):
-        au = a * u + (1 - a) * au
-        ad = a * w + (1 - a) * ad
+    rest = len(up) - n
+    if rest > 0:
+        w = _decay_weights(rest, a)
+        k = (1 - a) ** rest
+        au = k * au + w @ up[n:]
+        ad = k * ad + w @ dn[n:]
     if ad == 0:
         return 100.0
     return float(100 - 100 / (1 + au / ad))

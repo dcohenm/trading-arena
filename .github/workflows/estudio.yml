@@ -1,0 +1,43 @@
+name: Estudio histórico
+
+on:
+  workflow_dispatch:               # botón "Run workflow" para repetirlo cuando quieras
+  push:
+    branches: [main]
+    paths: ["study.py", "arena/evolve.py", ".github/workflows/estudio.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: estudio
+  cancel-in-progress: true
+
+jobs:
+  estudio:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar
+        run: pip install -r requirements.txt
+
+      - name: Correr el estudio (varios años de datos reales)
+        run: python study.py
+
+      - name: Guardar resultados
+        if: always()
+        run: |
+          git config user.name "arena-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for p in ESTUDIO.md study/results docs/estudio; do [ -e "$p" ] && git add -A "$p"; done
+          if git diff --cached --quiet; then echo "sin cambios"; exit 0; fi
+          git commit -q -m "estudio histórico: $(date -u '+%Y-%m-%d %H:%M') UTC"
+          for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && exit 0; sleep 10; done
+          exit 1
