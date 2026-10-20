@@ -1,23 +1,23 @@
-[15:25:24] Bajando historia de funding…
-[15:25:26]   Binance: no disponible (ExchangeNotAvailable: binanceusdm GET https://fapi.binance.com/fapi/v1/exchangeInfo 451  {
+[15:39:38] Bajando historia de funding…
+[15:39:39]   Bybit: no disponible (RateLimitExceeded: bybit GET https://api.bybit.com/v5/market/instruments-info?category=spot 403 Forbidden {
+    error:The Amazon CloudFront)
+[15:39:39]   Binance: no disponible (ExchangeNotAvailable: binanceusdm GET https://fapi.binance.com/fapi/v1/exchangeInfo 451  {
   "code": 0,
   "msg": "Service unavailable from a r)
-[15:25:26]   Bybit: no disponible (RateLimitExceeded: bybit GET https://api.bybit.com/v5/market/instruments-info?category=spot 403 Forbidden {
-    error:The Amazon CloudFront)
-[15:25:31]   KuCoin: cobertura BTC 3%, ETH 3%, SOL 3%  → incompleta
-[15:25:33]   MEXC: cobertura BTC 3%, ETH 3%, SOL 3%  → incompleta
-[15:25:34]   Gate: no disponible (BadRequest: gate {"label":"INVALID_PARAM_VALUE","message":"from time exceeds 180-day limit"})
-[15:25:36]   HTX: cobertura BTC 1%, ETH 1%, SOL 1%  → incompleta
-[15:25:37]   BingX: cobertura BTC 30%, ETH 30%, SOL 30%  → incompleta
-[15:25:37]   Bitget: cobertura BTC 8%, ETH 8%, SOL 8%  → incompleta
-[15:25:38]   Kraken Futures: cobertura BTC 33%, ETH 33%, SOL 33%  → incompleta
-[15:26:03]   OKX: cobertura BTC 8%, ETH 8%, SOL 8%  → incompleta
-[15:26:39]   Phemex: cobertura BTC 100%, ETH 100%, SOL 100%
-[15:27:09]   WOO X: cobertura BTC 44%, ETH 44%, SOL 44%  → incompleta
-[15:37:57]   Hyperliquid: no disponible (ValueError: sin datos)
-[15:37:57] Bajando precios diarios de contado…
-[15:38:02] Reportes escritos: CARRY.md, study/carry/, docs/carry/index.html
-[15:38:02] ## Conclusiones
-[15:38:02] - **Sí hay algo:** la regla A (siempre) rindió +17.3% contra +14.9% de los bonos del Tesoro, con una caída máxima de 0.3% y una ventaja sobre los bonos estadísticamente sólida (100%). Vale la pena seguir mirándolo, sabiendo los riesgos de abajo.
-[15:38:02] - **Hoy:** en los últimos 6 meses el funding promedio fue BTC 3.7%, ETH 2.7%, SOL 3.0% anual, por debajo de los ~4.5% de los bonos. En este momento no paga el riesgo.
-[15:38:02] - **Riesgo que no aparece en el número:** si el exchange quiebra (como FTX en 2022) se puede perder todo lo depositado. No hubo días con subas de más de 40%, que hubieran puesto en riesgo la garantía.
+[15:39:43]   KuCoin: cobertura BTC 3%, ETH 3%, SOL 3%  → incompleta
+[15:39:45]   Gate: no disponible (BadRequest: gate {"label":"INVALID_PARAM_VALUE","message":"from time exceeds 180-day limit"})
+[15:39:47]   MEXC: cobertura BTC 3%, ETH 3%, SOL 3%  → incompleta
+[15:39:48]   BingX: cobertura BTC 30%, ETH 30%, SOL 30%  → incompleta
+[15:39:49]   Bitget: cobertura BTC 8%, ETH 8%, SOL 8%  → incompleta
+[15:39:49]   HTX: cobertura BTC 1%, ETH 1%, SOL 1%  → incompleta
+[15:39:51]   Kraken Futures: cobertura BTC 33%, ETH 33%, SOL 33%  → incompleta
+[15:40:15]   OKX: cobertura BTC 8%, ETH 8%, SOL 8%  → incompleta
+[15:40:51]   Phemex: cobertura BTC 100%, ETH 100%, SOL 100%
+[15:40:59]   WOO X: cobertura BTC 44%, ETH 44%, SOL 44%  → incompleta
+[15:52:09]   Hyperliquid: no disponible (ValueError: sin datos)
+[15:52:09] Bajando precios diarios de contado…
+[15:52:17] Reportes escritos: CARRY.md, study/carry/, docs/carry/index.html
+[15:52:17] ## Conclusiones
+[15:52:17] - **Le ganó a los bonos por muy poco:** la regla A (siempre) rindió +5.3% por año contra ~4.5% de los bonos del Tesoro: apenas 0.8 puntos más por año. Es una diferencia chica para el riesgo de tener la plata depositada en un exchange cripto.
+[15:52:17] - **Hoy:** en los últimos 6 meses el funding promedio fue BTC 3.7%, ETH 2.7%, SOL 3.0% anual, por debajo de los ~4.5% de los bonos. En este momento no paga el riesgo.
+[15:52:17] - **Riesgo que no aparece en el número:** si el exchange quiebra (como FTX en 2022) se puede perder todo lo depositado. No hubo días con subas de más de 40%, que hubieran puesto en riesgo la garantía.
