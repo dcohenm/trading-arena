@@ -455,4 +455,13 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except BaseException as e:                     # dejar registro aunque falle (se sube al repositorio)
+        import traceback
+        log(f"✗ {e.__class__.__name__}: {e}")
+        LOG.append(traceback.format_exc())
+        raise
+    finally:
+        OUT.mkdir(parents=True, exist_ok=True)
+        (OUT / "log.txt").write_text("\n".join(LOG) + "\n", encoding="utf-8")
