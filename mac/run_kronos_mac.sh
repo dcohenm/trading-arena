@@ -1,13 +1,17 @@
 #!/bin/bash
-# Corre la evaluación de Kronos en tu Mac (usa la GPU del chip M). Todo queda en ~/trading-arena-local.
+# Corre la evaluación de Kronos en tu Mac (usa la GPU del chip M).
+# Todo queda en ~/Documents/trading-arena-local (o en ~/trading-arena-local si no existe Documents).
 # Uso:  curl -fsSL https://raw.githubusercontent.com/dcohenm/trading-arena/main/mac/run_kronos_mac.sh | bash
 set -euo pipefail
-DIR="$HOME/trading-arena-local"
+if [ -n "${ARENA_DIR:-}" ]; then DIR="$ARENA_DIR"
+elif [ -d "$HOME/Documents" ]; then DIR="$HOME/Documents/trading-arena-local"
+else DIR="$HOME/trading-arena-local"; fi
 KRONOS_COMMIT="67b630e67f6a18c9e9be918d9b4337c960db1e9a"
 say() { printf "\n\033[1m== %s\033[0m\n" "$1"; }
 
 say "1/4 Bajando el proyecto en $DIR"
-if [ -d "$DIR/.git" ]; then git -C "$DIR" pull -q --ff-only; else git clone -q https://github.com/dcohenm/trading-arena.git "$DIR"; fi
+if [ -d "$DIR/.git" ]; then git -C "$DIR" pull -q --ff-only
+else mkdir -p "$DIR" && git clone -q https://github.com/dcohenm/trading-arena.git "$DIR"; fi
 cd "$DIR"
 
 say "2/4 Preparando Python (en una carpeta aparte, no toca tus entornos de conda)"
@@ -26,6 +30,8 @@ git -C vendor/Kronos checkout -q "$KRONOS_COMMIT"
 python -c "import torch; print('GPU del chip M disponible:', torch.backends.mps.is_available())"
 
 export PYTORCH_ENABLE_MPS_FALLBACK=1
+# registro completo en un archivo (Claude lo puede leer para seguir el avance)
+exec > >(tee -a "$DIR/mac_run.log") 2>&1
 say "3/4 Kronos-small: todas las predicciones (la Mac no se va a dormir mientras corre)"
 caffeinate -i python kronos_eval.py --full --device auto --model small --tag mac_small --exchanges binance,coinbase,okx
 
