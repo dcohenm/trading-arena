@@ -226,3 +226,20 @@ def test_grok_trader_holds_on_llm_failure(tmp_path, monkeypatch):
     a, _ = make_arena(tmp_path, [bot], bars=3000)
     a.run_backtest(progress=False)
     assert not a.brokers["grok_trader"].qty and a.brokers["grok_trader"].n_trades == 0
+
+
+def test_recent_scores_compares_same_window():
+    """Un bot joven que vivió solo una suba no debe ganarle a uno viejo que le ganó al azar en su período."""
+    import pandas as pd
+    from arena.metrics import recent_scores
+    idx = pd.Index(range(0, 200 * 4 * 3_600_000, 4 * 3_600_000))
+    rng = np.random.default_rng(0)
+    market = np.r_[np.full(100, -0.002), np.full(100, 0.004)]          # baja y después sube
+    wide = pd.DataFrame(index=idx)
+    for i in range(20):                                                   # azar: sigue al mercado con ruido
+        wide[f"_luck_{i:02d}"] = 10_000 * np.cumprod(1 + 0.6 * market + rng.normal(0, 0.004, 200))
+    wide["viejo"] = 10_000 * np.cumprod(1 + np.where(market < 0, 0.0005, 0.003) + rng.normal(0, 0.001, 200))
+    young = 10_000 * np.cumprod(1 + 0.6 * market[100:] + rng.normal(0, 0.004, 100))
+    wide["joven"] = np.r_[np.full(100, np.nan), young]
+    sc = recent_scores(wide, ["viejo", "joven"], window_days=1000, ppy=2190)
+    assert sc["viejo"] > sc["joven"]

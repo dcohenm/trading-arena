@@ -164,3 +164,33 @@ def leaderboard(data: dict, starting_cash: float, min_days: float = 0,
     main["verdict"] = main.apply(verdict, axis=1)
     main = main.sort_values(["sharpe", "return_pct"], ascending=False, na_position="last")
     return main, wide
+
+
+def recent_scores(wide: pd.DataFrame, bots: list[str], window_days: float, ppy: float,
+                  min_points: int = 30) -> dict[str, float]:
+    """Puntaje para elegir padres y decidir retiros, comparando a cada bot en la MISMA ventana.
+
+    Puntaje = % de bots al azar a los que les ganó (en Sharpe) durante los últimos `window_days`
+    días de vida del bot. Así un bot que vivió solo la parte buena de una suba no queda por
+    encima de otro que atravesó subas y bajas: los dos se miden contra el azar en su propio período.
+    Bots sin datos suficientes reciben NaN (no se retiran ni se eligen como padres).
+    """
+    luck = [c for c in wide.columns if c.startswith("_luck_")]
+    if wide.empty:
+        return {b: float("nan") for b in bots}
+    end = wide.index[-1]
+    out = {}
+    for b in bots:
+        s = wide[b].dropna() if b in wide else pd.Series(dtype=float)
+        if len(s) < min_points:
+            out[b] = float("nan")
+            continue
+        lo = max(s.index[0], end - window_days * 86_400_000)
+        sb = stats_from_equity(s.loc[lo:], ppy).get("sharpe", float("nan"))
+        ls = [stats_from_equity(wide[l].loc[lo:].dropna(), ppy).get("sharpe", float("nan")) for l in luck]
+        ls = [x for x in ls if x == x]
+        if sb != sb or not ls:
+            out[b] = float("nan")
+            continue
+        out[b] = float(np.mean([x < sb for x in ls]) * 100) + 1e-3 * float(np.tanh(sb))   # desempate por Sharpe
+    return out

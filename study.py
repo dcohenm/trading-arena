@@ -39,7 +39,7 @@ from arena.csvledger import CsvLedger                       # noqa: E402
 from arena.data import fetch_recent, synthetic              # noqa: E402
 from arena.engine import Arena, Market                      # noqa: E402
 from arena.evolve import SPACE, run_generation              # noqa: E402
-from arena.metrics import leaderboard, load_run, probabilistic_sharpe, stats_from_equity  # noqa: E402
+from arena.metrics import leaderboard, load_run, probabilistic_sharpe, recent_scores, stats_from_equity  # noqa: E402
 
 OUT = ROOT / "study"
 RUN_DIR = OUT / "run"          # registros crudos (no se suben al repositorio: son grandes)
@@ -75,12 +75,16 @@ class StudyLedger(CsvLedger):
         super().trade(f)
         self.trade_count[f.bot] = self.trade_count.get(f.bot, 0) + 1
 
-    def live_sharpe(self, bot: str, ppy: float) -> float:
-        pts = self.mem.get(bot, [])
-        if len(pts) < 30 or self.trade_count.get(bot, 0) < 5:
-            return float("-inf")
-        s = stats_from_equity(pd.Series(dict(pts)).sort_index(), ppy).get("sharpe", float("nan"))
-        return s if s == s else float("-inf")
+    def scores(self, names: list[str], now: int, window_days: float, ppy: float) -> dict[str, float]:
+        """Puntaje de cada bot contra los bots al azar en su misma ventana reciente."""
+        lo = now - window_days * DAY
+        cols = {}
+        for n in set(names) | {b for b in self.mem if b.startswith("_luck_")}:
+            pts = [(t, e) for t, e in self.mem.get(n, []) if t >= lo]
+            if pts:
+                cols[n] = pd.Series(dict(pts))
+        wide = pd.DataFrame(cols).sort_index()
+        return recent_scores(wide, [n for n in names if n in wide], window_days, ppy)
 
 
 # ---------------------------------------------------------------- simulación
@@ -124,7 +128,9 @@ def simulate(cfg: dict, frames: dict[str, pd.DataFrame], sc: dict) -> dict:
         lo = t - data_days * DAY
         hist = {s: df[(df.ts >= lo) & (df.ts <= t)].reset_index(drop=True) for s, df in frames.items()}
         active = [p for p in pop if p["status"] == "active" and p["type"] in SPACE]
-        parents = sorted(active, key=lambda p: ledger.live_sharpe(p["name"], ppy), reverse=True)[:3]
+        score = ledger.scores([p["name"] for p in active], t, ev.get("rank_window_days", 90), ppy)
+        sc_of = lambda p: score.get(p["name"], float("nan"))                                   # noqa: E731
+        parents = sorted([p for p in active if sc_of(p) == sc_of(p)], key=sc_of, reverse=True)[:3]
         promoted, res = run_generation(cfg, hist, parents, active, gen, seed=gen * 7919 + t % 10007,
                                        n_mutations=ev["n_mutations"], n_random=ev["n_random"],
                                        max_promote=ev["max_promote"], log=lambda *_: None)
@@ -137,7 +143,8 @@ def simulate(cfg: dict, frames: dict[str, pd.DataFrame], sc: dict) -> dict:
         alive = [p for p in pop if p["status"] == "active" and p["type"] in SPACE and p["name"] not in gone]
         excess = len(alive) - ev["max_active"]
         old = [p for p in alive if t - p["born_ts"] >= ev["min_days_before_retire"] * DAY]
-        for p in sorted(old, key=lambda p: ledger.live_sharpe(p["name"], ppy))[:max(excess, 0)]:
+        old = [p for p in old if sc_of(p) == sc_of(p)]                 # sin datos suficientes: no se juzga
+        for p in sorted(old, key=sc_of)[:max(excess, 0)]:
             retired.append((p, "de los peores en vivo"))
         for p, why in retired:
             p.update(status="retired", retired_ts=t, retired_why=why)

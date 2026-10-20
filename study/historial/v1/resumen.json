@@ -1,0 +1,1618 @@
+{
+ "meta": {
+  "start": "2023-10-19",
+  "end": "2026-10-20",
+  "days": 1097.4791666666667,
+  "source": "coinbase",
+  "symbols": [
+   "BTC/USDT",
+   "ETH/USDT",
+   "SOL/USDT"
+  ],
+  "synthetic": false,
+  "minutes": 13.966285638014476,
+  "generated": "2026-10-20 12:39 UTC"
+ },
+ "portfolios": {
+  "cartera_proceso": {
+   "return_pct": 60.6682750905273,
+   "cagr_pct": 17.601187632316993,
+   "vol_ann_pct": 19.68061488347454,
+   "sharpe": 0.9221307618534371,
+   "sortino": 1.058302409967197,
+   "max_dd_pct": 21.20547024301733,
+   "calmar": 0.8300305265860738,
+   "psr": 0.9430459698959205,
+   "n_obs": 6405
+  },
+  "cartera_evolutiva": {
+   "return_pct": 34.63190697936878,
+   "cagr_pct": 10.702730167721963,
+   "vol_ann_pct": 20.42011040128073,
+   "sharpe": 0.6000879015305572,
+   "sortino": 0.6359633759692928,
+   "max_dd_pct": 21.205470243017565,
+   "calmar": 0.5047155307129351,
+   "psr": 0.847261332999223,
+   "n_obs": 6405
+  },
+  "cartera_azar": {
+   "return_pct": 6.063655363442355,
+   "cagr_pct": 2.033254235578852,
+   "vol_ann_pct": 11.99895331151801,
+   "sharpe": 0.22780971035001576,
+   "sortino": 0.21626812049027333,
+   "max_dd_pct": 18.3204548456129,
+   "calmar": 0.11098273774931654,
+   "psr": 0.6513337064547959,
+   "n_obs": 6405
+  },
+  "buy_and_hold": {
+   "return_pct": 196.18450898976133,
+   "cagr_pct": 44.9561921830147,
+   "vol_ann_pct": 66.54815834995635,
+   "sharpe": 0.8906702822252613,
+   "sortino": 1.221043235949927,
+   "max_dd_pct": 67.75054781882346,
+   "calmar": 0.6635546667937687,
+   "psr": 0.9361491325117827,
+   "n_obs": 6405
+  }
+ },
+ "promoted": {
+  "n_promoted": 97,
+  "n_evaluated": 95,
+  "pct_positive": 49.473684210526315,
+  "median_luck_pctl": 10.0,
+  "pct_beat_bh": 40.0,
+  "exam_vs_live_corr": 0.21486603284356093,
+  "n_candidates_tested": 2808
+ },
+ "generations": [
+  {
+   "generation": 1,
+   "date": "2023-10-26",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 4
+  },
+  {
+   "generation": 2,
+   "date": "2023-11-02",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 4
+  },
+  {
+   "generation": 3,
+   "date": "2023-11-09",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 4
+  },
+  {
+   "generation": 4,
+   "date": "2023-11-16",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 4
+  },
+  {
+   "generation": 5,
+   "date": "2023-11-23",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 4
+  },
+  {
+   "generation": 6,
+   "date": "2023-11-30",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 4
+  },
+  {
+   "generation": 7,
+   "date": "2023-12-07",
+   "tested": 18,
+   "promoted": [
+    "mom_g7_m"
+   ],
+   "retired": [],
+   "active": 5
+  },
+  {
+   "generation": 8,
+   "date": "2023-12-14",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 5
+  },
+  {
+   "generation": 9,
+   "date": "2023-12-21",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 5
+  },
+  {
+   "generation": 10,
+   "date": "2023-12-28",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 5
+  },
+  {
+   "generation": 11,
+   "date": "2024-01-04",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 5
+  },
+  {
+   "generation": 12,
+   "date": "2024-01-11",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 5
+  },
+  {
+   "generation": 13,
+   "date": "2024-01-18",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 5
+  },
+  {
+   "generation": 14,
+   "date": "2024-01-25",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 5
+  },
+  {
+   "generation": 15,
+   "date": "2024-02-01",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 5
+  },
+  {
+   "generation": 16,
+   "date": "2024-02-08",
+   "tested": 18,
+   "promoted": [
+    "brk_g16_a"
+   ],
+   "retired": [],
+   "active": 6
+  },
+  {
+   "generation": 17,
+   "date": "2024-02-15",
+   "tested": 18,
+   "promoted": [
+    "brk_g17_h"
+   ],
+   "retired": [],
+   "active": 7
+  },
+  {
+   "generation": 18,
+   "date": "2024-02-22",
+   "tested": 18,
+   "promoted": [
+    "brk_g18_e",
+    "brk_g18_h"
+   ],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 19,
+   "date": "2024-02-29",
+   "tested": 18,
+   "promoted": [
+    "brk_g19_h",
+    "mom_g19_m"
+   ],
+   "retired": [
+    "mean_reversion",
+    "mom_g7_m"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 20,
+   "date": "2024-03-07",
+   "tested": 18,
+   "promoted": [
+    "brk_g20_c",
+    "brk_g20_k"
+   ],
+   "retired": [
+    "brk_g17_h",
+    "momentum"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 21,
+   "date": "2024-03-14",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 22,
+   "date": "2024-03-21",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 23,
+   "date": "2024-03-28",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 24,
+   "date": "2024-04-04",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 25,
+   "date": "2024-04-11",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 26,
+   "date": "2024-04-18",
+   "tested": 18,
+   "promoted": [
+    "brk_g26_i",
+    "brk_g26_c"
+   ],
+   "retired": [
+    "brk_g20_c",
+    "mom_g19_m"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 27,
+   "date": "2024-04-25",
+   "tested": 18,
+   "promoted": [
+    "brk_g27_f",
+    "brk_g27_c"
+   ],
+   "retired": [
+    "brk_g19_h",
+    "brk_g20_k"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 28,
+   "date": "2024-05-02",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 29,
+   "date": "2024-05-09",
+   "tested": 18,
+   "promoted": [
+    "brk_g29_h",
+    "brk_g29_l"
+   ],
+   "retired": [
+    "brk_g26_i",
+    "brk_g18_h"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 30,
+   "date": "2024-05-16",
+   "tested": 18,
+   "promoted": [
+    "brk_g30_d",
+    "brk_g30_f"
+   ],
+   "retired": [
+    "brk_g26_c",
+    "brk_g27_c"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 31,
+   "date": "2024-05-23",
+   "tested": 18,
+   "promoted": [
+    "brk_g31_g",
+    "brk_g31_l"
+   ],
+   "retired": [
+    "brk_g18_e",
+    "brk_g16_a"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 32,
+   "date": "2024-05-30",
+   "tested": 18,
+   "promoted": [
+    "brk_g32_k",
+    "brk_g32_f"
+   ],
+   "retired": [
+    "brk_g29_h",
+    "brk_g27_f"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 33,
+   "date": "2024-06-06",
+   "tested": 18,
+   "promoted": [
+    "brk_g33_g",
+    "brk_g33_f"
+   ],
+   "retired": [
+    "brk_g30_d",
+    "brk_g30_f"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 34,
+   "date": "2024-06-13",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 35,
+   "date": "2024-06-20",
+   "tested": 18,
+   "promoted": [
+    "brk_g35_k"
+   ],
+   "retired": [
+    "brk_g31_g"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 36,
+   "date": "2024-06-27",
+   "tested": 18,
+   "promoted": [
+    "brk_g36_i",
+    "brk_g36_l"
+   ],
+   "retired": [
+    "brk_g32_f",
+    "brk_g32_k"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 37,
+   "date": "2024-07-04",
+   "tested": 18,
+   "promoted": [
+    "brk_g37_j"
+   ],
+   "retired": [
+    "brk_g33_g"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 38,
+   "date": "2024-07-11",
+   "tested": 18,
+   "promoted": [
+    "brk_g38_i"
+   ],
+   "retired": [
+    "brk_g31_l"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 39,
+   "date": "2024-07-18",
+   "tested": 18,
+   "promoted": [
+    "brk_g39_b",
+    "brk_g39_d"
+   ],
+   "retired": [
+    "brk_g33_f",
+    "brk_g29_l"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 40,
+   "date": "2024-07-25",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 41,
+   "date": "2024-08-01",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 42,
+   "date": "2024-08-08",
+   "tested": 18,
+   "promoted": [
+    "brk_g42_a"
+   ],
+   "retired": [
+    "brk_g39_b"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 43,
+   "date": "2024-08-15",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 44,
+   "date": "2024-08-22",
+   "tested": 18,
+   "promoted": [
+    "brk_g44_g"
+   ],
+   "retired": [
+    "brk_g39_d"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 45,
+   "date": "2024-08-29",
+   "tested": 18,
+   "promoted": [
+    "brk_g45_k",
+    "brk_g45_l"
+   ],
+   "retired": [
+    "brk_g36_l",
+    "brk_g36_i"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 46,
+   "date": "2024-09-05",
+   "tested": 18,
+   "promoted": [
+    "brk_g46_g",
+    "brk_g46_h"
+   ],
+   "retired": [
+    "brk_g42_a",
+    "brk_g35_k"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 47,
+   "date": "2024-09-12",
+   "tested": 18,
+   "promoted": [
+    "brk_g47_g"
+   ],
+   "retired": [
+    "brk_g44_g"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 48,
+   "date": "2024-09-19",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 49,
+   "date": "2024-09-26",
+   "tested": 18,
+   "promoted": [
+    "brk_g49_c",
+    "brk_g49_j"
+   ],
+   "retired": [
+    "brk_g45_k",
+    "brk_g45_l"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 50,
+   "date": "2024-10-03",
+   "tested": 18,
+   "promoted": [
+    "brk_g50_l",
+    "brk_g50_k"
+   ],
+   "retired": [
+    "brk_g38_i",
+    "brk_g46_g"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 51,
+   "date": "2024-10-10",
+   "tested": 18,
+   "promoted": [
+    "brk_g51_k",
+    "brk_g51_i"
+   ],
+   "retired": [
+    "brk_g46_h",
+    "brk_g47_g"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 52,
+   "date": "2024-10-17",
+   "tested": 18,
+   "promoted": [
+    "brk_g52_d",
+    "brk_g52_f"
+   ],
+   "retired": [
+    "brk_g37_j",
+    "breakout"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 53,
+   "date": "2024-10-24",
+   "tested": 18,
+   "promoted": [
+    "brk_g53_a",
+    "brk_g53_g"
+   ],
+   "retired": [
+    "brk_g49_j",
+    "brk_g49_c"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 54,
+   "date": "2024-10-31",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 55,
+   "date": "2024-11-07",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 56,
+   "date": "2024-11-14",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 57,
+   "date": "2024-11-21",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 58,
+   "date": "2024-11-28",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 59,
+   "date": "2024-12-05",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 60,
+   "date": "2024-12-12",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 61,
+   "date": "2024-12-19",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 62,
+   "date": "2024-12-26",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 63,
+   "date": "2025-01-02",
+   "tested": 18,
+   "promoted": [
+    "brk_g63_r"
+   ],
+   "retired": [
+    "brk_g52_f"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 64,
+   "date": "2025-01-09",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 65,
+   "date": "2025-01-16",
+   "tested": 18,
+   "promoted": [
+    "brk_g65_d",
+    "brk_g65_b"
+   ],
+   "retired": [
+    "brk_g52_d",
+    "brk_g53_a"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 66,
+   "date": "2025-01-23",
+   "tested": 18,
+   "promoted": [
+    "brk_g66_b"
+   ],
+   "retired": [
+    "brk_g53_g"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 67,
+   "date": "2025-01-30",
+   "tested": 18,
+   "promoted": [
+    "brk_g67_a",
+    "brk_g67_c"
+   ],
+   "retired": [
+    "brk_g50_k",
+    "brk_g50_l"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 68,
+   "date": "2025-02-06",
+   "tested": 18,
+   "promoted": [
+    "brk_g68_k",
+    "brk_g68_i"
+   ],
+   "retired": [
+    "brk_g65_d",
+    "brk_g65_b"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 69,
+   "date": "2025-02-13",
+   "tested": 18,
+   "promoted": [
+    "brk_g69_j",
+    "brk_g69_l"
+   ],
+   "retired": [
+    "brk_g66_b",
+    "brk_g63_r"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 70,
+   "date": "2025-02-20",
+   "tested": 18,
+   "promoted": [
+    "brk_g70_i",
+    "brk_g70_j"
+   ],
+   "retired": [
+    "brk_g67_c",
+    "brk_g67_a"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 71,
+   "date": "2025-02-27",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 72,
+   "date": "2025-03-06",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 73,
+   "date": "2025-03-13",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 74,
+   "date": "2025-03-20",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 75,
+   "date": "2025-03-27",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 76,
+   "date": "2025-04-03",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 77,
+   "date": "2025-04-10",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 78,
+   "date": "2025-04-17",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 79,
+   "date": "2025-04-24",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 80,
+   "date": "2025-05-01",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 81,
+   "date": "2025-05-08",
+   "tested": 18,
+   "promoted": [
+    "brk_g81_r"
+   ],
+   "retired": [
+    "brk_g69_l"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 82,
+   "date": "2025-05-15",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 83,
+   "date": "2025-05-22",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 84,
+   "date": "2025-05-29",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 85,
+   "date": "2025-06-05",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 86,
+   "date": "2025-06-12",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 87,
+   "date": "2025-06-19",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 88,
+   "date": "2025-06-26",
+   "tested": 18,
+   "promoted": [
+    "mom_g88_m"
+   ],
+   "retired": [
+    "brk_g81_r"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 89,
+   "date": "2025-07-03",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 90,
+   "date": "2025-07-10",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 91,
+   "date": "2025-07-17",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 92,
+   "date": "2025-07-24",
+   "tested": 18,
+   "promoted": [
+    "brk_g92_f",
+    "mom_g92_m"
+   ],
+   "retired": [
+    "mom_g88_m",
+    "brk_g68_i"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 93,
+   "date": "2025-07-31",
+   "tested": 18,
+   "promoted": [
+    "mom_g93_p",
+    "brk_g93_o"
+   ],
+   "retired": [
+    "brk_g51_k",
+    "brk_g69_j"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 94,
+   "date": "2025-08-07",
+   "tested": 18,
+   "promoted": [
+    "brk_g94_k",
+    "brk_g94_c"
+   ],
+   "retired": [
+    "brk_g70_i",
+    "brk_g51_i"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 95,
+   "date": "2025-08-14",
+   "tested": 18,
+   "promoted": [
+    "brk_g95_b",
+    "brk_g95_l"
+   ],
+   "retired": [
+    "mom_g92_m",
+    "brk_g68_k"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 96,
+   "date": "2025-08-21",
+   "tested": 18,
+   "promoted": [
+    "brk_g96_c",
+    "brk_g96_j"
+   ],
+   "retired": [
+    "mom_g93_p",
+    "brk_g70_j"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 97,
+   "date": "2025-08-28",
+   "tested": 18,
+   "promoted": [
+    "brk_g97_d",
+    "brk_g97_i"
+   ],
+   "retired": [
+    "brk_g92_f",
+    "brk_g93_o"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 98,
+   "date": "2025-09-04",
+   "tested": 18,
+   "promoted": [
+    "brk_g98_c",
+    "brk_g98_b"
+   ],
+   "retired": [
+    "brk_g95_b",
+    "brk_g95_l"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 99,
+   "date": "2025-09-11",
+   "tested": 18,
+   "promoted": [
+    "brk_g99_o",
+    "brk_g99_f"
+   ],
+   "retired": [
+    "brk_g96_c",
+    "brk_g96_j"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 100,
+   "date": "2025-09-18",
+   "tested": 18,
+   "promoted": [
+    "brk_g100_l"
+   ],
+   "retired": [
+    "brk_g97_d"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 101,
+   "date": "2025-09-25",
+   "tested": 18,
+   "promoted": [
+    "brk_g101_r",
+    "brk_g101_h"
+   ],
+   "retired": [
+    "brk_g94_c",
+    "brk_g97_i"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 102,
+   "date": "2025-10-02",
+   "tested": 18,
+   "promoted": [
+    "brk_g102_f",
+    "brk_g102_e"
+   ],
+   "retired": [
+    "brk_g99_f",
+    "brk_g99_o"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 103,
+   "date": "2025-10-09",
+   "tested": 18,
+   "promoted": [
+    "brk_g103_i",
+    "brk_g103_h"
+   ],
+   "retired": [
+    "brk_g100_l",
+    "brk_g94_k"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 104,
+   "date": "2025-10-16",
+   "tested": 18,
+   "promoted": [
+    "brk_g104_i",
+    "brk_g104_a"
+   ],
+   "retired": [
+    "brk_g98_b",
+    "brk_g98_c"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 105,
+   "date": "2025-10-23",
+   "tested": 18,
+   "promoted": [
+    "brk_g105_i",
+    "brk_g105_l"
+   ],
+   "retired": [
+    "brk_g102_e",
+    "brk_g102_f"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 106,
+   "date": "2025-10-30",
+   "tested": 18,
+   "promoted": [
+    "brk_g106_l",
+    "brk_g106_a"
+   ],
+   "retired": [
+    "brk_g103_h",
+    "brk_g103_i"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 107,
+   "date": "2025-11-06",
+   "tested": 18,
+   "promoted": [
+    "brk_g107_l",
+    "brk_g107_j"
+   ],
+   "retired": [
+    "brk_g104_a",
+    "brk_g104_i"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 108,
+   "date": "2025-11-13",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 109,
+   "date": "2025-11-20",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 110,
+   "date": "2025-11-27",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 111,
+   "date": "2025-12-04",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 112,
+   "date": "2025-12-11",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 113,
+   "date": "2025-12-18",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 114,
+   "date": "2025-12-25",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 115,
+   "date": "2026-01-01",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 116,
+   "date": "2026-01-08",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 117,
+   "date": "2026-01-15",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 118,
+   "date": "2026-01-22",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 119,
+   "date": "2026-01-29",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 120,
+   "date": "2026-02-05",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 121,
+   "date": "2026-02-12",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 122,
+   "date": "2026-02-19",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 123,
+   "date": "2026-02-26",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 124,
+   "date": "2026-03-05",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 125,
+   "date": "2026-03-12",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 126,
+   "date": "2026-03-19",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 127,
+   "date": "2026-03-26",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 128,
+   "date": "2026-04-02",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 129,
+   "date": "2026-04-09",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 130,
+   "date": "2026-04-16",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 131,
+   "date": "2026-04-23",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 132,
+   "date": "2026-04-30",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 133,
+   "date": "2026-05-07",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 134,
+   "date": "2026-05-14",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 135,
+   "date": "2026-05-21",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 136,
+   "date": "2026-05-28",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 137,
+   "date": "2026-06-04",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 138,
+   "date": "2026-06-11",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 139,
+   "date": "2026-06-18",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 140,
+   "date": "2026-06-25",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 141,
+   "date": "2026-07-02",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 142,
+   "date": "2026-07-09",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 143,
+   "date": "2026-07-16",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 144,
+   "date": "2026-07-23",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 145,
+   "date": "2026-07-30",
+   "tested": 18,
+   "promoted": [
+    "rev_g145_q"
+   ],
+   "retired": [
+    "brk_g106_l"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 146,
+   "date": "2026-08-06",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 147,
+   "date": "2026-08-13",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 148,
+   "date": "2026-08-20",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 149,
+   "date": "2026-08-27",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 150,
+   "date": "2026-09-03",
+   "tested": 18,
+   "promoted": [
+    "mom_g150_p",
+    "mom_g150_m"
+   ],
+   "retired": [
+    "rev_g145_q",
+    "brk_g101_r"
+   ],
+   "active": 9
+  },
+  {
+   "generation": 151,
+   "date": "2026-09-10",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 152,
+   "date": "2026-09-17",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 153,
+   "date": "2026-09-24",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 154,
+   "date": "2026-10-01",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 155,
+   "date": "2026-10-08",
+   "tested": 18,
+   "promoted": [],
+   "retired": [],
+   "active": 9
+  },
+  {
+   "generation": 156,
+   "date": "2026-10-15",
+   "tested": 18,
+   "promoted": [
+    "mom_g156_d",
+    "brk_g156_o"
+   ],
+   "retired": [
+    "mom_g150_p",
+    "brk_g101_h"
+   ],
+   "active": 9
+  }
+ ]
+}

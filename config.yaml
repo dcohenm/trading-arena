@@ -84,6 +84,7 @@ autopilot:
     data_days: 180                    # se elige con los primeros 120 días y se examina con los últimos 60
     max_active: 8                     # bots evolutivos activos como máximo
     min_days_before_retire: 21
+    rank_window_days: 90              # padres y retiros: cada bot se compara contra el azar en su misma ventana
     n_mutations: 4
     n_random: 6
     max_promote: 2

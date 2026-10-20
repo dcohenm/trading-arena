@@ -197,7 +197,7 @@ def tick(cfg: dict, force_evolve: bool = False) -> None:
 
 
 # ---------------- evolución ----------------
-def live_table(cfg: dict):
+def live_table(cfg: dict, with_wide: bool = False):
     from arena.metrics import leaderboard, load_run
     ledger = CsvLedger(STATE_DIR)
     if not (STATE_DIR / "equity.csv").exists():
@@ -205,12 +205,12 @@ def live_table(cfg: dict):
     db = STATE_DIR / "_tmp.db"
     run = ledger.to_sqlite(db)
     try:
-        table, _ = leaderboard(load_run(str(db), run), cfg["capital"]["starting_cash"],
-                               min_days=cfg["autopilot"]["min_days_for_verdict"])
+        table, wide = leaderboard(load_run(str(db), run), cfg["capital"]["starting_cash"],
+                                  min_days=cfg["autopilot"]["min_days_for_verdict"])
     except SystemExit:
-        table = None
+        table, wide = None, None
     db.unlink(missing_ok=True)
-    return table
+    return (table, wide) if with_wide else table
 
 
 def evolve(cfg: dict, st: dict, arena: Arena, exchanges: list[str]) -> None:
@@ -220,16 +220,13 @@ def evolve(cfg: dict, st: dict, arena: Arena, exchanges: list[str]) -> None:
     log(f"⟳ Evolución, generación {gen}")
     frames, _ = fetch_recent(exchanges, cfg["market"]["symbols"], cfg["market"]["timeframe"], ev["data_days"], log=log)
 
-    table = live_table(cfg)
+    from arena.metrics import recent_scores
+    table, wide = live_table(cfg, with_wide=True)
     active = [p for p in st["population"] if p["status"] == "active" and p["type"] in SPACE]
-
-    def live_sharpe(name):
-        if table is None or name not in table.index:
-            return float("-inf")
-        v = table.loc[name, "sharpe"]
-        return float(v) if v == v else float("-inf")
-
-    parents = sorted(active, key=lambda p: live_sharpe(p["name"]), reverse=True)[:3]
+    score = (recent_scores(wide, [p["name"] for p in active], ev.get("rank_window_days", 90), 365 * 24)
+             if wide is not None else {})
+    sc_of = lambda p: score.get(p["name"], float("nan"))                                       # noqa: E731
+    parents = sorted([p for p in active if sc_of(p) == sc_of(p)], key=sc_of, reverse=True)[:3]
     promoted, res = run_generation(cfg, frames, parents, active, gen, seed=gen * 7919 + st["last_ts"] % 10007,
                                    n_mutations=ev["n_mutations"], n_random=ev["n_random"],
                                    max_promote=ev["max_promote"], log=log)
@@ -249,7 +246,8 @@ def evolve(cfg: dict, st: dict, arena: Arena, exchanges: list[str]) -> None:
              and p not in [r[0] for r in retired]]
     excess = len(alive) - ev["max_active"]
     old = [p for p in alive if p.get("born_ts") and st["last_ts"] - p["born_ts"] >= ev["min_days_before_retire"] * DAY]
-    for p in sorted(old, key=lambda p: live_sharpe(p["name"]))[:max(excess, 0)]:
+    old = [p for p in old if sc_of(p) == sc_of(p)]
+    for p in sorted(old, key=sc_of)[:max(excess, 0)]:
         retired.append((p, "de los peores en vivo"))
     for p, why in retired:
         p["status"], p["retired_ts"], p["retired_why"] = "retired", st["last_ts"], why
