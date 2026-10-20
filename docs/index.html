@@ -1,6 +1,132 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Trading Arena</title>
-<style>body{margin:0;font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;background:#f9f9f7;color:#0b0b0b}
-main{max-width:640px;margin:15vh auto;padding:0 16px}h1{font-size:24px}p{color:#52514e}
-@media (prefers-color-scheme:dark){body{background:#0d0d0d;color:#f0efec}p{color:#c3c2b7}}</style></head>
-<body><main><h1>Trading Arena</h1><p>La arena arrancó y está juntando datos. El tablero aparece acá solo en unas horas, cuando haya suficientes resultados para mostrar.</p></main></body></html>
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grok Arena</title>
+<script src="chart.umd.js"></script>
+<style>
+:root{--surface:#fcfcfb;--page:#f9f9f7;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;
+--ring:rgba(11,11,11,.10);--good:#006300;--goodbg:rgba(12,163,12,.10);--warn:#8a5a00;--warnbg:rgba(250,178,25,.16);--neg:#b42d2d;--band:rgba(137,135,129,.18);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--surface:#1a1a19;--page:#0d0d0d;--ink:#f0efec;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;
+--ring:rgba(255,255,255,.10);--good:#0ca30c;--goodbg:rgba(12,163,12,.16);--warn:#fab219;--warnbg:rgba(250,178,25,.12);--neg:#e66767;--band:rgba(195,194,183,.14);color-scheme:dark}}
+:root[data-theme="dark"]{--surface:#1a1a19;--page:#0d0d0d;--ink:#f0efec;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;
+--ring:rgba(255,255,255,.10);--good:#0ca30c;--goodbg:rgba(12,163,12,.16);--warn:#fab219;--warnbg:rgba(250,178,25,.12);--neg:#e66767;--band:rgba(195,194,183,.14);color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1180px;margin:0 auto;padding:28px 16px 60px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:15px;margin:0 0 12px}.sub{color:var(--ink2);margin:0 0 20px}
+.note{background:var(--warnbg);border-radius:8px;padding:10px 14px;color:var(--ink);margin:0 0 20px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
+.tile,.card{background:var(--surface);border-radius:12px;box-shadow:0 0 0 1px var(--ring)}
+.tile{padding:14px 16px}.tile .k{color:var(--ink2);font-size:12px}.tile .v{font-size:22px;font-weight:600;margin-top:2px;overflow-wrap:anywhere}
+.card{padding:18px;margin-bottom:16px}.chart{position:relative;height:340px}.chart.small{height:220px}
+.legend-note{color:var(--muted);font-size:12px;margin-top:8px}
+.scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:13px}
+th{color:var(--ink2);font-weight:500;text-align:left;padding:8px;border-bottom:1px solid var(--axis);white-space:nowrap}
+td{padding:8px;border-bottom:1px solid var(--grid);vertical-align:top}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}th.num{text-align:right}
+.pos{color:var(--good)}.neg{color:var(--neg)}.mono{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink2)}
+.bot{white-space:nowrap;font-weight:500}.sw{display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--c);margin-right:8px}
+.verdict{display:inline-block;padding:2px 8px;border-radius:6px;font-size:12px;min-width:190px}
+.verdict.good{background:var(--goodbg);color:var(--good)}.verdict.warn{background:var(--warnbg);color:var(--warn)}.verdict.ref{color:var(--ink2)}
+.reason{color:var(--ink2);min-width:320px}.muted{color:var(--muted)}
+details summary{cursor:pointer;color:var(--ink2);margin-bottom:8px}
+.help{color:var(--ink2);font-size:12.5px;margin:10px 0 0}.help b{color:var(--ink)}
+</style></head><body><main>
+<h1>Grok Arena</h1>
+<p class="sub">Corrida <b>autopilot</b> · modo <b>piloto automático</b> · 2026-10-20 00:00 → 2026-10-20 02:00 UTC</p>
+<p class='note'>Todo es simulado: precios reales, dinero ficticio.</p>
+<div class="tiles">
+<div class="tile"><div class="k">Mejor bot (Sharpe)</div><div class="v">breakout</div></div>
+<div class="tile"><div class="k">Candidatos a la siguiente fase</div><div class="v">0 de 4</div></div>
+<div class="tile"><div class="k">Bots al azar (medida de suerte)</div><div class="v">20</div></div>
+</div>
+
+<div class="card"><h2>Ranking</h2><div class="scroll"><table>
+<thead><tr><th>Bot</th><th class="num">Días</th><th class="num">Retorno</th><th class="num">Sharpe</th><th class="num">Sortino</th><th class="num">Caída máx.</th>
+<th class="num">Prob. Sharpe&gt;0</th><th class="num">Percentil vs. azar</th><th class="num">Trades</th><th class="num">Comisiones</th><th class="num">Exposición</th><th>Veredicto</th></tr></thead>
+<tbody><tr>
+<td class="bot"><span class="sw" style="--c:#2a78d6"></span>buy_and_hold</td>
+<td class="num">0</td>
+<td class="num neg">-0.2%</td>
+<td class="num">-7.95</td><td class="num">—</td>
+<td class="num">0.8%</td><td class="num">—</td>
+<td class="num">25</td>
+<td class="num">3</td><td class="num">10</td>
+<td class="num">100%</td>
+<td><span class="verdict ref"><b>◆</b> Referencia</span></td></tr>
+<tr>
+<td class="bot"><span class="sw" style="--c:#eb6834"></span>breakout</td>
+<td class="num">0</td>
+<td class="num neg">0.0%</td>
+<td class="num">—</td><td class="num">—</td>
+<td class="num">-0.0%</td><td class="num">—</td>
+<td class="num">—</td>
+<td class="num">0</td><td class="num">0</td>
+<td class="num">0%</td>
+<td><span class="verdict warn"><b>!</b> En observación (0 de 30 días mínimos)</span></td></tr>
+<tr>
+<td class="bot"><span class="sw" style="--c:#1baf7a"></span>mean_reversion</td>
+<td class="num">0</td>
+<td class="num neg">0.0%</td>
+<td class="num">—</td><td class="num">—</td>
+<td class="num">-0.0%</td><td class="num">—</td>
+<td class="num">—</td>
+<td class="num">0</td><td class="num">0</td>
+<td class="num">0%</td>
+<td><span class="verdict warn"><b>!</b> En observación (0 de 30 días mínimos)</span></td></tr>
+<tr>
+<td class="bot"><span class="sw" style="--c:#eda100"></span>momentum</td>
+<td class="num">0</td>
+<td class="num neg">0.0%</td>
+<td class="num">—</td><td class="num">—</td>
+<td class="num">-0.0%</td><td class="num">—</td>
+<td class="num">—</td>
+<td class="num">0</td><td class="num">0</td>
+<td class="num">0%</td>
+<td><span class="verdict warn"><b>!</b> En observación (0 de 30 días mínimos)</span></td></tr></tbody></table></div>
+<p class="help"><b>Sharpe</b>: retorno por unidad de riesgo (anualizado). <b>Prob. Sharpe&gt;0</b>: probabilidad de que la ventaja sea real y no ruido; hace falta ≥95%. <b>Percentil vs. azar</b>: qué porcentaje de los bots que operan al azar quedó por debajo; hace falta ≥95.</p></div>
+
+<div class='card'><h2>Resumen</h2><p>Lleva 0.1 días. En las primeras semanas los números son ruido: todavía no se puede sacar ninguna conclusión.</p></div>
+<div class="card"><h2>Capital por bot (USDT)</h2><div class="chart"><canvas id="eq"></canvas></div>
+<p class="legend-note">La franja gris es el rango donde terminó el 90% de los bots al azar. Lo que está adentro de la franja se explica por suerte.</p></div>
+
+<div class="card"><h2>Caída desde el máximo (%)</h2><div class="chart small"><canvas id="dd"></canvas></div></div>
+
+<div class="card"><h2>Últimas decisiones de Grok</h2><div class="scroll"><table>
+<thead><tr><th>Hora (UTC)</th><th>Bot</th><th>Pesos objetivo</th><th>Razonamiento</th><th class="num">Costo</th></tr></thead>
+<tbody><tr><td colspan=5 class='muted'>Sin decisiones de Grok en esta corrida.</td></tr></tbody></table></div></div>
+
+<div class="card"><details><summary><h2 style="display:inline">Eventos de riesgo</h2></summary><div class="scroll"><table>
+<thead><tr><th>Hora (UTC)</th><th>Bot</th><th>Tipo</th><th>Detalle</th></tr></thead><tbody><tr><td colspan=4 class='muted'>Sin eventos de riesgo.</td></tr></tbody></table></div></details></div>
+</main>
+<script>
+const D = {"labels": ["2026-10-20 00:00", "2026-10-20 01:00", "2026-10-20 02:00"], "series": [{"name": "buy_and_hold", "light": "#2a78d6", "dark": "#3987e5", "data": [9943.46, 9861.67, 9925.38]}, {"name": "breakout", "light": "#eb6834", "dark": "#d95926", "data": [10000.0, 10000.0, 10000.0]}, {"name": "mean_reversion", "light": "#1baf7a", "dark": "#199e70", "data": [10000.0, 10000.0, 10000.0]}, {"name": "momentum", "light": "#eda100", "dark": "#c98500", "data": [10000.0, 10000.0, 10000.0]}], "dd": [{"name": "buy_and_hold", "light": "#2a78d6", "dark": "#3987e5", "data": [0.0, -0.82, -0.18]}, {"name": "breakout", "light": "#eb6834", "dark": "#d95926", "data": [0.0, 0.0, 0.0]}, {"name": "mean_reversion", "light": "#1baf7a", "dark": "#199e70", "data": [0.0, 0.0, 0.0]}, {"name": "momentum", "light": "#eda100", "dark": "#c98500", "data": [0.0, 0.0, 0.0]}], "luck": {"p5": [9960.61, 9904.02, 9946.4], "p50": [9991.52, 9979.65, 9988.62], "p95": [10000.0, 10000.0, 10000.0]}, "cash": 10000};
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const dark = () => css('--surface') === '#1a1a19';
+function base(yfmt){
+  return {responsive:true,maintainAspectRatio:false,animation:false,
+    interaction:{mode:'index',intersect:false},
+    plugins:{legend:{position:'bottom',labels:{color:css('--ink2'),boxWidth:10,boxHeight:10,usePointStyle:true,pointStyle:'rectRounded',
+      filter:i=>!i.text.startsWith('_')}},
+      tooltip:{filter:i=>!i.dataset.label.startsWith('_'),backgroundColor:css('--surface'),titleColor:css('--ink'),bodyColor:css('--ink2'),
+        borderColor:css('--axis'),borderWidth:1,padding:10,itemSort:(a,b)=>b.raw-a.raw,
+        callbacks:{label:c=>' '+c.dataset.label+': '+yfmt(c.raw)}}},
+    scales:{x:{ticks:{color:css('--muted'),maxTicksLimit:7,maxRotation:0,callback:function(v){return this.getLabelForValue(v).slice(0,10)}},grid:{display:false},border:{color:css('--axis')}},
+      y:{ticks:{color:css('--muted'),callback:yfmt},grid:{color:css('--grid')},border:{display:false}}}};
+}
+const usd = v => Math.round(v).toLocaleString('es-AR');
+const pct = v => v.toFixed(1)+'%';
+function line(s){return {label:s.name,data:s.data,borderColor:dark()?s.dark:s.light,backgroundColor:dark()?s.dark:s.light,borderWidth:2,pointRadius:0,pointHoverRadius:4,tension:0}}
+let charts=[];
+function draw(){
+  charts.forEach(c=>c.destroy());charts=[];
+  const ds=D.series.map(line);
+  if(D.luck.p5){
+    ds.push({label:'_p95',data:D.luck.p95,borderWidth:0,pointRadius:0,fill:'+1',backgroundColor:css('--band')});
+    ds.push({label:'_p5',data:D.luck.p5,borderWidth:0,pointRadius:0,fill:false});
+  }
+  charts.push(new Chart(document.getElementById('eq'),{type:'line',data:{labels:D.labels,datasets:ds},options:base(usd)}));
+  charts.push(new Chart(document.getElementById('dd'),{type:'line',data:{labels:D.labels,datasets:D.dd.map(line)},options:base(pct)}));
+}
+draw();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',draw);
+new MutationObserver(draw).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+</script></body></html>

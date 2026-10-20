@@ -1,0 +1,4 @@
+ts,bot,symbol,side,qty,price,fee,reason
+1792453500000,buy_and_hold,BTC/USDT,buy,0.040595739,82110.425,3.3333,compra inicial y mantener
+1792453500000,buy_and_hold,ETH/USDT,buy,1.3818383,2412.2455,3.3333,compra inicial y mantener
+1792453500000,buy_and_hold,SOL/USDT,buy,31.553933,105.32263,3.3233,compra inicial y mantener
