@@ -80,6 +80,7 @@ autopilot:
     - {name: grok_trader, type: grok_trader, every: 4h}
     - {name: grok_overlay, type: grok_overlay, every: 1h, params: {fast: 48, slow: 240, target_vol: 0.6, llm_every: 6h}}
   evolution:
+    enabled: false                    # apagada: el estudio histórico mostró que empeoraba los resultados (ver ESTUDIO.md)
     every_days: 7
     data_days: 180                    # se elige con los primeros 120 días y se examina con los últimos 60
     max_active: 8                     # bots evolutivos activos como máximo

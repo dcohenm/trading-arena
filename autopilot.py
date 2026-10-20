@@ -180,8 +180,9 @@ def tick(cfg: dict, force_evolve: bool = False) -> None:
 
     # evolución semanal
     ev = ap["evolution"]
-    due = st["last_evolution_ts"] is None and st["created_ts"] and st["last_ts"] - st["created_ts"] >= ev["every_days"] * DAY
-    due = due or (st["last_evolution_ts"] and st["last_ts"] - st["last_evolution_ts"] >= ev["every_days"] * DAY)
+    enabled = ev.get("enabled", True)
+    due = enabled and st["last_evolution_ts"] is None and st["created_ts"] and st["last_ts"] - st["created_ts"] >= ev["every_days"] * DAY
+    due = due or (enabled and st["last_evolution_ts"] and st["last_ts"] - st["last_evolution_ts"] >= ev["every_days"] * DAY)
     if force_evolve or due:
         try:
             evolve(cfg, st, arena, order)
@@ -325,17 +326,19 @@ def write_outputs(cfg: dict, st: dict) -> None:
 
     # README
     head = headline(table, st, min_days)
-    lines = ["# Trading Arena — piloto automático", "",
-             "Bots de trading cripto compitiendo con plata **simulada** sobre precios reales. "
-             "Corre solo cada hora en GitHub y una vez por semana se mejora solo: prueba variantes "
-             "nuevas de los mejores bots y retira a los peores.", "",
-             f"> {head}", ""]
+    evo_on = cfg["autopilot"]["evolution"].get("enabled", True)
+    intro = ("Bots de trading cripto compitiendo con plata **simulada** sobre precios reales. Corre solo cada hora en GitHub"
+             + (" y una vez por semana se mejora solo: prueba variantes nuevas de los mejores bots y retira a los peores."
+                if evo_on else ". La evolución automática está **apagada**: el [estudio histórico](ESTUDIO.md) mostró que "
+                "empeoraba los resultados. Quedan los bots fijos compitiendo contra los bots al azar."))
+    lines = ["# Trading Arena — piloto automático", "", intro, "", f"> {head}", ""]
     upd = fmt_ts(st["last_ts"]) if st.get("last_ts") else "—"
     since = fmt_ts(st["created_ts"]) if st.get("created_ts") else "—"
     nxt = (fmt_ts((st["last_evolution_ts"] or st["created_ts"]) + cfg["autopilot"]["evolution"]["every_days"] * DAY)
            if st.get("created_ts") else "—")
     lines += [f"**Última actualización:** {upd} · **Desde:** {since} · **Datos:** {st.get('exchange') or '—'} · "
-              f"**Generación:** {st.get('generation', 0)} · **Próxima evolución:** {nxt}", ""]
+              + (f"**Generación:** {st.get('generation', 0)} · **Próxima evolución:** {nxt}" if evo_on
+                 else "**Evolución:** apagada"), ""]
     if table is not None:
         lines += ["## Ranking (bots activos)", "",
                   "| Bot | Días | Retorno | Sharpe | Caída máx. | Trades | Veredicto |",

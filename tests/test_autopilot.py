@@ -21,7 +21,7 @@ def ap(tmp_path, monkeypatch):
     mod = importlib.import_module("autopilot")
     from arena.data import synthetic
     cfg = mod.load_config(tmp_path / "config.yaml")
-    cfg["autopilot"]["evolution"].update(data_days=20, n_mutations=1, n_random=2, every_days=1)
+    cfg["autopilot"]["evolution"].update(enabled=True, data_days=20, n_mutations=1, n_random=2, every_days=1)
     syms = cfg["market"]["symbols"]
     full = synthetic(syms, 96 * 60, "15m", seed=3)
     clock = {"now": int(full[syms[0]].ts.iloc[96 * 45])}
@@ -63,3 +63,14 @@ def test_no_data_does_not_break(ap, monkeypatch):
     mod.tick(cfg)
     st = json.loads(mod.STATE.read_text())
     assert st["failures"] == 1
+
+
+def test_evolution_off_by_config(ap):
+    mod, cfg, clock = ap
+    cfg["autopilot"]["evolution"]["enabled"] = False
+    for _ in range(11):
+        mod.tick(cfg)
+        clock["now"] += 3 * 3_600_000
+    st = json.loads(mod.STATE.read_text())
+    assert st["generation"] == 0
+    assert "apagada" in (mod.ROOT / "README.md").read_text()
