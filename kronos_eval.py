@@ -157,35 +157,42 @@ def spearman(a, b) -> float:
 
 
 def evaluate(df: pd.DataFrame, g: dict) -> list[dict]:
+    """Métricas por combinación. Dos cuidados importantes:
+    - BTC, ETH y SOL se mueven juntas: las tres predicciones de un mismo momento NO son tres pruebas
+      independientes. La significancia se calcula con UNA observación por momento (mayoría de aciertos).
+    - Las reglas de comparación solo se evalúan donde tienen datos (sin contar huecos como errores)."""
     out = []
     step_ms = g["minutes"] * 60_000
     for name, h in g["horizons"].items():
-        d = df.dropna(subset=[f"pred_{name}", f"real_{name}"]).copy()
+        d = df.dropna(subset=[f"pred_{name}", f"real_{name}", f"past_{name}"]).copy()
         d = d[pd.to_datetime(d.t + h * step_ms, unit="ms", utc=True) >= EVAL_START]
-        # sin superposición: para cada moneda, quedarse con orígenes separados al menos por h velas
-        keep = []
-        for coin, gc in d.sort_values("t").groupby("coin"):
-            last = -10**18
-            for idx, t in zip(gc.index, gc.t):
-                if t - last >= h * step_ms:
-                    keep.append(idx)
-                    last = t
-        d = d.loc[keep]
+        keep, last = [], -10**18                         # momentos separados al menos por el horizonte
+        for t in sorted(d.t.unique()):
+            if t - last >= h * step_ms:
+                keep.append(t)
+                last = t
+        d = d[d.t.isin(keep)]
         p, r, m = d[f"pred_{name}"], d[f"real_{name}"], d[f"past_{name}"]
+        d["hk"] = (np.sign(p) == np.sign(r)).astype(float)
+        d["hm"] = (np.sign(m) == np.sign(r)).astype(float)
+        d["hr"] = (np.sign(-m) == np.sign(r)).astype(float)
+        d["lsk"], d["lsr"] = np.sign(p) * r, np.sign(-m) * r
+        per = d[["t", "hk", "hm", "hr", "lsk", "lsr"]].groupby("t").mean()
+        nm = len(per)
+        wins = lambda col: int(round((per[col] > 0.5).sum() + 0.5 * (per[col] == 0.5).sum()))   # noqa: E731
         n = int(len(d))
-        hit = int((np.sign(p) == np.sign(r)).sum())
-        hit_mom = int((np.sign(m) == np.sign(r)).sum())
-        up = float((r > 0).mean()) if n else float("nan")
-        # trading teórico, una operación por predicción, sin superposición
         long_flat = np.where(p > 0, r, 0.0) - np.where(p > 0, 2 * COST, 0.0)
         long_flat_f = np.where(p > 2 * COST, r, 0.0) - np.where(p > 2 * COST, 2 * COST, 0.0)
         mom = np.where(m > 0, r, 0.0) - np.where(m > 0, 2 * COST, 0.0)
         out.append({
-            "input": g["tf"], "horizon": name, "n": n,
-            "hit_kronos": hit / n * 100 if n else float("nan"), "p_kronos": binom_p(hit, n),
-            "hit_momentum": hit_mom / n * 100 if n else float("nan"),
-            "hit_always_up": up * 100,
+            "input": g["tf"], "horizon": name, "n": n, "moments": nm,
+            "hit_kronos": float(d.hk.mean() * 100), "p_kronos": binom_p(wins("hk"), nm),
+            "hit_momentum": float(d.hm.mean() * 100), "hit_reversal": float(d.hr.mean() * 100),
+            "p_reversal": binom_p(wins("hr"), nm),
+            "hit_always_up": float((r > 0).mean() * 100),
+            "corr_with_reversal": float(np.corrcoef(p, -m)[0, 1]) if n > 2 else float("nan"),
             "ic_kronos": spearman(p, r), "ic_momentum": spearman(m, r),
+            "ls_gross_kronos": float(per.lsk.mean() * 100), "ls_gross_reversal": float(per.lsr.mean() * 100),
             "ret_kronos_net": float(long_flat.mean() * 100), "ret_kronos_filtered_net": float(long_flat_f.mean() * 100),
             "trades_filtered_pct": float((p > 2 * COST).mean() * 100) if n else float("nan"),
             "ret_momentum_net": float(mom.mean() * 100), "ret_buyhold": float(r.mean() * 100),
@@ -201,24 +208,28 @@ def f(v, d=1, suf=""):
 
 def conclusions(res: list[dict]) -> list[str]:
     out = []
-    sig = [r for r in res if r["n"] >= 100 and r["p_kronos"] < 0.05 / max(len(res), 1)
-           and r["hit_kronos"] > max(r["hit_momentum"], r["hit_always_up"])]
-    best = max(res, key=lambda r: (r["ic_kronos"] if r["ic_kronos"] == r["ic_kronos"] else -9))
+    thr = 0.05 / max(len(res), 1)
+    sig = [r for r in res if r["moments"] >= 50 and r["p_kronos"] < thr
+           and r["hit_kronos"] > max(r["hit_momentum"], r["hit_reversal"], r["hit_always_up"])]
+    hint = [r for r in res if r["p_kronos"] < 0.05 and r not in sig]
     if sig:
-        names = ", ".join(f"{r['input']}→{r['horizon']} ({f(r['hit_kronos'])}% de aciertos)" for r in sig)
-        out.append(f"**Predice algo:** en {names} acertó la dirección más que una moneda al aire y más que las reglas "
-                   f"simples, con significancia estadística aun corrigiendo por haber probado {len(res)} combinaciones.")
+        out.append("**Predice algo:** en " + ", ".join(f"{r['input']}→{r['horizon']} ({f(r['hit_kronos'])}% de aciertos)" for r in sig)
+                   + f" acertó la dirección más que el azar y que las reglas simples, con significancia aun corrigiendo por las {len(res)} pruebas.")
+    elif hint:
+        out.append("**Hay indicios, pero no alcanzan:** en " + ", ".join(
+            f"{r['input']}→{r['horizon']} ({f(r['hit_kronos'])}% de aciertos, p={f(r['p_kronos'], 3)})" for r in hint)
+            + f" acertó más que una moneda al aire, pero al corregir por haber probado {len(res)} combinaciones hace falta p<{thr:.3f}, "
+            "y la muestra es chica (el servidor sin placa de video llegó a hacer pocas predicciones).")
     else:
-        out.append(f"**No predice mejor que el azar:** en ninguna de las {len(res)} combinaciones acertó la dirección "
-                   "significativamente más que una moneda al aire y que las reglas simples (corrigiendo por la cantidad de pruebas). "
-                   f"La mejor fue {best['input']}→{best['horizon']} con {f(best['hit_kronos'])}% de aciertos y correlación {f(best['ic_kronos'], 3)}.")
-    prof = [r for r in res if r["ret_kronos_net"] > max(r["ret_buyhold"], r["ret_momentum_net"], 0)]
-    if prof:
-        out.append("**Con costos:** operar según Kronos le ganó a comprar y mantener y a seguir la tendencia en "
-                   + ", ".join(f"{r['input']}→{r['horizon']}" for r in prof)
-                   + ". Hay que confirmarlo en vivo antes de creerlo: son pocos meses de datos.")
-    else:
-        out.append("**Con costos:** operar según Kronos no le ganó a comprar y mantener ni a seguir la tendencia en ninguna combinación.")
+        out.append(f"**No predice mejor que el azar** en ninguna de las {len(res)} combinaciones.")
+    avg_corr = np.nanmean([r["corr_with_reversal"] for r in res])
+    out.append(f"**Qué hace Kronos en el fondo:** sus predicciones se parecen mucho a la regla simple \"lo que subió, baja\" "
+               f"(correlación promedio {avg_corr:.2f}). Gran parte de lo que acierta lo acierta también esa regla.")
+    best = max(res, key=lambda r: r["ls_gross_kronos"])
+    out.append(f"**Con costos no sirve:** la mejor ganancia bruta por operación fue {f(best['ls_gross_kronos'], 3)}% "
+               f"({best['input']}→{best['horizon']}), y entrar y salir cuesta {2 * COST * 100:.2f}%. Ninguna combinación le ganó "
+               "a comprar y mantener después de costos." if not any(r["ret_kronos_net"] > max(r["ret_buyhold"], 0) for r in res)
+               else "**Con costos:** alguna combinación le ganó a comprar y mantener; hay que confirmarlo con más datos.")
     return out
 
 
@@ -228,16 +239,16 @@ def write_reports(res: list[dict], meta: dict) -> None:
     concl = conclusions(res)
     (OUT / "resumen.json").write_text(json.dumps({"meta": meta, "config": CFG, "results": res}, indent=1,
                                                  default=float, ensure_ascii=False))
-    hdr = ("| Entrada → horizonte | Predicciones | Aciertos Kronos | p-valor | Aciertos tendencia | Aciertos \"siempre sube\" | "
-           "Correlación Kronos | Correlación tendencia |")
+    hdr = ("| Entrada → horizonte | Momentos independientes | Aciertos Kronos | p-valor | \"Lo que subió, baja\" | Seguir tendencia | "
+           "\"Siempre sube\" | Parecido de Kronos a \"lo que subió, baja\" |")
     md = ["# ¿Kronos predice las velas?", "",
           f"Kronos-small usado tal como viene, sin reentrenar, sobre BTC, ETH y SOL. Solo se evalúan resultados posteriores al "
           f"**{EVAL_START.date()}** (Kronos se publicó en agosto de 2025, así que no pudo verlos). Período: {meta['start']} → {meta['end']}.",
           "", "## Conclusiones", ""] + [f"- {c}" for c in concl] + [
           "", "## ¿Acierta la dirección?", "", hdr, "|---|---:|---:|---:|---:|---:|---:|---:|"]
     for r in res:
-        md.append(f"| {r['input']} → {r['horizon']} | {r['n']} | {f(r['hit_kronos'])}% | {f(r['p_kronos'], 3)} | "
-                  f"{f(r['hit_momentum'])}% | {f(r['hit_always_up'])}% | {f(r['ic_kronos'], 3)} | {f(r['ic_momentum'], 3)} |")
+        md.append(f"| {r['input']} → {r['horizon']} | {r['moments']} | {f(r['hit_kronos'])}% | {f(r['p_kronos'], 3)} | "
+                  f"{f(r['hit_reversal'])}% | {f(r['hit_momentum'])}% | {f(r['hit_always_up'])}% | {f(r['corr_with_reversal'], 2)} |")
     md += ["", "## Operando con eso (retorno promedio por operación, con costos)", "",
            "| Entrada → horizonte | Kronos | Kronos solo si espera más que los costos | % del tiempo operando | Seguir tendencia | Comprar y mantener | Kronos sin costos |",
            "|---|---:|---:|---:|---:|---:|---:|"]
@@ -246,6 +257,7 @@ def write_reports(res: list[dict], meta: dict) -> None:
                   f"{f(r['trades_filtered_pct'], 0)}% | {f(r['ret_momentum_net'], 3)}% | {f(r['ret_buyhold'], 3)}% | {f(r['ret_kronos_gross'], 3)}% |")
     md += ["", "## Cómo leer esto", "",
            "- **Aciertos**: % de veces que la dirección predicha (sube o baja) coincidió con la real. Una moneda al aire da 50%.",
+           "- **Momentos independientes**: BTC, ETH y SOL se mueven juntas, así que las tres predicciones de un mismo momento cuentan como una sola prueba.",
            "- **p-valor**: probabilidad de acertar así de seguido por pura suerte. Como se probaron varias combinaciones, para ser "
            f"significativo tiene que ser menor que {0.05 / max(len(res), 1):.3f}.",
            "- **Correlación**: qué tan bien ordena las subas grandes y chicas (0 = nada, 1 = perfecto). En finanzas, 0,02-0,05 ya se considera una señal.",
@@ -263,10 +275,10 @@ def write_html(res, concl, meta):
     import re
     md = lambda s: re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", H.escape(s))   # noqa: E731
     rows = "".join(
-        f"<tr><td class='bot'>{r['input']} → {r['horizon']}</td><td class='num'>{r['n']}</td>"
+        f"<tr><td class='bot'>{r['input']} → {r['horizon']}</td><td class='num'>{r['moments']}</td>"
         f"<td class='num'><b>{f(r['hit_kronos'])}%</b></td><td class='num'>{f(r['p_kronos'], 3)}</td>"
-        f"<td class='num'>{f(r['hit_momentum'])}%</td><td class='num'>{f(r['hit_always_up'])}%</td>"
-        f"<td class='num'>{f(r['ic_kronos'], 3)}</td></tr>" for r in res)
+        f"<td class='num'>{f(r['hit_reversal'])}%</td><td class='num'>{f(r['hit_momentum'])}%</td>"
+        f"<td class='num'>{f(r['hit_always_up'])}%</td></tr>" for r in res)
     rows2 = "".join(
         f"<tr><td class='bot'>{r['input']} → {r['horizon']}</td><td class='num'><b>{f(r['ret_kronos_net'], 3)}%</b></td>"
         f"<td class='num'>{f(r['ret_kronos_filtered_net'], 3)}%</td><td class='num'>{f(r['ret_momentum_net'], 3)}%</td>"
@@ -285,8 +297,8 @@ td{{padding:8px;border-bottom:1px solid var(--grid)}}.num{{text-align:right;font
 </style></head><body><main>
 <h1>¿Kronos predice las velas?</h1><p class="sub">Kronos-small sin reentrenar · BTC, ETH, SOL · resultados posteriores al {EVAL_START.date()} · {meta['start']} → {meta['end']}</p>
 <div class="card"><h2>Conclusiones</h2><ul>{''.join(f'<li>{md(c)}</li>' for c in concl)}</ul></div>
-<div class="card"><h2>¿Acierta la dirección?</h2><div class="scroll"><table><thead><tr><th>Entrada → horizonte</th><th class="num">Predicciones</th>
-<th class="num">Kronos</th><th class="num">p-valor</th><th class="num">Seguir tendencia</th><th class="num">Siempre sube</th><th class="num">Correlación</th></tr></thead>
+<div class="card"><h2>¿Acierta la dirección?</h2><div class="scroll"><table><thead><tr><th>Entrada → horizonte</th><th class="num">Momentos</th>
+<th class="num">Kronos</th><th class="num">p-valor</th><th class="num">Lo que subió, baja</th><th class="num">Seguir tendencia</th><th class="num">Siempre sube</th></tr></thead>
 <tbody>{rows}</tbody></table></div><p class="help">Una moneda al aire acierta 50%. Para ser significativo, el p-valor tiene que ser menor que {0.05 / max(len(res), 1):.3f} (se probaron {len(res)} combinaciones).</p></div>
 <div class="card"><h2>Retorno promedio por operación, con costos</h2><div class="scroll"><table><thead><tr><th>Entrada → horizonte</th><th class="num">Kronos</th>
 <th class="num">Kronos filtrado</th><th class="num">Seguir tendencia</th><th class="num">Comprar y mantener</th></tr></thead><tbody>{rows2}</tbody></table></div>
@@ -296,11 +308,33 @@ td{{padding:8px;border-bottom:1px solid var(--grid)}}.num{{text-align:right;font
 
 
 # ------------------------------------------------------------------ main
+def reevaluate():
+    res, span = [], []
+    for g in GROUPS:
+        p = OUT / f"predicciones_{g['tf']}.csv"
+        if p.exists():
+            df = pd.read_csv(p)
+            res += evaluate(df, g)
+            span += [df.t.min(), df.t.max()]
+    old = json.loads((OUT / "resumen.json").read_text())["meta"] if (OUT / "resumen.json").exists() else {}
+    day = lambda t: datetime.fromtimestamp(int(t) / 1000, tz=timezone.utc).strftime("%Y-%m-%d")   # noqa: E731
+    meta = {**old, "start": day(min(span)), "end": day(max(span)),
+            "generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC") + " (métricas recalculadas)"}
+    meta.setdefault("minutes", 0)
+    write_reports(res, meta)
+    for c in conclusions(res):
+        log(c)
+
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--stub", action="store_true", help="predictor falso, para probar sin torch")
     ap.add_argument("--quick", action="store_true", help="pocas predicciones, para chequear que todo anda")
+    ap.add_argument("--from-csv", action="store_true", help="recalcular métricas con las predicciones ya guardadas")
     a = ap.parse_args()
+    if a.from_csv:
+        return reevaluate()
     shutil.rmtree(OUT, ignore_errors=True)
     t0 = time.time()
     log(f"Cargando modelo {'(falso, prueba)' if a.stub else CFG['model']}…")

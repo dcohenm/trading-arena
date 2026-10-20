@@ -9,3 +9,9 @@ Cada vez que se corrige algo de la metodología, la corrida anterior queda guard
 **Corrección (v2):** cada bot se compara contra los bots al azar *en su misma ventana* (sus últimos 90 días de vida). El resto de la metodología no cambió: mismos datos, mismos bots iniciales, mismo examen.
 
 Resultados de v1: ver [v1/ESTUDIO.md](v1/ESTUDIO.md).
+
+## Kronos v1 (2026-10-20)
+
+**Problemas encontrados:** (1) las predicciones de BTC, ETH y SOL de un mismo momento se contaban como tres pruebas independientes, pero las tres monedas se mueven juntas, así que la significancia salía exagerada; (2) en la regla "seguir la tendencia", los momentos sin dato previo se contaban como errores, lo que la hacía ver peor (39%) de lo que era (45%).
+
+**Corrección:** una observación por momento para calcular la significancia, comparar solo donde hay datos, y sumar la regla "lo que subió, baja" como referencia. Las predicciones de Kronos son las mismas; solo cambió cómo se miden. La versión v1 del reporte decía "predice algo"; corregida dice "hay indicios, pero no alcanzan". Ver [kronos_v1.md](kronos_v1.md).
