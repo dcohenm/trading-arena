@@ -4,45 +4,45 @@ Simulación de la arena completa sobre **1097 días de precios reales** (2023-10
 
 ## Conclusiones
 
-- **Bots individuales:** ninguno de los 100 bots pasó todos los filtros (ventaja estadística, ganarle al 95% del azar y a comprar y mantener).
-- **El proceso completo:** repartir la plata entre los bots activos rindió +60.7% (Sharpe 0.92, caída máxima 21.2%) contra +196.2% de comprar y mantener (Sharpe 0.89, caída máxima 67.8%). Pero su ventaja no es estadísticamente sólida (probabilidad 94.3%, hace falta 95%).
-- **¿Aprender sirve?** La evolución eligió 97 bots entre 2808 candidatos. Después de ser elegidos, 49.5% ganó plata y su percentil mediano contra los bots al azar fue 10.0 (por pura suerte sería 50). Eso indica que el examen no logró predecir qué bots iban a andar bien: lo que funcionó en el pasado reciente no siguió funcionando.
-- La relación entre la nota del examen y el rendimiento posterior fue +0.21 (1 = la nota predice perfecto, 0 = no predice nada).
+- **Bots individuales:** 1 pasaron todos los filtros (`breakout`). Ojo: se probaron 70 bots, así que algunos pueden haber pasado por suerte; mirá cuánto vivieron y cuánto ganaron.
+- **El proceso completo:** repartir la plata entre los bots activos rindió +20.2% (Sharpe 0.41, caída máxima 37.4%) contra +196.2% de comprar y mantener (Sharpe 0.89, caída máxima 67.8%). Pero su ventaja no es estadísticamente sólida (probabilidad 75.7%, hace falta 95%); no le ganó a comprar y mantener ajustado por riesgo.
+- **¿Aprender sirve?** La evolución eligió 66 bots entre 1928 candidatos. Después de ser elegidos, 30.8% ganó plata y su percentil mediano contra los bots al azar fue 7.5 (por pura suerte sería 50). Eso indica que el examen no logró predecir qué bots iban a andar bien: lo que funcionó en el pasado reciente no siguió funcionando.
+- La relación entre la nota del examen y el rendimiento posterior fue -0.14 (1 = la nota predice perfecto, 0 = no predice nada).
 
 ## Carteras
 
 | | Retorno | Sharpe | Caída máx. | Prob. ventaja real |
 |---|---:|---:|---:|---:|
 | Comprar y mantener | +196.2% | 0.89 | 67.8% | 93.6% |
-| Cartera del proceso (todos los bots activos) | +60.7% | 0.92 | 21.2% | 94.3% |
-| Cartera evolutiva (solo los bots que creó la evolución) | +34.6% | 0.60 | 21.2% | 84.7% |
-| Cartera al azar (los 20 bots aleatorios) | +6.1% | 0.23 | 18.3% | 65.1% |
+| Cartera del proceso (todos los bots activos) | +20.2% | 0.41 | 37.4% | 75.7% |
+| Cartera evolutiva (solo los bots que creó la evolución) | -4.9% | 0.01 | 37.5% | 50.9% |
+| Cartera al azar (los 20 bots aleatorios) | +4.8% | 0.20 | 19.7% | 63.1% |
 
 ## Por año (retorno %)
 
 | | 2023 | 2024 | 2025 | 2026 |
 |---|---:|---:|---:|---:|
 | Comprar y mantener | +147.2 | +86.2 | -25.2 | -13.9 |
-| momentum | +33.3 | +26.1 | — | — |
-| mean_reversion | +1.2 | +4.4 | — | — |
-| breakout | +35.4 | +22.5 | — | — |
-| Cartera del proceso | +23.5 | +20.6 | +8.0 | -0.1 |
-| Cartera evolutiva | +6.4 | +17.2 | +8.0 | -0.1 |
-| Cartera al azar | +18.8 | -7.2 | -2.9 | -0.9 |
+| momentum | +32.9 | +52.6 | -20.1 | — |
+| mean_reversion | +0.9 | +9.2 | — | — |
+| breakout | +36.0 | +36.9 | — | — |
+| Cartera del proceso | +21.0 | +14.7 | -10.2 | -3.5 |
+| Cartera evolutiva | +2.7 | +6.0 | -9.5 | -3.5 |
+| Cartera al azar | +18.8 | -9.1 | -3.0 | +0.0 |
 
 ## Evolución
 
-- Generaciones: 156 · candidatos probados: 2808 · promovidos: 97
-- De los promovidos que vivieron al menos 14 días (95): 49.5% ganó plata, 40.0% le ganó a comprar y mantener en su mismo período, percentil mediano contra el azar: 10.0.
+- Generaciones: 156 · candidatos probados: 1928 · promovidos: 66
+- De los promovidos que vivieron al menos 14 días (65): 30.8% ganó plata, 21.5% le ganó a comprar y mantener en su mismo período, percentil mediano contra el azar: 7.5.
 
 ## Bots iniciales
 
 | Bot | Retorno | Sharpe | Caída máx. | Trades | Veredicto |
 |---|---:|---:|---:|---:|---|
 | `buy_and_hold` | +196.2% | 0.89 | 67.8% | 3 | Referencia |
-| `momentum` | +68.0% | 4.01 | 12.3% | 132 | No supera claramente a los bots al azar |
-| `mean_reversion` | +5.7% | 1.36 | 4.2% | 191 | Sin evidencia estadística (puede ser suerte) |
-| `breakout` | +65.8% | 1.99 | 17.4% | 348 | No le gana a comprar y mantener (ajustado por riesgo) |
+| `momentum` | +62.2% | 1.29 | 29.8% | 493 | Sin evidencia estadística (puede ser suerte) |
+| `mean_reversion` | +10.2% | 2.12 | 4.2% | 195 | Sin evidencia estadística (puede ser suerte) |
+| `breakout` | +86.1% | 3.58 | 10.5% | 206 | Candidato: pasar a la siguiente fase |
 
 ## Cómo leer esto
 
@@ -53,4 +53,4 @@ Simulación de la arena completa sobre **1097 días de precios reales** (2023-10
 
 📊 Tablero interactivo: https://dcohenm.github.io/trading-arena/estudio/
 
-*Generado el 2026-10-20 12:39 UTC en 14 minutos. Todo es simulado; no es asesoramiento financiero.*
+*Generado el 2026-10-20 12:56 UTC en 12 minutos. Todo es simulado; no es asesoramiento financiero.*

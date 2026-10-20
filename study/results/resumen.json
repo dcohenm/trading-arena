@@ -2,7 +2,7 @@
  "meta": {
   "start": "2023-10-19",
   "end": "2026-10-20",
-  "days": 1097.4791666666667,
+  "days": 1097.46875,
   "source": "coinbase",
   "symbols": [
    "BTC/USDT",
@@ -10,63 +10,63 @@
    "SOL/USDT"
   ],
   "synthetic": false,
-  "minutes": 13.966285638014476,
-  "generated": "2026-10-20 12:39 UTC"
+  "minutes": 12.0760000983874,
+  "generated": "2026-10-20 12:56 UTC"
  },
  "portfolios": {
   "cartera_proceso": {
-   "return_pct": 60.6682750905273,
-   "cagr_pct": 17.601187632316993,
-   "vol_ann_pct": 19.68061488347454,
-   "sharpe": 0.9221307618534371,
-   "sortino": 1.058302409967197,
-   "max_dd_pct": 21.20547024301733,
-   "calmar": 0.8300305265860738,
-   "psr": 0.9430459698959205,
+   "return_pct": 20.176025855613556,
+   "cagr_pct": 6.485713476311439,
+   "vol_ann_pct": 20.758918414536705,
+   "sharpe": 0.4064114696704926,
+   "sortino": 0.4929496335365869,
+   "max_dd_pct": 37.35999908523435,
+   "calmar": 0.17360047203199108,
+   "psr": 0.7567434203432684,
    "n_obs": 6405
   },
   "cartera_evolutiva": {
-   "return_pct": 34.63190697936878,
-   "cagr_pct": 10.702730167721963,
-   "vol_ann_pct": 20.42011040128073,
-   "sharpe": 0.6000879015305572,
-   "sortino": 0.6359633759692928,
-   "max_dd_pct": 21.205470243017565,
-   "calmar": 0.5047155307129351,
-   "psr": 0.847261332999223,
+   "return_pct": -4.930684109091221,
+   "cagr_pct": -1.7140239975915739,
+   "vol_ann_pct": 19.914489593106417,
+   "sharpe": 0.012679285089323587,
+   "sortino": 0.014411843966861172,
+   "max_dd_pct": 37.53106897824977,
+   "calmar": -0.04566946916926068,
+   "psr": 0.5086495031421872,
    "n_obs": 6405
   },
   "cartera_azar": {
-   "return_pct": 6.063655363442355,
-   "cagr_pct": 2.033254235578852,
-   "vol_ann_pct": 11.99895331151801,
-   "sharpe": 0.22780971035001576,
-   "sortino": 0.21626812049027333,
-   "max_dd_pct": 18.3204548456129,
-   "calmar": 0.11098273774931654,
-   "psr": 0.6513337064547959,
+   "return_pct": 4.82729424826327,
+   "cagr_pct": 1.6250111758108643,
+   "vol_ann_pct": 11.778602385108977,
+   "sharpe": 0.1958165718637854,
+   "sortino": 0.15903124568929924,
+   "max_dd_pct": 19.702448302709396,
+   "calmar": 0.08247762668091355,
+   "psr": 0.6309287333017493,
    "n_obs": 6405
   },
   "buy_and_hold": {
-   "return_pct": 196.18450898976133,
-   "cagr_pct": 44.9561921830147,
-   "vol_ann_pct": 66.54815834995635,
-   "sharpe": 0.8906702822252613,
-   "sortino": 1.221043235949927,
-   "max_dd_pct": 67.75054781882346,
-   "calmar": 0.6635546667937687,
-   "psr": 0.9361491325117827,
+   "return_pct": 196.21302835873053,
+   "cagr_pct": 44.96096445915177,
+   "vol_ann_pct": 66.56059147004262,
+   "sharpe": 0.8906773995171534,
+   "sortino": 1.2210834193147637,
+   "max_dd_pct": 67.76035673187573,
+   "calmar": 0.6635290401002463,
+   "psr": 0.9361508624299295,
    "n_obs": 6405
   }
  },
  "promoted": {
-  "n_promoted": 97,
-  "n_evaluated": 95,
-  "pct_positive": 49.473684210526315,
-  "median_luck_pctl": 10.0,
-  "pct_beat_bh": 40.0,
-  "exam_vs_live_corr": 0.21486603284356093,
-  "n_candidates_tested": 2808
+  "n_promoted": 66,
+  "n_evaluated": 65,
+  "pct_positive": 30.76923076923077,
+  "median_luck_pctl": 7.5,
+  "pct_beat_bh": 21.53846153846154,
+  "exam_vs_live_corr": -0.1382783882783883,
+  "n_candidates_tested": 1928
  },
  "generations": [
   {
@@ -113,17 +113,17 @@
    "generation": 6,
    "date": "2023-11-30",
    "tested": 18,
-   "promoted": [],
+   "promoted": [
+    "mom_g6_p"
+   ],
    "retired": [],
-   "active": 4
+   "active": 5
   },
   {
    "generation": 7,
    "date": "2023-12-07",
    "tested": 18,
-   "promoted": [
-    "mom_g7_m"
-   ],
+   "promoted": [],
    "retired": [],
    "active": 5
   },
@@ -179,9 +179,11 @@
    "generation": 14,
    "date": "2024-01-25",
    "tested": 18,
-   "promoted": [],
+   "promoted": [
+    "mom_g14_f"
+   ],
    "retired": [],
-   "active": 5
+   "active": 6
   },
   {
    "generation": 15,
@@ -189,25 +191,23 @@
    "tested": 18,
    "promoted": [],
    "retired": [],
-   "active": 5
+   "active": 6
   },
   {
    "generation": 16,
    "date": "2024-02-08",
    "tested": 18,
    "promoted": [
-    "brk_g16_a"
+    "brk_g16_c"
    ],
    "retired": [],
-   "active": 6
+   "active": 7
   },
   {
    "generation": 17,
    "date": "2024-02-15",
    "tested": 18,
-   "promoted": [
-    "brk_g17_h"
-   ],
+   "promoted": [],
    "retired": [],
    "active": 7
   },
@@ -216,8 +216,8 @@
    "date": "2024-02-22",
    "tested": 18,
    "promoted": [
-    "brk_g18_e",
-    "brk_g18_h"
+    "brk_g18_a",
+    "brk_g18_c"
    ],
    "retired": [],
    "active": 9
@@ -227,12 +227,12 @@
    "date": "2024-02-29",
    "tested": 18,
    "promoted": [
-    "brk_g19_h",
-    "mom_g19_m"
+    "brk_g19_d",
+    "brk_g19_j"
    ],
    "retired": [
-    "mean_reversion",
-    "mom_g7_m"
+    "brk_g16_c",
+    "mom_g6_p"
    ],
    "active": 9
   },
@@ -241,12 +241,12 @@
    "date": "2024-03-07",
    "tested": 18,
    "promoted": [
-    "brk_g20_c",
-    "brk_g20_k"
+    "brk_g20_g",
+    "brk_g20_b"
    ],
    "retired": [
-    "brk_g17_h",
-    "momentum"
+    "mom_g14_f",
+    "mean_reversion"
    ],
    "active": 9
   },
@@ -295,12 +295,12 @@
    "date": "2024-04-18",
    "tested": 18,
    "promoted": [
-    "brk_g26_i",
-    "brk_g26_c"
+    "brk_g26_e",
+    "brk_g26_f"
    ],
    "retired": [
-    "brk_g20_c",
-    "mom_g19_m"
+    "brk_g20_g",
+    "brk_g20_b"
    ],
    "active": 9
   },
@@ -308,14 +308,8 @@
    "generation": 27,
    "date": "2024-04-25",
    "tested": 18,
-   "promoted": [
-    "brk_g27_f",
-    "brk_g27_c"
-   ],
-   "retired": [
-    "brk_g19_h",
-    "brk_g20_k"
-   ],
+   "promoted": [],
+   "retired": [],
    "active": 9
   },
   {
@@ -331,12 +325,12 @@
    "date": "2024-05-09",
    "tested": 18,
    "promoted": [
-    "brk_g29_h",
-    "brk_g29_l"
+    "brk_g29_j",
+    "brk_g29_f"
    ],
    "retired": [
-    "brk_g26_i",
-    "brk_g18_h"
+    "brk_g18_c",
+    "brk_g26_e"
    ],
    "active": 9
   },
@@ -345,12 +339,10 @@
    "date": "2024-05-16",
    "tested": 18,
    "promoted": [
-    "brk_g30_d",
-    "brk_g30_f"
+    "brk_g30_i"
    ],
    "retired": [
-    "brk_g26_c",
-    "brk_g27_c"
+    "brk_g26_f"
    ],
    "active": 9
   },
@@ -359,12 +351,12 @@
    "date": "2024-05-23",
    "tested": 18,
    "promoted": [
-    "brk_g31_g",
-    "brk_g31_l"
+    "brk_g31_i",
+    "brk_g31_j"
    ],
    "retired": [
-    "brk_g18_e",
-    "brk_g16_a"
+    "brk_g19_d",
+    "breakout"
    ],
    "active": 9
   },
@@ -373,12 +365,10 @@
    "date": "2024-05-30",
    "tested": 18,
    "promoted": [
-    "brk_g32_k",
-    "brk_g32_f"
+    "brk_g32_k"
    ],
    "retired": [
-    "brk_g29_h",
-    "brk_g27_f"
+    "brk_g29_j"
    ],
    "active": 9
   },
@@ -391,8 +381,8 @@
     "brk_g33_f"
    ],
    "retired": [
-    "brk_g30_d",
-    "brk_g30_f"
+    "brk_g29_f",
+    "brk_g30_i"
    ],
    "active": 9
   },
@@ -409,10 +399,12 @@
    "date": "2024-06-20",
    "tested": 18,
    "promoted": [
-    "brk_g35_k"
+    "rev_g35_q",
+    "brk_g35_c"
    ],
    "retired": [
-    "brk_g31_g"
+    "brk_g32_k",
+    "brk_g31_i"
    ],
    "active": 9
   },
@@ -421,12 +413,12 @@
    "date": "2024-06-27",
    "tested": 18,
    "promoted": [
-    "brk_g36_i",
-    "brk_g36_l"
+    "mom_g36_f",
+    "brk_g36_d"
    ],
    "retired": [
-    "brk_g32_f",
-    "brk_g32_k"
+    "brk_g33_f",
+    "brk_g31_j"
    ],
    "active": 9
   },
@@ -434,24 +426,16 @@
    "generation": 37,
    "date": "2024-07-04",
    "tested": 18,
-   "promoted": [
-    "brk_g37_j"
-   ],
-   "retired": [
-    "brk_g33_g"
-   ],
+   "promoted": [],
+   "retired": [],
    "active": 9
   },
   {
    "generation": 38,
    "date": "2024-07-11",
    "tested": 18,
-   "promoted": [
-    "brk_g38_i"
-   ],
-   "retired": [
-    "brk_g31_l"
-   ],
+   "promoted": [],
+   "retired": [],
    "active": 9
   },
   {
@@ -459,12 +443,12 @@
    "date": "2024-07-18",
    "tested": 18,
    "promoted": [
-    "brk_g39_b",
-    "brk_g39_d"
+    "mom_g39_k",
+    "mom_g39_l"
    ],
    "retired": [
-    "brk_g33_f",
-    "brk_g29_l"
+    "brk_g36_d",
+    "mom_g36_f"
    ],
    "active": 9
   },
@@ -472,16 +456,24 @@
    "generation": 40,
    "date": "2024-07-25",
    "tested": 18,
-   "promoted": [],
-   "retired": [],
+   "promoted": [
+    "mom_g40_c"
+   ],
+   "retired": [
+    "brk_g35_c"
+   ],
    "active": 9
   },
   {
    "generation": 41,
    "date": "2024-08-01",
    "tested": 18,
-   "promoted": [],
-   "retired": [],
+   "promoted": [
+    "mom_g41_i"
+   ],
+   "retired": [
+    "brk_g18_a"
+   ],
    "active": 9
   },
   {
@@ -489,10 +481,12 @@
    "date": "2024-08-08",
    "tested": 18,
    "promoted": [
-    "brk_g42_a"
+    "mom_g42_i",
+    "mom_g42_l"
    ],
    "retired": [
-    "brk_g39_b"
+    "brk_g19_j",
+    "rev_g35_q"
    ],
    "active": 9
   },
@@ -500,8 +494,14 @@
    "generation": 43,
    "date": "2024-08-15",
    "tested": 18,
-   "promoted": [],
-   "retired": [],
+   "promoted": [
+    "mom_g43_j",
+    "mom_g43_l"
+   ],
+   "retired": [
+    "mom_g40_c",
+    "mom_g39_l"
+   ],
    "active": 9
   },
   {
@@ -509,10 +509,12 @@
    "date": "2024-08-22",
    "tested": 18,
    "promoted": [
-    "brk_g44_g"
+    "mom_g44_k",
+    "mom_g44_j"
    ],
    "retired": [
-    "brk_g39_d"
+    "mom_g41_i",
+    "mom_g39_k"
    ],
    "active": 9
   },
@@ -521,12 +523,12 @@
    "date": "2024-08-29",
    "tested": 18,
    "promoted": [
-    "brk_g45_k",
-    "brk_g45_l"
+    "brk_g45_r",
+    "brk_g45_o"
    ],
    "retired": [
-    "brk_g36_l",
-    "brk_g36_i"
+    "mom_g42_i",
+    "mom_g42_l"
    ],
    "active": 9
   },
@@ -535,12 +537,12 @@
    "date": "2024-09-05",
    "tested": 18,
    "promoted": [
-    "brk_g46_g",
-    "brk_g46_h"
+    "mom_g46_j",
+    "mom_g46_l"
    ],
    "retired": [
-    "brk_g42_a",
-    "brk_g35_k"
+    "mom_g43_l",
+    "mom_g43_j"
    ],
    "active": 9
   },
@@ -549,10 +551,10 @@
    "date": "2024-09-12",
    "tested": 18,
    "promoted": [
-    "brk_g47_g"
+    "brk_g47_d"
    ],
    "retired": [
-    "brk_g44_g"
+    "mom_g44_k"
    ],
    "active": 9
   },
@@ -568,14 +570,8 @@
    "generation": 49,
    "date": "2024-09-26",
    "tested": 18,
-   "promoted": [
-    "brk_g49_c",
-    "brk_g49_j"
-   ],
-   "retired": [
-    "brk_g45_k",
-    "brk_g45_l"
-   ],
+   "promoted": [],
+   "retired": [],
    "active": 9
   },
   {
@@ -584,11 +580,11 @@
    "tested": 18,
    "promoted": [
     "brk_g50_l",
-    "brk_g50_k"
+    "brk_g50_d"
    ],
    "retired": [
-    "brk_g38_i",
-    "brk_g46_g"
+    "brk_g47_d",
+    "brk_g33_g"
    ],
    "active": 9
   },
@@ -597,12 +593,10 @@
    "date": "2024-10-10",
    "tested": 18,
    "promoted": [
-    "brk_g51_k",
     "brk_g51_i"
    ],
    "retired": [
-    "brk_g46_h",
-    "brk_g47_g"
+    "mom_g46_j"
    ],
    "active": 9
   },
@@ -610,14 +604,8 @@
    "generation": 52,
    "date": "2024-10-17",
    "tested": 18,
-   "promoted": [
-    "brk_g52_d",
-    "brk_g52_f"
-   ],
-   "retired": [
-    "brk_g37_j",
-    "breakout"
-   ],
+   "promoted": [],
+   "retired": [],
    "active": 9
   },
   {
@@ -625,12 +613,12 @@
    "date": "2024-10-24",
    "tested": 18,
    "promoted": [
-    "brk_g53_a",
-    "brk_g53_g"
+    "mom_g53_b",
+    "mom_g53_h"
    ],
    "retired": [
-    "brk_g49_j",
-    "brk_g49_c"
+    "brk_g50_d",
+    "brk_g50_l"
    ],
    "active": 9
   },
@@ -654,8 +642,12 @@
    "generation": 56,
    "date": "2024-11-14",
    "tested": 18,
-   "promoted": [],
-   "retired": [],
+   "promoted": [
+    "mom_g56_d"
+   ],
+   "retired": [
+    "brk_g51_i"
+   ],
    "active": 9
   },
   {
@@ -694,16 +686,26 @@
    "generation": 61,
    "date": "2024-12-19",
    "tested": 18,
-   "promoted": [],
-   "retired": [],
+   "promoted": [
+    "mom_g61_m"
+   ],
+   "retired": [
+    "mom_g56_d"
+   ],
    "active": 9
   },
   {
    "generation": 62,
    "date": "2024-12-26",
    "tested": 18,
-   "promoted": [],
-   "retired": [],
+   "promoted": [
+    "mom_g62_a",
+    "mom_g62_b"
+   ],
+   "retired": [
+    "brk_g45_r",
+    "brk_g45_o"
+   ],
    "active": 9
   },
   {
@@ -711,10 +713,10 @@
    "date": "2025-01-02",
    "tested": 18,
    "promoted": [
-    "brk_g63_r"
+    "brk_g63_o"
    ],
    "retired": [
-    "brk_g52_f"
+    "mom_g53_h"
    ],
    "active": 9
   },
@@ -722,90 +724,60 @@
    "generation": 64,
    "date": "2025-01-09",
    "tested": 18,
-   "promoted": [],
-   "retired": [],
+   "promoted": [
+    "brk_g64_b"
+   ],
+   "retired": [
+    "mom_g61_m"
+   ],
    "active": 9
   },
   {
    "generation": 65,
    "date": "2025-01-16",
    "tested": 18,
-   "promoted": [
-    "brk_g65_d",
-    "brk_g65_b"
-   ],
-   "retired": [
-    "brk_g52_d",
-    "brk_g53_a"
-   ],
+   "promoted": [],
+   "retired": [],
    "active": 9
   },
   {
    "generation": 66,
    "date": "2025-01-23",
    "tested": 18,
-   "promoted": [
-    "brk_g66_b"
-   ],
-   "retired": [
-    "brk_g53_g"
-   ],
+   "promoted": [],
+   "retired": [],
    "active": 9
   },
   {
    "generation": 67,
    "date": "2025-01-30",
    "tested": 18,
-   "promoted": [
-    "brk_g67_a",
-    "brk_g67_c"
-   ],
-   "retired": [
-    "brk_g50_k",
-    "brk_g50_l"
-   ],
+   "promoted": [],
+   "retired": [],
    "active": 9
   },
   {
    "generation": 68,
    "date": "2025-02-06",
    "tested": 18,
-   "promoted": [
-    "brk_g68_k",
-    "brk_g68_i"
-   ],
-   "retired": [
-    "brk_g65_d",
-    "brk_g65_b"
-   ],
+   "promoted": [],
+   "retired": [],
    "active": 9
   },
   {
    "generation": 69,
    "date": "2025-02-13",
    "tested": 18,
-   "promoted": [
-    "brk_g69_j",
-    "brk_g69_l"
-   ],
-   "retired": [
-    "brk_g66_b",
-    "brk_g63_r"
-   ],
+   "promoted": [],
+   "retired": [],
    "active": 9
   },
   {
    "generation": 70,
    "date": "2025-02-20",
    "tested": 18,
-   "promoted": [
-    "brk_g70_i",
-    "brk_g70_j"
-   ],
-   "retired": [
-    "brk_g67_c",
-    "brk_g67_a"
-   ],
+   "promoted": [],
+   "retired": [],
    "active": 9
   },
   {
@@ -829,790 +801,725 @@
    "date": "2025-03-13",
    "tested": 18,
    "promoted": [],
-   "retired": [],
-   "active": 9
+   "retired": [
+    "mom_g46_l"
+   ],
+   "active": 8
   },
   {
    "generation": 74,
    "date": "2025-03-20",
    "tested": 18,
    "promoted": [],
-   "retired": [],
-   "active": 9
+   "retired": [
+    "mom_g44_j"
+   ],
+   "active": 7
   },
   {
    "generation": 75,
    "date": "2025-03-27",
    "tested": 18,
    "promoted": [],
-   "retired": [],
-   "active": 9
+   "retired": [
+    "momentum"
+   ],
+   "active": 6
   },
   {
    "generation": 76,
    "date": "2025-04-03",
    "tested": 18,
    "promoted": [],
-   "retired": [],
-   "active": 9
+   "retired": [
+    "mom_g53_b",
+    "mom_g62_a",
+    "mom_g62_b"
+   ],
+   "active": 3
   },
   {
    "generation": 77,
    "date": "2025-04-10",
-   "tested": 18,
+   "tested": 14,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 3
   },
   {
    "generation": 78,
    "date": "2025-04-17",
-   "tested": 18,
+   "tested": 14,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 3
   },
   {
    "generation": 79,
    "date": "2025-04-24",
-   "tested": 18,
+   "tested": 14,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 3
   },
   {
    "generation": 80,
    "date": "2025-05-01",
-   "tested": 18,
+   "tested": 14,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 3
   },
   {
    "generation": 81,
    "date": "2025-05-08",
-   "tested": 18,
-   "promoted": [
-    "brk_g81_r"
-   ],
-   "retired": [
-    "brk_g69_l"
-   ],
-   "active": 9
+   "tested": 14,
+   "promoted": [],
+   "retired": [],
+   "active": 3
   },
   {
    "generation": 82,
    "date": "2025-05-15",
-   "tested": 18,
-   "promoted": [],
+   "tested": 14,
+   "promoted": [
+    "brk_g82_n"
+   ],
    "retired": [],
-   "active": 9
+   "active": 4
   },
   {
    "generation": 83,
    "date": "2025-05-22",
-   "tested": 18,
+   "tested": 14,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 4
   },
   {
    "generation": 84,
    "date": "2025-05-29",
-   "tested": 18,
+   "tested": 14,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 4
   },
   {
    "generation": 85,
    "date": "2025-06-05",
-   "tested": 18,
+   "tested": 14,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 4
   },
   {
    "generation": 86,
    "date": "2025-06-12",
-   "tested": 18,
+   "tested": 14,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 4
   },
   {
    "generation": 87,
    "date": "2025-06-19",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 4
   },
   {
    "generation": 88,
    "date": "2025-06-26",
-   "tested": 18,
-   "promoted": [
-    "mom_g88_m"
-   ],
-   "retired": [
-    "brk_g81_r"
-   ],
-   "active": 9
+   "tested": 6,
+   "promoted": [],
+   "retired": [],
+   "active": 4
   },
   {
    "generation": 89,
    "date": "2025-07-03",
-   "tested": 18,
-   "promoted": [],
+   "tested": 6,
+   "promoted": [
+    "mom_g89_a"
+   ],
    "retired": [],
-   "active": 9
+   "active": 5
   },
   {
    "generation": 90,
    "date": "2025-07-10",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 5
   },
   {
    "generation": 91,
    "date": "2025-07-17",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 5
   },
   {
    "generation": 92,
    "date": "2025-07-24",
-   "tested": 18,
-   "promoted": [
-    "brk_g92_f",
-    "mom_g92_m"
-   ],
-   "retired": [
-    "mom_g88_m",
-    "brk_g68_i"
-   ],
-   "active": 9
+   "tested": 6,
+   "promoted": [],
+   "retired": [],
+   "active": 5
   },
   {
    "generation": 93,
    "date": "2025-07-31",
-   "tested": 18,
-   "promoted": [
-    "mom_g93_p",
-    "brk_g93_o"
-   ],
-   "retired": [
-    "brk_g51_k",
-    "brk_g69_j"
-   ],
-   "active": 9
+   "tested": 6,
+   "promoted": [],
+   "retired": [],
+   "active": 5
   },
   {
    "generation": 94,
    "date": "2025-08-07",
-   "tested": 18,
+   "tested": 6,
    "promoted": [
-    "brk_g94_k",
-    "brk_g94_c"
+    "mom_g94_d"
    ],
-   "retired": [
-    "brk_g70_i",
-    "brk_g51_i"
-   ],
-   "active": 9
+   "retired": [],
+   "active": 6
   },
   {
    "generation": 95,
    "date": "2025-08-14",
-   "tested": 18,
-   "promoted": [
-    "brk_g95_b",
-    "brk_g95_l"
-   ],
-   "retired": [
-    "mom_g92_m",
-    "brk_g68_k"
-   ],
-   "active": 9
+   "tested": 6,
+   "promoted": [],
+   "retired": [],
+   "active": 6
   },
   {
    "generation": 96,
    "date": "2025-08-21",
-   "tested": 18,
-   "promoted": [
-    "brk_g96_c",
-    "brk_g96_j"
-   ],
-   "retired": [
-    "mom_g93_p",
-    "brk_g70_j"
-   ],
-   "active": 9
+   "tested": 6,
+   "promoted": [],
+   "retired": [],
+   "active": 6
   },
   {
    "generation": 97,
    "date": "2025-08-28",
-   "tested": 18,
+   "tested": 6,
    "promoted": [
-    "brk_g97_d",
-    "brk_g97_i"
+    "brk_g97_c",
+    "mom_g97_d"
    ],
-   "retired": [
-    "brk_g92_f",
-    "brk_g93_o"
-   ],
-   "active": 9
+   "retired": [],
+   "active": 8
   },
   {
    "generation": 98,
    "date": "2025-09-04",
-   "tested": 18,
-   "promoted": [
-    "brk_g98_c",
-    "brk_g98_b"
-   ],
-   "retired": [
-    "brk_g95_b",
-    "brk_g95_l"
-   ],
-   "active": 9
+   "tested": 6,
+   "promoted": [],
+   "retired": [],
+   "active": 8
   },
   {
    "generation": 99,
    "date": "2025-09-11",
-   "tested": 18,
-   "promoted": [
-    "brk_g99_o",
-    "brk_g99_f"
-   ],
-   "retired": [
-    "brk_g96_c",
-    "brk_g96_j"
-   ],
-   "active": 9
+   "tested": 6,
+   "promoted": [],
+   "retired": [],
+   "active": 8
   },
   {
    "generation": 100,
    "date": "2025-09-18",
-   "tested": 18,
-   "promoted": [
-    "brk_g100_l"
-   ],
-   "retired": [
-    "brk_g97_d"
-   ],
-   "active": 9
+   "tested": 6,
+   "promoted": [],
+   "retired": [],
+   "active": 8
   },
   {
    "generation": 101,
    "date": "2025-09-25",
-   "tested": 18,
+   "tested": 6,
    "promoted": [
-    "brk_g101_r",
-    "brk_g101_h"
+    "brk_g101_c"
    ],
-   "retired": [
-    "brk_g94_c",
-    "brk_g97_i"
-   ],
+   "retired": [],
    "active": 9
   },
   {
    "generation": 102,
    "date": "2025-10-02",
-   "tested": 18,
-   "promoted": [
-    "brk_g102_f",
-    "brk_g102_e"
-   ],
-   "retired": [
-    "brk_g99_f",
-    "brk_g99_o"
-   ],
+   "tested": 6,
+   "promoted": [],
+   "retired": [],
    "active": 9
   },
   {
    "generation": 103,
    "date": "2025-10-09",
-   "tested": 18,
+   "tested": 6,
    "promoted": [
-    "brk_g103_i",
-    "brk_g103_h"
+    "brk_g103_c"
    ],
-   "retired": [
-    "brk_g100_l",
-    "brk_g94_k"
-   ],
-   "active": 9
+   "retired": [],
+   "active": 10
   },
   {
    "generation": 104,
    "date": "2025-10-16",
-   "tested": 18,
+   "tested": 6,
    "promoted": [
-    "brk_g104_i",
-    "brk_g104_a"
+    "brk_g104_c"
    ],
-   "retired": [
-    "brk_g98_b",
-    "brk_g98_c"
-   ],
-   "active": 9
+   "retired": [],
+   "active": 11
   },
   {
    "generation": 105,
    "date": "2025-10-23",
-   "tested": 18,
-   "promoted": [
-    "brk_g105_i",
-    "brk_g105_l"
-   ],
-   "retired": [
-    "brk_g102_e",
-    "brk_g102_f"
-   ],
-   "active": 9
+   "tested": 6,
+   "promoted": [],
+   "retired": [],
+   "active": 11
   },
   {
    "generation": 106,
    "date": "2025-10-30",
-   "tested": 18,
+   "tested": 6,
    "promoted": [
-    "brk_g106_l",
-    "brk_g106_a"
+    "brk_g106_f"
    ],
-   "retired": [
-    "brk_g103_h",
-    "brk_g103_i"
-   ],
-   "active": 9
+   "retired": [],
+   "active": 12
   },
   {
    "generation": 107,
    "date": "2025-11-06",
-   "tested": 18,
+   "tested": 6,
    "promoted": [
-    "brk_g107_l",
-    "brk_g107_j"
+    "brk_g107_c",
+    "mom_g107_d"
    ],
-   "retired": [
-    "brk_g104_a",
-    "brk_g104_i"
-   ],
-   "active": 9
+   "retired": [],
+   "active": 14
   },
   {
    "generation": 108,
    "date": "2025-11-13",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 14
   },
   {
    "generation": 109,
    "date": "2025-11-20",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 14
   },
   {
    "generation": 110,
    "date": "2025-11-27",
-   "tested": 18,
-   "promoted": [],
+   "tested": 6,
+   "promoted": [
+    "mom_g110_d"
+   ],
    "retired": [],
-   "active": 9
+   "active": 15
   },
   {
    "generation": 111,
    "date": "2025-12-04",
-   "tested": 18,
-   "promoted": [],
+   "tested": 6,
+   "promoted": [
+    "brk_g111_f"
+   ],
    "retired": [],
-   "active": 9
+   "active": 16
   },
   {
    "generation": 112,
    "date": "2025-12-11",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 16
   },
   {
    "generation": 113,
    "date": "2025-12-18",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 16
   },
   {
    "generation": 114,
    "date": "2025-12-25",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 16
   },
   {
    "generation": 115,
    "date": "2026-01-01",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 16
   },
   {
    "generation": 116,
    "date": "2026-01-08",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 16
   },
   {
    "generation": 117,
    "date": "2026-01-15",
-   "tested": 18,
-   "promoted": [],
+   "tested": 6,
+   "promoted": [
+    "brk_g117_c"
+   ],
    "retired": [],
-   "active": 9
+   "active": 17
   },
   {
    "generation": 118,
    "date": "2026-01-22",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 17
   },
   {
    "generation": 119,
    "date": "2026-01-29",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 17
   },
   {
    "generation": 120,
    "date": "2026-02-05",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 17
   },
   {
    "generation": 121,
    "date": "2026-02-12",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 17
   },
   {
    "generation": 122,
    "date": "2026-02-19",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 17
   },
   {
    "generation": 123,
    "date": "2026-02-26",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 17
   },
   {
    "generation": 124,
    "date": "2026-03-05",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 17
   },
   {
    "generation": 125,
    "date": "2026-03-12",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 17
   },
   {
    "generation": 126,
    "date": "2026-03-19",
-   "tested": 18,
-   "promoted": [],
+   "tested": 6,
+   "promoted": [
+    "rev_g126_b"
+   ],
    "retired": [],
-   "active": 9
+   "active": 18
   },
   {
    "generation": 127,
    "date": "2026-03-26",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 18
   },
   {
    "generation": 128,
    "date": "2026-04-02",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 18
   },
   {
    "generation": 129,
    "date": "2026-04-09",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
-   "retired": [],
-   "active": 9
+   "retired": [
+    "brk_g97_c",
+    "brk_g104_c"
+   ],
+   "active": 16
   },
   {
    "generation": 130,
    "date": "2026-04-16",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
-   "retired": [],
-   "active": 9
+   "retired": [
+    "brk_g101_c"
+   ],
+   "active": 15
   },
   {
    "generation": 131,
    "date": "2026-04-23",
-   "tested": 18,
-   "promoted": [],
+   "tested": 6,
+   "promoted": [
+    "rev_g131_b"
+   ],
    "retired": [],
-   "active": 9
+   "active": 16
   },
   {
    "generation": 132,
    "date": "2026-04-30",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 16
   },
   {
    "generation": 133,
    "date": "2026-05-07",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 16
   },
   {
    "generation": 134,
    "date": "2026-05-14",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 16
   },
   {
    "generation": 135,
    "date": "2026-05-21",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 16
   },
   {
    "generation": 136,
    "date": "2026-05-28",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 16
   },
   {
    "generation": 137,
    "date": "2026-06-04",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 16
   },
   {
    "generation": 138,
    "date": "2026-06-11",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 16
   },
   {
    "generation": 139,
    "date": "2026-06-18",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 16
   },
   {
    "generation": 140,
    "date": "2026-06-25",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 16
   },
   {
    "generation": 141,
    "date": "2026-07-02",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
-   "retired": [],
-   "active": 9
+   "retired": [
+    "brk_g107_c"
+   ],
+   "active": 15
   },
   {
    "generation": 142,
    "date": "2026-07-09",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 15
   },
   {
    "generation": 143,
    "date": "2026-07-16",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 15
   },
   {
    "generation": 144,
    "date": "2026-07-23",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
-   "retired": [],
-   "active": 9
+   "retired": [
+    "brk_g63_o"
+   ],
+   "active": 14
   },
   {
    "generation": 145,
    "date": "2026-07-30",
-   "tested": 18,
-   "promoted": [
-    "rev_g145_q"
-   ],
+   "tested": 6,
+   "promoted": [],
    "retired": [
-    "brk_g106_l"
+    "brk_g103_c"
    ],
-   "active": 9
+   "active": 13
   },
   {
    "generation": 146,
    "date": "2026-08-06",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 13
   },
   {
    "generation": 147,
    "date": "2026-08-13",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 13
   },
   {
    "generation": 148,
    "date": "2026-08-20",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 13
   },
   {
    "generation": 149,
    "date": "2026-08-27",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 13
   },
   {
    "generation": 150,
    "date": "2026-09-03",
-   "tested": 18,
-   "promoted": [
-    "mom_g150_p",
-    "mom_g150_m"
-   ],
-   "retired": [
-    "rev_g145_q",
-    "brk_g101_r"
-   ],
-   "active": 9
+   "tested": 6,
+   "promoted": [],
+   "retired": [],
+   "active": 13
   },
   {
    "generation": 151,
    "date": "2026-09-10",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 13
   },
   {
    "generation": 152,
    "date": "2026-09-17",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 13
   },
   {
    "generation": 153,
    "date": "2026-09-24",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 13
   },
   {
    "generation": 154,
    "date": "2026-10-01",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 13
   },
   {
    "generation": 155,
    "date": "2026-10-08",
-   "tested": 18,
+   "tested": 6,
    "promoted": [],
    "retired": [],
-   "active": 9
+   "active": 13
   },
   {
    "generation": 156,
    "date": "2026-10-15",
-   "tested": 18,
+   "tested": 6,
    "promoted": [
-    "mom_g156_d",
-    "brk_g156_o"
+    "mom_g156_a"
    ],
-   "retired": [
-    "mom_g150_p",
-    "brk_g101_h"
-   ],
-   "active": 9
+   "retired": [],
+   "active": 14
   }
  ]
 }

@@ -1,102 +1,71 @@
 name,type,every,born_ts,status,origin,params,retired_ts,retired_why,parent
-buy_and_hold,buy_hold,1d,1697675400000,active,inicial,,,,
-momentum,momentum,1h,1697675400000,retired,inicial,"{'fast': 48, 'slow': 240, 'band': 0.01, 'target_vol': 0.6}",1709771400000.0,de los peores en vivo,
-mean_reversion,mean_reversion,1h,1697675400000,retired,inicial,"{'rsi_len': 14, 'entry': 28, 'exit': 55, 'weight': 0.25}",1709166600000.0,de los peores en vivo,
-breakout,breakout,1h,1697675400000,retired,inicial,"{'entry': 192, 'exit': 96, 'target_vol': 0.6, 'stop': 0.1}",1729125000000.0,de los peores en vivo,
-mom_g7_m,momentum,4h,1701909000000,retired,generación 7,"{'fast': 63, 'slow': 338, 'band': 0.0169, 'target_vol': 0.8593}",1709166600000.0,de los peores en vivo,
-brk_g16_a,breakout,1h,1707352200000,retired,generación 16,"{'entry': 235, 'exit': 96, 'target_vol': 0.6715, 'stop': 0.1223}",1716424200000.0,de los peores en vivo,breakout
-brk_g17_h,breakout,1h,1707957000000,retired,generación 17,"{'entry': 171, 'exit': 117, 'target_vol': 0.7293, 'stop': 0.1196}",1709771400000.0,de los peores en vivo,breakout
-brk_g18_e,breakout,1h,1708561800000,retired,generación 18,"{'entry': 189, 'exit': 96, 'target_vol': 0.476, 'stop': 0.1116}",1716424200000.0,de los peores en vivo,breakout
-brk_g18_h,breakout,1h,1708561800000,retired,generación 18,"{'entry': 174, 'exit': 96, 'target_vol': 0.6, 'stop': 0.1115}",1715214600000.0,de los peores en vivo,breakout
-brk_g19_h,breakout,1h,1709166600000,retired,generación 19,"{'entry': 174, 'exit': 96, 'target_vol': 0.7288, 'stop': 0.1115}",1714005000000.0,de los peores en vivo,brk_g18_h
-mom_g19_m,momentum,2h,1709166600000,retired,generación 19,"{'fast': 19, 'slow': 345, 'band': 0.0287, 'target_vol': 0.38}",1713400200000.0,de los peores en vivo,
-brk_g20_c,breakout,1h,1709771400000,retired,generación 20,"{'entry': 157, 'exit': 116, 'target_vol': 0.476, 'stop': 0.1116}",1713400200000.0,de los peores en vivo,brk_g18_e
-brk_g20_k,breakout,1h,1709771400000,retired,generación 20,"{'entry': 178, 'exit': 96, 'target_vol': 0.627, 'stop': 0.1182}",1714005000000.0,de los peores en vivo,brk_g16_a
-brk_g26_i,breakout,1h,1713400200000,retired,generación 26,"{'entry': 206, 'exit': 115, 'target_vol': 0.476, 'stop': 0.0969}",1715214600000.0,de los peores en vivo,brk_g18_e
-brk_g26_c,breakout,1h,1713400200000,retired,generación 26,"{'entry': 207, 'exit': 96, 'target_vol': 0.6, 'stop': 0.1021}",1715819400000.0,de los peores en vivo,breakout
-brk_g27_f,breakout,1h,1714005000000,retired,generación 27,"{'entry': 280, 'exit': 109, 'target_vol': 0.6715, 'stop': 0.1223}",1717029000000.0,de los peores en vivo,brk_g16_a
-brk_g27_c,breakout,1h,1714005000000,retired,generación 27,"{'entry': 192, 'exit': 96, 'target_vol': 0.6746, 'stop': 0.1057}",1715819400000.0,de los peores en vivo,breakout
-brk_g29_h,breakout,1h,1715214600000,retired,generación 29,"{'entry': 214, 'exit': 96, 'target_vol': 0.5087, 'stop': 0.1257}",1717029000000.0,de los peores en vivo,brk_g27_c
-brk_g29_l,breakout,4h,1715214600000,retired,generación 29,"{'entry': 235, 'exit': 96, 'target_vol': 0.6384, 'stop': 0.1304}",1721262600000.0,de los peores en vivo,brk_g16_a
-brk_g30_d,breakout,1h,1715819400000,retired,generación 30,"{'entry': 322, 'exit': 115, 'target_vol': 0.8169, 'stop': 0.1223}",1717634700000.0,de los peores en vivo,brk_g27_f
-brk_g30_f,breakout,1h,1715819400000,retired,generación 30,"{'entry': 192, 'exit': 96, 'target_vol': 0.5936, 'stop': 0.1039}",1717634700000.0,de los peores en vivo,breakout
-brk_g31_g,breakout,1h,1716424200000,retired,generación 31,"{'entry': 220, 'exit': 120, 'target_vol': 0.61, 'stop': 0.1039}",1718843400000.0,de los peores en vivo,brk_g30_f
-brk_g31_l,breakout,1h,1716424200000,retired,generación 31,"{'entry': 322, 'exit': 115, 'target_vol': 0.7226, 'stop': 0.1223}",1720657800000.0,de los peores en vivo,brk_g30_d
-brk_g32_k,breakout,1h,1717029000000,retired,generación 32,"{'entry': 236, 'exit': 96, 'target_vol': 0.5936, 'stop': 0.1039}",1719448200000.0,de los peores en vivo,brk_g30_f
-brk_g32_f,breakout,1h,1717029000000,retired,generación 32,"{'entry': 217, 'exit': 110, 'target_vol': 0.4632, 'stop': 0.1178}",1719448200000.0,de los peores en vivo,breakout
-brk_g33_g,breakout,1h,1717634700000,retired,generación 33,"{'entry': 201, 'exit': 117, 'target_vol': 0.6836, 'stop': 0.1}",1720053000000.0,de los peores en vivo,breakout
-brk_g33_f,breakout,1h,1717634700000,retired,generación 33,"{'entry': 192, 'exit': 96, 'target_vol': 0.6, 'stop': 0.122}",1721262600000.0,de los peores en vivo,breakout
-brk_g35_k,breakout,1h,1718843400000,retired,generación 35,"{'entry': 285, 'exit': 117, 'target_vol': 0.6103, 'stop': 0.1181}",1725496200000.0,de los peores en vivo,brk_g31_l
-brk_g36_i,breakout,1h,1719448200000,retired,generación 36,"{'entry': 322, 'exit': 132, 'target_vol': 0.6451, 'stop': 0.1223}",1724891400000.0,de los peores en vivo,brk_g31_l
-brk_g36_l,breakout,1h,1719448200000,retired,generación 36,"{'entry': 322, 'exit': 113, 'target_vol': 0.5937, 'stop': 0.1114}",1724891400000.0,de los peores en vivo,brk_g31_l
-brk_g37_j,breakout,2h,1720053000000,retired,generación 37,"{'entry': 265, 'exit': 113, 'target_vol': 0.6427, 'stop': 0.1154}",1729125000000.0,de los peores en vivo,brk_g36_l
-brk_g38_i,breakout,1h,1720657800000,retired,generación 38,"{'entry': 369, 'exit': 134, 'target_vol': 0.5937, 'stop': 0.1339}",1727915400000.0,de los peores en vivo,brk_g36_l
-brk_g39_b,breakout,1h,1721262600000,retired,generación 39,"{'entry': 369, 'exit': 134, 'target_vol': 0.5937, 'stop': 0.1595}",1723077000000.0,de los peores en vivo,brk_g38_i
-brk_g39_d,breakout,1h,1721262600000,retired,generación 39,"{'entry': 369, 'exit': 134, 'target_vol': 0.6071, 'stop': 0.104}",1724286600000.0,de los peores en vivo,brk_g38_i
-brk_g42_a,breakout,2h,1723077000000,retired,generación 42,"{'entry': 306, 'exit': 110, 'target_vol': 0.6427, 'stop': 0.1154}",1725496200000.0,de los peores en vivo,brk_g37_j
-brk_g44_g,breakout,2h,1724286600000,retired,generación 44,"{'entry': 259, 'exit': 113, 'target_vol': 0.7943, 'stop': 0.0942}",1726101000000.0,de los peores en vivo,brk_g37_j
-brk_g45_k,breakout,1h,1724891400000,retired,generación 45,"{'entry': 369, 'exit': 134, 'target_vol': 0.6082, 'stop': 0.1516}",1727310600000.0,de los peores en vivo,brk_g38_i
-brk_g45_l,breakout,1h,1724891400000,retired,generación 45,"{'entry': 369, 'exit': 134, 'target_vol': 0.6024, 'stop': 0.1304}",1727310600000.0,de los peores en vivo,brk_g38_i
-brk_g46_g,breakout,2h,1725496200000,retired,generación 46,"{'entry': 308, 'exit': 113, 'target_vol': 0.6427, 'stop': 0.1091}",1727915400000.0,de los peores en vivo,brk_g37_j
-brk_g46_h,breakout,2h,1725496200000,retired,generación 46,"{'entry': 299, 'exit': 113, 'target_vol': 0.5419, 'stop': 0.1154}",1728520200000.0,de los peores en vivo,brk_g37_j
-brk_g47_g,breakout,2h,1726101000000,retired,generación 47,"{'entry': 265, 'exit': 125, 'target_vol': 0.546, 'stop': 0.112}",1728520200000.0,de los peores en vivo,brk_g37_j
-brk_g49_c,breakout,2h,1727310600000,retired,generación 49,"{'entry': 265, 'exit': 152, 'target_vol': 0.546, 'stop': 0.0973}",1729729800000.0,de los peores en vivo,brk_g47_g
-brk_g49_j,breakout,2h,1727310600000,retired,generación 49,"{'entry': 293, 'exit': 113, 'target_vol': 0.6427, 'stop': 0.1428}",1729729800000.0,de los peores en vivo,brk_g37_j
-brk_g50_l,breakout,2h,1727915400000,retired,generación 50,"{'entry': 265, 'exit': 113, 'target_vol': 0.6647, 'stop': 0.1146}",1738197000000.0,de los peores en vivo,brk_g37_j
-brk_g50_k,breakout,2h,1727915400000,retired,generación 50,"{'entry': 265, 'exit': 116, 'target_vol': 0.6867, 'stop': 0.1154}",1738197000000.0,de los peores en vivo,brk_g37_j
-brk_g51_k,breakout,2h,1728520200000,retired,generación 51,"{'entry': 267, 'exit': 136, 'target_vol': 0.546, 'stop': 0.0979}",1753921800000.0,de los peores en vivo,brk_g47_g
-brk_g51_i,breakout,2h,1728520200000,retired,generación 51,"{'entry': 265, 'exit': 125, 'target_vol': 0.4509, 'stop': 0.0903}",1754526600000.0,de los peores en vivo,brk_g47_g
-brk_g52_d,breakout,2h,1729125000000,retired,generación 52,"{'entry': 314, 'exit': 118, 'target_vol': 0.639, 'stop': 0.1146}",1736987400000.0,de los peores en vivo,brk_g50_l
-brk_g52_f,breakout,2h,1729125000000,retired,generación 52,"{'entry': 318, 'exit': 116, 'target_vol': 0.6867, 'stop': 0.1375}",1735777800000.0,de los peores en vivo,brk_g50_k
-brk_g53_a,breakout,2h,1729729800000,retired,generación 53,"{'entry': 272, 'exit': 136, 'target_vol': 0.4541, 'stop': 0.1072}",1736987400000.0,de los peores en vivo,brk_g51_k
-brk_g53_g,breakout,2h,1729729800000,retired,generación 53,"{'entry': 264, 'exit': 125, 'target_vol': 0.4509, 'stop': 0.1039}",1737592200000.0,de los peores en vivo,brk_g51_i
-brk_g63_r,breakout,30m,1735777800000,retired,generación 63,"{'entry': 427, 'exit': 208, 'target_vol': 0.3374, 'stop': 0.073}",1739406600000.0,de los peores en vivo,
-brk_g65_d,breakout,30m,1736987400000,retired,generación 65,"{'entry': 430, 'exit': 204, 'target_vol': 0.3, 'stop': 0.073}",1738801800000.0,de los peores en vivo,brk_g63_r
-brk_g65_b,breakout,30m,1736987400000,retired,generación 65,"{'entry': 480, 'exit': 208, 'target_vol': 0.3374, 'stop': 0.0559}",1738801800000.0,de los peores en vivo,brk_g63_r
-brk_g66_b,breakout,30m,1737592200000,retired,generación 66,"{'entry': 480, 'exit': 208, 'target_vol': 0.3609, 'stop': 0.0855}",1739406600000.0,de los peores en vivo,brk_g63_r
-brk_g67_a,breakout,30m,1738197000000,retired,generación 67,"{'entry': 405, 'exit': 208, 'target_vol': 0.3, 'stop': 0.0849}",1740011400000.0,de los peores en vivo,brk_g63_r
-brk_g67_c,breakout,30m,1738197000000,retired,generación 67,"{'entry': 389, 'exit': 216, 'target_vol': 0.3374, 'stop': 0.073}",1740011400000.0,de los peores en vivo,brk_g63_r
-brk_g68_k,breakout,30m,1738801800000,retired,generación 68,"{'entry': 480, 'exit': 230, 'target_vol': 0.3374, 'stop': 0.073}",1755131400000.0,de los peores en vivo,brk_g63_r
-brk_g68_i,breakout,30m,1738801800000,retired,generación 68,"{'entry': 427, 'exit': 230, 'target_vol': 0.3234, 'stop': 0.073}",1753317000000.0,de los peores en vivo,brk_g63_r
-brk_g69_j,breakout,30m,1739406600000,retired,generación 69,"{'entry': 471, 'exit': 208, 'target_vol': 0.4052, 'stop': 0.0564}",1753921800000.0,de los peores en vivo,brk_g63_r
-brk_g69_l,breakout,30m,1739406600000,retired,generación 69,"{'entry': 475, 'exit': 201, 'target_vol': 0.3668, 'stop': 0.073}",1746664200000.0,de los peores en vivo,brk_g63_r
-brk_g70_i,breakout,30m,1740011400000,retired,generación 70,"{'entry': 471, 'exit': 240, 'target_vol': 0.3, 'stop': 0.0949}",1754526600000.0,de los peores en vivo,brk_g67_a
-brk_g70_j,breakout,30m,1740011400000,retired,generación 70,"{'entry': 480, 'exit': 208, 'target_vol': 0.3, 'stop': 0.0805}",1755736200000.0,de los peores en vivo,brk_g67_a
-brk_g81_r,breakout,4h,1746664200000,retired,generación 81,"{'entry': 432, 'exit': 167, 'target_vol': 0.6535, 'stop': 0.0827}",1750897800000.0,de los peores en vivo,
-mom_g88_m,momentum,4h,1750897800000,retired,generación 88,"{'fast': 86, 'slow': 172, 'band': 0.0229, 'target_vol': 0.6973}",1753317000000.0,de los peores en vivo,
-brk_g92_f,breakout,2h,1753317000000,retired,generación 92,"{'entry': 265, 'exit': 113, 'target_vol': 0.4509, 'stop': 0.0984}",1756341000000.0,de los peores en vivo,brk_g51_i
-mom_g92_m,momentum,30m,1753317000000,retired,generación 92,"{'fast': 61, 'slow': 285, 'band': 0.0266, 'target_vol': 0.3525}",1755131400000.0,de los peores en vivo,
-mom_g93_p,momentum,30m,1753921800000,retired,generación 93,"{'fast': 89, 'slow': 178, 'band': 0.0246, 'target_vol': 0.3326}",1755736200000.0,de los peores en vivo,
-brk_g93_o,breakout,2h,1753921800000,retired,generación 93,"{'entry': 424, 'exit': 116, 'target_vol': 0.7067, 'stop': 0.0502}",1756341000000.0,de los peores en vivo,
-brk_g94_k,breakout,2h,1754526600000,retired,generación 94,"{'entry': 320, 'exit': 125, 'target_vol': 0.3636, 'stop': 0.0727}",1759969800000.0,de los peores en vivo,brk_g51_i
-brk_g94_c,breakout,30m,1754526600000,retired,generación 94,"{'entry': 480, 'exit': 173, 'target_vol': 0.3, 'stop': 0.0639}",1758760200000.0,de los peores en vivo,brk_g70_j
-brk_g95_b,breakout,2h,1755131400000,retired,generación 95,"{'entry': 480, 'exit': 173, 'target_vol': 0.3, 'stop': 0.0514}",1756945800000.0,de los peores en vivo,brk_g94_c
-brk_g95_l,breakout,30m,1755131400000,retired,generación 95,"{'entry': 480, 'exit': 156, 'target_vol': 0.3451, 'stop': 0.0805}",1756945800000.0,de los peores en vivo,brk_g70_j
-brk_g96_c,breakout,2h,1755736200000,retired,generación 96,"{'entry': 320, 'exit': 121, 'target_vol': 0.4096, 'stop': 0.0727}",1757550600000.0,de los peores en vivo,brk_g94_k
-brk_g96_j,breakout,1h,1755736200000,retired,generación 96,"{'entry': 480, 'exit': 207, 'target_vol': 0.3, 'stop': 0.0639}",1757550600000.0,de los peores en vivo,brk_g94_c
-brk_g97_d,breakout,1h,1756341000000,retired,generación 97,"{'entry': 480, 'exit': 144, 'target_vol': 0.3, 'stop': 0.0783}",1758155400000.0,de los peores en vivo,brk_g94_c
-brk_g97_i,breakout,2h,1756341000000,retired,generación 97,"{'entry': 424, 'exit': 97, 'target_vol': 0.6527, 'stop': 0.0502}",1758760200000.0,de los peores en vivo,brk_g93_o
-brk_g98_c,breakout,2h,1756945800000,retired,generación 98,"{'entry': 338, 'exit': 98, 'target_vol': 0.3, 'stop': 0.0727}",1760574600000.0,de los peores en vivo,brk_g94_k
-brk_g98_b,breakout,2h,1756945800000,retired,generación 98,"{'entry': 320, 'exit': 125, 'target_vol': 0.4542, 'stop': 0.07}",1760574600000.0,de los peores en vivo,brk_g94_k
-brk_g99_o,breakout,2h,1757550600000,retired,generación 99,"{'entry': 225, 'exit': 145, 'target_vol': 0.4371, 'stop': 0.1423}",1759365000000.0,de los peores en vivo,
-brk_g99_f,breakout,30m,1757550600000,retired,generación 99,"{'entry': 480, 'exit': 173, 'target_vol': 0.3, 'stop': 0.0639}",1759365000000.0,de los peores en vivo,brk_g94_c
-brk_g100_l,breakout,2h,1758155400000,retired,generación 100,"{'entry': 374, 'exit': 109, 'target_vol': 0.3, 'stop': 0.0749}",1759969800000.0,de los peores en vivo,brk_g98_c
-brk_g101_r,breakout,2h,1758760200000,retired,generación 101,"{'entry': 466, 'exit': 101, 'target_vol': 0.581, 'stop': 0.1895}",1788395400000.0,de los peores en vivo,
-brk_g101_h,breakout,2h,1758760200000,retired,generación 101,"{'entry': 367, 'exit': 112, 'target_vol': 0.3834, 'stop': 0.0607}",1792024200000.0,de los peores en vivo,brk_g94_k
-brk_g102_f,breakout,2h,1759365000000,retired,generación 102,"{'entry': 338, 'exit': 98, 'target_vol': 0.3, 'stop': 0.0877}",1761179400000.0,de los peores en vivo,brk_g98_c
-brk_g102_e,breakout,2h,1759365000000,retired,generación 102,"{'entry': 338, 'exit': 98, 'target_vol': 0.3352, 'stop': 0.0669}",1761179400000.0,de los peores en vivo,brk_g98_c
-brk_g103_i,breakout,2h,1759969800000,retired,generación 103,"{'entry': 320, 'exit': 118, 'target_vol': 0.4275, 'stop': 0.07}",1761784200000.0,de los peores en vivo,brk_g98_b
-brk_g103_h,breakout,2h,1759969800000,retired,generación 103,"{'entry': 413, 'exit': 101, 'target_vol': 0.581, 'stop': 0.1587}",1761784200000.0,de los peores en vivo,brk_g101_r
-brk_g104_i,breakout,2h,1760574600000,retired,generación 104,"{'entry': 422, 'exit': 110, 'target_vol': 0.3617, 'stop': 0.0599}",1762389000000.0,de los peores en vivo,brk_g98_c
-brk_g104_a,breakout,2h,1760574600000,retired,generación 104,"{'entry': 419, 'exit': 112, 'target_vol': 0.3851, 'stop': 0.0729}",1762389000000.0,de los peores en vivo,brk_g101_h
-brk_g105_i,breakout,2h,1761179400000,active,generación 105,"{'entry': 338, 'exit': 80, 'target_vol': 0.3, 'stop': 0.0877}",,,brk_g102_f
-brk_g105_l,breakout,2h,1761179400000,active,generación 105,"{'entry': 338, 'exit': 85, 'target_vol': 0.3, 'stop': 0.0877}",,,brk_g102_f
-brk_g106_l,breakout,2h,1761784200000,retired,generación 106,"{'entry': 338, 'exit': 80, 'target_vol': 0.3, 'stop': 0.0682}",1785371400000.0,de los peores en vivo,brk_g105_i
-brk_g106_a,breakout,2h,1761784200000,active,generación 106,"{'entry': 439, 'exit': 112, 'target_vol': 0.3609, 'stop': 0.05}",,,brk_g101_h
-brk_g107_l,breakout,2h,1762389000000,active,generación 107,"{'entry': 363, 'exit': 103, 'target_vol': 0.3, 'stop': 0.0946}",,,brk_g105_l
-brk_g107_j,breakout,2h,1762389000000,active,generación 107,"{'entry': 400, 'exit': 74, 'target_vol': 0.349, 'stop': 0.0793}",,,brk_g105_l
-rev_g145_q,mean_reversion,2h,1785371400000,retired,generación 145,"{'rsi_len': 20, 'entry': 22, 'exit': 55, 'weight': 0.276}",1788395400000.0,de los peores en vivo,
-mom_g150_p,momentum,30m,1788395400000,retired,generación 150,"{'fast': 34, 'slow': 107, 'band': 0.0146, 'target_vol': 0.5619}",1792024200000.0,de los peores en vivo,
-mom_g150_m,momentum,1h,1788395400000,active,generación 150,"{'fast': 54, 'slow': 131, 'band': 0.0149, 'target_vol': 0.6997}",,,
-mom_g156_d,momentum,1h,1792024200000,active,generación 156,"{'fast': 43, 'slow': 101, 'band': 0.0149, 'target_vol': 0.6818}",,,mom_g150_m
-brk_g156_o,breakout,1h,1792024200000,active,generación 156,"{'entry': 409, 'exit': 94, 'target_vol': 0.6756, 'stop': 0.1081}",,,
+buy_and_hold,buy_hold,1d,1697677200000,active,inicial,,,,
+momentum,momentum,1h,1697677200000,retired,inicial,"{'fast': 48, 'slow': 240, 'band': 0.01, 'target_vol': 0.6}",1743037200000.0,eliminado por el gestor de riesgo,
+mean_reversion,mean_reversion,1h,1697677200000,retired,inicial,"{'rsi_len': 14, 'entry': 28, 'exit': 55, 'weight': 0.25}",1709773200000.0,de los peores en vivo,
+breakout,breakout,1h,1697677200000,retired,inicial,"{'entry': 192, 'exit': 96, 'target_vol': 0.6, 'stop': 0.1}",1716426000000.0,de los peores en vivo,
+mom_g6_p,momentum,30m,1701306000000,retired,generación 6,"{'fast': 62, 'slow': 128, 'band': 0.0295, 'target_vol': 0.6386}",1709168400000.0,de los peores en vivo,
+mom_g14_f,momentum,30m,1706144400000,retired,generación 14,"{'fast': 72, 'slow': 144, 'band': 0.0278, 'target_vol': 0.519}",1709773200000.0,de los peores en vivo,mom_g6_p
+brk_g16_c,breakout,1h,1707354000000,retired,generación 16,"{'entry': 145, 'exit': 96, 'target_vol': 0.5865, 'stop': 0.1}",1709168400000.0,de los peores en vivo,breakout
+brk_g18_a,breakout,1h,1708563600000,retired,generación 18,"{'entry': 209, 'exit': 94, 'target_vol': 0.6, 'stop': 0.0921}",1722474000000.0,de los peores en vivo,breakout
+brk_g18_c,breakout,4h,1708563600000,retired,generación 18,"{'entry': 192, 'exit': 94, 'target_vol': 0.4681, 'stop': 0.1}",1715216400000.0,de los peores en vivo,breakout
+brk_g19_d,breakout,1h,1709168400000,retired,generación 19,"{'entry': 165, 'exit': 116, 'target_vol': 0.6, 'stop': 0.1231}",1716426000000.0,de los peores en vivo,breakout
+brk_g19_j,breakout,1h,1709168400000,retired,generación 19,"{'entry': 209, 'exit': 94, 'target_vol': 0.6, 'stop': 0.0921}",1723078800000.0,de los peores en vivo,brk_g18_a
+brk_g20_g,breakout,1h,1709773200000,retired,generación 20,"{'entry': 180, 'exit': 145, 'target_vol': 0.4574, 'stop': 0.1231}",1713402000000.0,de los peores en vivo,brk_g19_d
+brk_g20_b,breakout,1h,1709773200000,retired,generación 20,"{'entry': 162, 'exit': 96, 'target_vol': 0.5153, 'stop': 0.1249}",1713402000000.0,de los peores en vivo,breakout
+brk_g26_e,breakout,1h,1713402000000,retired,generación 26,"{'entry': 232, 'exit': 94, 'target_vol': 0.6827, 'stop': 0.0784}",1715216400000.0,de los peores en vivo,breakout
+brk_g26_f,breakout,1h,1713402000000,retired,generación 26,"{'entry': 192, 'exit': 96, 'target_vol': 0.6, 'stop': 0.0926}",1715821200000.0,de los peores en vivo,breakout
+brk_g29_j,breakout,1h,1715216400000,retired,generación 29,"{'entry': 192, 'exit': 96, 'target_vol': 0.6338, 'stop': 0.1171}",1717030800000.0,de los peores en vivo,breakout
+brk_g29_f,breakout,1h,1715216400000,retired,generación 29,"{'entry': 234, 'exit': 99, 'target_vol': 0.7477, 'stop': 0.1148}",1717635600000.0,de los peores en vivo,brk_g18_a
+brk_g30_i,breakout,1h,1715821200000,retired,generación 30,"{'entry': 223, 'exit': 96, 'target_vol': 0.545, 'stop': 0.1099}",1717635600000.0,de los peores en vivo,breakout
+brk_g31_i,breakout,1h,1716426000000,retired,generación 31,"{'entry': 214, 'exit': 94, 'target_vol': 0.5341, 'stop': 0.0755}",1718845200000.0,de los peores en vivo,brk_g18_a
+brk_g31_j,breakout,1h,1716426000000,retired,generación 31,"{'entry': 225, 'exit': 111, 'target_vol': 0.6188, 'stop': 0.1025}",1719450000000.0,de los peores en vivo,brk_g18_a
+brk_g32_k,breakout,1h,1717030800000,retired,generación 32,"{'entry': 242, 'exit': 94, 'target_vol': 0.554, 'stop': 0.1069}",1718845200000.0,de los peores en vivo,brk_g18_a
+brk_g33_g,breakout,2h,1717635600000,retired,generación 33,"{'entry': 220, 'exit': 92, 'target_vol': 0.4597, 'stop': 0.1058}",1727917200000.0,de los peores en vivo,brk_g19_j
+brk_g33_f,breakout,1h,1717635600000,retired,generación 33,"{'entry': 208, 'exit': 94, 'target_vol': 0.6229, 'stop': 0.112}",1719450000000.0,de los peores en vivo,brk_g19_j
+rev_g35_q,mean_reversion,1h,1718845200000,retired,generación 35,"{'rsi_len': 12, 'entry': 16, 'exit': 57, 'weight': 0.2176}",1723078800000.0,de los peores en vivo,
+brk_g35_c,breakout,2h,1718845200000,retired,generación 35,"{'entry': 242, 'exit': 82, 'target_vol': 0.5402, 'stop': 0.0808}",1721869200000.0,de los peores en vivo,brk_g33_g
+mom_g36_f,momentum,30m,1719450000000,retired,generación 36,"{'fast': 54, 'slow': 234, 'band': 0.0095, 'target_vol': 0.6}",1721264400000.0,de los peores en vivo,momentum
+brk_g36_d,breakout,2h,1719450000000,retired,generación 36,"{'entry': 209, 'exit': 111, 'target_vol': 0.4597, 'stop': 0.1306}",1721264400000.0,de los peores en vivo,brk_g33_g
+mom_g39_k,momentum,1h,1721264400000,retired,generación 39,"{'fast': 60, 'slow': 240, 'band': 0.0081, 'target_vol': 0.6828}",1724288400000.0,de los peores en vivo,momentum
+mom_g39_l,momentum,1h,1721264400000,retired,generación 39,"{'fast': 55, 'slow': 248, 'band': 0.0091, 'target_vol': 0.5512}",1723683600000.0,de los peores en vivo,momentum
+mom_g40_c,momentum,1h,1721869200000,retired,generación 40,"{'fast': 48, 'slow': 264, 'band': 0.0083, 'target_vol': 0.6}",1723683600000.0,de los peores en vivo,momentum
+mom_g41_i,momentum,1h,1722474000000,retired,generación 41,"{'fast': 59, 'slow': 202, 'band': 0.0081, 'target_vol': 0.7053}",1724288400000.0,de los peores en vivo,mom_g39_k
+mom_g42_i,momentum,1h,1723078800000,retired,generación 42,"{'fast': 58, 'slow': 240, 'band': 0.0081, 'target_vol': 0.6828}",1724893200000.0,de los peores en vivo,mom_g39_k
+mom_g42_l,momentum,30m,1723078800000,retired,generación 42,"{'fast': 60, 'slow': 240, 'band': 0.0081, 'target_vol': 0.5687}",1724893200000.0,de los peores en vivo,mom_g39_k
+mom_g43_j,momentum,1h,1723683600000,retired,generación 43,"{'fast': 59, 'slow': 202, 'band': 0.0073, 'target_vol': 0.5619}",1725498000000.0,de los peores en vivo,mom_g41_i
+mom_g43_l,momentum,1h,1723683600000,retired,generación 43,"{'fast': 54, 'slow': 217, 'band': 0.0081, 'target_vol': 0.5682}",1725498000000.0,de los peores en vivo,mom_g41_i
+mom_g44_k,momentum,1h,1724288400000,retired,generación 44,"{'fast': 60, 'slow': 244, 'band': 0.0081, 'target_vol': 0.6588}",1726102800000.0,de los peores en vivo,mom_g39_k
+mom_g44_j,momentum,1h,1724288400000,retired,generación 44,"{'fast': 51, 'slow': 240, 'band': 0.0076, 'target_vol': 0.7555}",1742432400000.0,eliminado por el gestor de riesgo,mom_g39_k
+brk_g45_r,breakout,2h,1724893200000,retired,generación 45,"{'entry': 230, 'exit': 166, 'target_vol': 0.8587, 'stop': 0.1895}",1735174800000.0,de los peores en vivo,
+brk_g45_o,breakout,2h,1724893200000,retired,generación 45,"{'entry': 353, 'exit': 133, 'target_vol': 0.6213, 'stop': 0.1752}",1735174800000.0,de los peores en vivo,
+mom_g46_j,momentum,1h,1725498000000,retired,generación 46,"{'fast': 51, 'slow': 240, 'band': 0.0076, 'target_vol': 0.7555}",1728522000000.0,de los peores en vivo,mom_g44_j
+mom_g46_l,momentum,1h,1725498000000,retired,generación 46,"{'fast': 63, 'slow': 238, 'band': 0.0059, 'target_vol': 0.9}",1741827600000.0,eliminado por el gestor de riesgo,mom_g44_j
+brk_g47_d,breakout,2h,1726102800000,retired,generación 47,"{'entry': 280, 'exit': 161, 'target_vol': 0.8587, 'stop': 0.1895}",1727917200000.0,de los peores en vivo,brk_g45_r
+brk_g50_l,breakout,2h,1727917200000,retired,generación 50,"{'entry': 250, 'exit': 145, 'target_vol': 0.9, 'stop': 0.1633}",1729731600000.0,de los peores en vivo,brk_g45_r
+brk_g50_d,breakout,2h,1727917200000,retired,generación 50,"{'entry': 334, 'exit': 133, 'target_vol': 0.6213, 'stop': 0.1752}",1729731600000.0,de los peores en vivo,brk_g45_o
+brk_g51_i,breakout,2h,1728522000000,retired,generación 51,"{'entry': 253, 'exit': 125, 'target_vol': 0.9, 'stop': 0.1736}",1731546000000.0,de los peores en vivo,brk_g45_r
+mom_g53_b,momentum,1h,1729731600000,retired,generación 53,"{'fast': 64, 'slow': 238, 'band': 0.0059, 'target_vol': 0.6866}",1743642000000.0,eliminado por el gestor de riesgo,mom_g46_l
+mom_g53_h,momentum,1h,1729731600000,retired,generación 53,"{'fast': 44, 'slow': 259, 'band': 0.0071, 'target_vol': 0.746}",1735779600000.0,de los peores en vivo,mom_g44_j
+mom_g56_d,momentum,1h,1731546000000,retired,generación 56,"{'fast': 63, 'slow': 213, 'band': 0.0072, 'target_vol': 0.9}",1734570000000.0,de los peores en vivo,mom_g46_l
+mom_g61_m,momentum,4h,1734570000000,retired,generación 61,"{'fast': 12, 'slow': 447, 'band': 0.0031, 'target_vol': 0.6497}",1736384400000.0,de los peores en vivo,
+mom_g62_a,momentum,4h,1735174800000,retired,generación 62,"{'fast': 14, 'slow': 447, 'band': 0.0036, 'target_vol': 0.5632}",1743642000000.0,eliminado por el gestor de riesgo,mom_g61_m
+mom_g62_b,momentum,4h,1735174800000,retired,generación 62,"{'fast': 13, 'slow': 447, 'band': 0.0031, 'target_vol': 0.5676}",1743642000000.0,eliminado por el gestor de riesgo,mom_g61_m
+brk_g63_o,breakout,1h,1735779600000,retired,generación 63,"{'entry': 184, 'exit': 170, 'target_vol': 0.4575, 'stop': 0.147}",1784768400000.0,eliminado por el gestor de riesgo,
+brk_g64_b,breakout,1h,1736384400000,active,generación 64,"{'entry': 213, 'exit': 170, 'target_vol': 0.3603, 'stop': 0.1738}",,,brk_g63_o
+brk_g82_n,breakout,4h,1747270800000,active,generación 82,"{'entry': 417, 'exit': 72, 'target_vol': 0.3967, 'stop': 0.1383}",,,
+mom_g89_a,momentum,30m,1751504400000,active,generación 89,"{'fast': 87, 'slow': 174, 'band': 0.0226, 'target_vol': 0.3824}",,,
+mom_g94_d,momentum,4h,1754528400000,active,generación 94,"{'fast': 63, 'slow': 126, 'band': 0.0183, 'target_vol': 0.6732}",,,
+brk_g97_c,breakout,30m,1756342800000,retired,generación 97,"{'entry': 463, 'exit': 118, 'target_vol': 0.7905, 'stop': 0.167}",1775696400000.0,eliminado por el gestor de riesgo,
+mom_g97_d,momentum,1h,1756342800000,active,generación 97,"{'fast': 51, 'slow': 178, 'band': 0.03, 'target_vol': 0.4115}",,,
+brk_g101_c,breakout,30m,1758762000000,retired,generación 101,"{'entry': 128, 'exit': 64, 'target_vol': 0.5487, 'stop': 0.0756}",1776301200000.0,eliminado por el gestor de riesgo,
+brk_g103_c,breakout,2h,1759971600000,retired,generación 103,"{'entry': 217, 'exit': 112, 'target_vol': 0.5544, 'stop': 0.112}",1785373200000.0,eliminado por el gestor de riesgo,
+brk_g104_c,breakout,30m,1760576400000,retired,generación 104,"{'entry': 446, 'exit': 103, 'target_vol': 0.7782, 'stop': 0.0545}",1775696400000.0,eliminado por el gestor de riesgo,
+brk_g106_f,breakout,30m,1761786000000,active,generación 106,"{'entry': 175, 'exit': 87, 'target_vol': 0.3093, 'stop': 0.1205}",,,
+brk_g107_c,breakout,2h,1762390800000,retired,generación 107,"{'entry': 299, 'exit': 73, 'target_vol': 0.6532, 'stop': 0.1025}",1782954000000.0,eliminado por el gestor de riesgo,
+mom_g107_d,momentum,30m,1762390800000,active,generación 107,"{'fast': 46, 'slow': 118, 'band': 0.0201, 'target_vol': 0.8387}",,,
+mom_g110_d,momentum,1h,1764205200000,active,generación 110,"{'fast': 54, 'slow': 164, 'band': 0.0048, 'target_vol': 0.3597}",,,
+brk_g111_f,breakout,4h,1764810000000,active,generación 111,"{'entry': 106, 'exit': 53, 'target_vol': 0.5464, 'stop': 0.1347}",,,
+brk_g117_c,breakout,4h,1768438800000,active,generación 117,"{'entry': 91, 'exit': 24, 'target_vol': 0.7698, 'stop': 0.1741}",,,
+rev_g126_b,mean_reversion,2h,1773882000000,active,generación 126,"{'rsi_len': 20, 'entry': 19, 'exit': 54, 'weight': 0.3156}",,,
+rev_g131_b,mean_reversion,1h,1776906000000,active,generación 131,"{'rsi_len': 14, 'entry': 20, 'exit': 53, 'weight': 0.2047}",,,
+mom_g156_a,momentum,1h,1792026000000,active,generación 156,"{'fast': 63, 'slow': 230, 'band': 0.0205, 'target_vol': 0.611}",,,
