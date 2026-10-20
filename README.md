@@ -2,15 +2,15 @@
 
 Bots de trading cripto compitiendo con plata **simulada** sobre precios reales. Corre solo cada hora en GitHub. La evolución automática está **apagada**: el [estudio histórico](ESTUDIO.md) mostró que empeoraba los resultados. Quedan los bots fijos compitiendo contra los bots al azar.
 
-> Lleva 0.8 días. En las primeras semanas los números son ruido: todavía no se puede sacar ninguna conclusión.
+> Lleva 0.9 días. En las primeras semanas los números son ruido: todavía no se puede sacar ninguna conclusión.
 
-**Última actualización:** 2026-10-20 18:45 UTC · **Desde:** 2026-10-19 23:30 UTC · **Datos:** bingx · **Evolución:** apagada
+**Última actualización:** 2026-10-20 21:30 UTC · **Desde:** 2026-10-19 23:30 UTC · **Datos:** bingx · **Evolución:** apagada
 
 ## Ranking (bots activos)
 
 | Bot | Días | Retorno | Sharpe | Caída máx. | Trades | Veredicto |
 |---|---:|---:|---:|---:|---:|---|
-| `buy_and_hold` | 1 | +1.5% | 9.51 | 1.4% | 3 | Referencia |
+| `buy_and_hold` | 1 | +1.8% | 10.39 | 1.4% | 3 | Referencia |
 | `breakout` | 1 | +0.0% | — | 0.0% | 0 | En observación (1 de 30 días mínimos) |
 | `mean_reversion` | 1 | +0.0% | — | 0.0% | 0 | En observación (1 de 30 días mínimos) |
 | `momentum` | 1 | +0.0% | — | 0.0% | 0 | En observación (1 de 30 días mínimos) |

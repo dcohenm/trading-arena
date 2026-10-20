@@ -1,6 +1,6 @@
 {
  "created_ts": 1792452600000,
- "last_ts": 1792521900000,
+ "last_ts": 1792531800000,
  "exchange": "bingx",
  "generation": 0,
  "last_evolution_ts": null,
@@ -113,7 +113,7 @@
      "killed": false,
      "peak_equity": 10000.0
     },
-    "last_ts": 1792521000000,
+    "last_ts": 1792531800000,
     "pending": [],
     "bot": {}
    },
@@ -135,7 +135,7 @@
      "killed": false,
      "peak_equity": 10000.0
     },
-    "last_ts": 1792521000000,
+    "last_ts": 1792531800000,
     "pending": [],
     "bot": {}
    },
@@ -157,35 +157,47 @@
      "killed": false,
      "peak_equity": 10000.0
     },
-    "last_ts": 1792521000000,
+    "last_ts": 1792531800000,
     "pending": [],
     "bot": {}
    },
    "_luck_00": {
     "broker": {
-     "cash": 10027.58888629118,
-     "qty": {},
-     "avg_cost": {},
-     "stop_price": {},
-     "fees_paid": 22.90936044628742,
-     "traded_notional": 22909.360446287425,
-     "n_trades": 12
+     "cash": 2624.3922344135135,
+     "qty": {
+      "BTC/USDT": 0.038964666665799626,
+      "ETH/USDT": 1.3094182400818557,
+      "SOL/USDT": 9.246896504274302
+     },
+     "avg_cost": {
+      "BTC/USDT": 82655.28699,
+      "ETH/USDT": 2439.989385,
+      "SOL/USDT": 106.00297499999999
+     },
+     "stop_price": {
+      "BTC/USDT": 76042.8640308,
+      "ETH/USDT": 2244.7902341999998,
+      "SOL/USDT": 97.52273699999999
+     },
+     "fees_paid": 30.305161297314058,
+     "traded_notional": 30305.161297314065,
+     "n_trades": 15
     },
     "risk": {
      "day": "2026-10-20",
      "day_start_equity": 9964.234217862298,
-     "trades_today": 9,
+     "trades_today": 12,
      "halted_today": false,
      "killed": false,
      "peak_equity": 10121.372664092658
     },
-    "last_ts": 1792510200000,
+    "last_ts": 1792524600000,
     "pending": [],
     "bot": {
      "rng": {
       "bit_generator": "PCG64",
       "state": {
-       "state": 335553339946285743898969939385765103506,
+       "state": 325387584489814583261397997490241355031,
        "inc": 119065948144835586474643535142778641169
       },
       "has_uint32": 0,
@@ -303,29 +315,41 @@
    },
    "_luck_04": {
     "broker": {
-     "cash": 10092.230107848898,
-     "qty": {},
-     "avg_cost": {},
-     "stop_price": {},
-     "fees_paid": 13.83652144199699,
-     "traded_notional": 13836.521441996989,
-     "n_trades": 4
+     "cash": 3585.4978760277195,
+     "qty": {
+      "BTC/USDT": 0.01872963900062789,
+      "ETH/USDT": 1.8738505004463677,
+      "SOL/USDT": 3.5843615034322225
+     },
+     "avg_cost": {
+      "BTC/USDT": 82655.28699,
+      "ETH/USDT": 2439.989385,
+      "SOL/USDT": 106.00297499999999
+     },
+     "stop_price": {
+      "BTC/USDT": 76042.8640308,
+      "ETH/USDT": 2244.7902341999998,
+      "SOL/USDT": 97.52273699999999
+     },
+     "fees_paid": 20.33675344181835,
+     "traded_notional": 20336.753441818346,
+     "n_trades": 7
     },
     "risk": {
      "day": "2026-10-20",
      "day_start_equity": 10000.0,
-     "trades_today": 4,
+     "trades_today": 7,
      "halted_today": false,
      "killed": false,
      "peak_equity": 10193.722765922612
     },
-    "last_ts": 1792510200000,
+    "last_ts": 1792524600000,
     "pending": [],
     "bot": {
      "rng": {
       "bit_generator": "PCG64",
       "state": {
-       "state": 122979857821118183521848333512338297035,
+       "state": 142947438023696650392221726054680101620,
        "inc": 87209435796639942783298437561837911585
       },
       "has_uint32": 0,
@@ -455,41 +479,41 @@
    },
    "_luck_08": {
     "broker": {
-     "cash": 5176.053644124833,
+     "cash": 4520.187822117624,
      "qty": {
-      "BTC/USDT": 0.03561017631705871,
-      "ETH/USDT": 0.6661018307693014,
+      "BTC/USDT": 0.018789406132742843,
+      "ETH/USDT": 1.5027331224198135,
       "SOL/USDT": 3.29644901756955
      },
      "avg_cost": {
       "BTC/USDT": 82238.44541129949,
-      "ETH/USDT": 2388.723765,
+      "ETH/USDT": 2417.2653744434647,
       "SOL/USDT": 104.282115
      },
      "stop_price": {
       "BTC/USDT": 75659.36977839553,
-      "ETH/USDT": 2197.6258638000004,
+      "ETH/USDT": 2223.8841444879877,
       "SOL/USDT": 95.9395458
      },
-     "fees_paid": 23.321470630026823,
-     "traded_notional": 23321.47063002682,
-     "n_trades": 12
+     "fees_paid": 26.751778057018782,
+     "traded_notional": 26751.77805701878,
+     "n_trades": 14
     },
     "risk": {
      "day": "2026-10-20",
      "day_start_equity": 10000.0,
-     "trades_today": 12,
+     "trades_today": 14,
      "halted_today": false,
      "killed": false,
      "peak_equity": 10251.739269943842
     },
-    "last_ts": 1792510200000,
+    "last_ts": 1792524600000,
     "pending": [],
     "bot": {
      "rng": {
       "bit_generator": "PCG64",
       "state": {
-       "state": 200511383080429447821853288950208938987,
+       "state": 72135361628569124461198322479323959924,
        "inc": 337480822318074430338768326692577996673
       },
       "has_uint32": 0,
@@ -607,11 +631,11 @@
    },
    "_luck_12": {
     "broker": {
-     "cash": 2145.390316312979,
+     "cash": 4139.118674855735,
      "qty": {
       "BTC/USDT": 0.019908703440388573,
-      "ETH/USDT": 2.056254316193102,
-      "SOL/USDT": 11.508245454839843
+      "ETH/USDT": 1.6285596316761748,
+      "SOL/USDT": 2.5070800174829877
      },
      "avg_cost": {
       "BTC/USDT": 81701.65936554757,
@@ -623,25 +647,25 @@
       "ETH/USDT": 2224.5277597235827,
       "SOL/USDT": 96.64165783653054
      },
-     "fees_paid": 29.786298627962616,
-     "traded_notional": 29786.29862796262,
-     "n_trades": 15
+     "fees_paid": 31.782022710587995,
+     "traded_notional": 31782.022710588,
+     "n_trades": 17
     },
     "risk": {
      "day": "2026-10-20",
      "day_start_equity": 9963.350905140045,
-     "trades_today": 12,
+     "trades_today": 14,
      "halted_today": false,
      "killed": false,
      "peak_equity": 10145.239189191427
     },
-    "last_ts": 1792510200000,
+    "last_ts": 1792524600000,
     "pending": [],
     "bot": {
      "rng": {
       "bit_generator": "PCG64",
       "state": {
-       "state": 59958753834356456365585738083216541133,
+       "state": 255449410718255838435962467917824687876,
        "inc": 178385831028144661716924146491043988063
       },
       "has_uint32": 0,
@@ -771,11 +795,11 @@
    },
    "_luck_16": {
     "broker": {
-     "cash": 3227.4114675027313,
+     "cash": 6552.468454490353,
      "qty": {
-      "BTC/USDT": 0.035708806089840145,
-      "ETH/USDT": 1.1755110374163185,
-      "SOL/USDT": 8.40226802694484
+      "BTC/USDT": 0.013574243363465657,
+      "ETH/USDT": 0.8649926160579184,
+      "SOL/USDT": 1.378737449152597
      },
      "avg_cost": {
       "BTC/USDT": 82523.25100499998,
@@ -787,25 +811,25 @@
       "ETH/USDT": 2241.6514656,
       "SOL/USDT": 97.09012080000001
      },
-     "fees_paid": 19.418990295859377,
-     "traded_notional": 19418.990295859378,
-     "n_trades": 10
+     "fees_paid": 22.74737566821936,
+     "traded_notional": 22747.37566821936,
+     "n_trades": 13
     },
     "risk": {
      "day": "2026-10-20",
      "day_start_equity": 10000.0,
-     "trades_today": 10,
+     "trades_today": 13,
      "halted_today": false,
      "killed": false,
      "peak_equity": 10000.0
     },
-    "last_ts": 1792510200000,
+    "last_ts": 1792524600000,
     "pending": [],
     "bot": {
      "rng": {
       "bit_generator": "PCG64",
       "state": {
-       "state": 44522504239251454289120551508455617948,
+       "state": 79133696884186350249622023435354284627,
        "inc": 317042671548171294320325743098533005027
       },
       "has_uint32": 0,
