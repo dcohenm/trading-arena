@@ -1,18 +1,23 @@
-[14:50:49] Bajando historia de funding…
-[14:50:50]   Binance: no disponible (ExchangeNotAvailable: binanceusdm GET https://fapi.binance.com/fapi/v1/exchangeInfo 451  {
+[15:25:24] Bajando historia de funding…
+[15:25:26]   Binance: no disponible (ExchangeNotAvailable: binanceusdm GET https://fapi.binance.com/fapi/v1/exchangeInfo 451  {
   "code": 0,
   "msg": "Service unavailable from a r)
-[14:50:50]   Bybit: no disponible (RateLimitExceeded: bybit GET https://api.bybit.com/v5/market/instruments-info?category=spot 403 Forbidden {
+[15:25:26]   Bybit: no disponible (RateLimitExceeded: bybit GET https://api.bybit.com/v5/market/instruments-info?category=spot 403 Forbidden {
     error:The Amazon CloudFront)
-[14:51:38]   Hyperliquid: no disponible (RateLimitExceeded: hyperliquid POST https://api.hyperliquid.xyz/info 429 Too Many Requests null)
-[14:51:43]   Kraken Futures: cobertura BTC 33%, ETH 33%, SOL 33%  → insuficiente, solo como referencia
-[14:51:51]   OKX: cobertura BTC 8%, ETH 8%, SOL 8%  → insuficiente, solo como referencia
-[14:51:51] Bajando precios diarios de contado…
-[14:51:54] ✗ SystemExit: Ningún exchange dio historia suficiente de funding. Ver log.
-Traceback (most recent call last):
-  File "/home/runner/work/trading-arena/trading-arena/carry.py", line 459, in <module>
-    main()
-  File "/home/runner/work/trading-arena/trading-arena/carry.py", line 444, in main
-    raise SystemExit("Ningún exchange dio historia suficiente de funding. Ver log.")
-SystemExit: Ningún exchange dio historia suficiente de funding. Ver log.
-
+[15:25:31]   KuCoin: cobertura BTC 3%, ETH 3%, SOL 3%  → incompleta
+[15:25:33]   MEXC: cobertura BTC 3%, ETH 3%, SOL 3%  → incompleta
+[15:25:34]   Gate: no disponible (BadRequest: gate {"label":"INVALID_PARAM_VALUE","message":"from time exceeds 180-day limit"})
+[15:25:36]   HTX: cobertura BTC 1%, ETH 1%, SOL 1%  → incompleta
+[15:25:37]   BingX: cobertura BTC 30%, ETH 30%, SOL 30%  → incompleta
+[15:25:37]   Bitget: cobertura BTC 8%, ETH 8%, SOL 8%  → incompleta
+[15:25:38]   Kraken Futures: cobertura BTC 33%, ETH 33%, SOL 33%  → incompleta
+[15:26:03]   OKX: cobertura BTC 8%, ETH 8%, SOL 8%  → incompleta
+[15:26:39]   Phemex: cobertura BTC 100%, ETH 100%, SOL 100%
+[15:27:09]   WOO X: cobertura BTC 44%, ETH 44%, SOL 44%  → incompleta
+[15:37:57]   Hyperliquid: no disponible (ValueError: sin datos)
+[15:37:57] Bajando precios diarios de contado…
+[15:38:02] Reportes escritos: CARRY.md, study/carry/, docs/carry/index.html
+[15:38:02] ## Conclusiones
+[15:38:02] - **Sí hay algo:** la regla A (siempre) rindió +17.3% contra +14.9% de los bonos del Tesoro, con una caída máxima de 0.3% y una ventaja sobre los bonos estadísticamente sólida (100%). Vale la pena seguir mirándolo, sabiendo los riesgos de abajo.
+[15:38:02] - **Hoy:** en los últimos 6 meses el funding promedio fue BTC 3.7%, ETH 2.7%, SOL 3.0% anual, por debajo de los ~4.5% de los bonos. En este momento no paga el riesgo.
+[15:38:02] - **Riesgo que no aparece en el número:** si el exchange quiebra (como FTX en 2022) se puede perder todo lo depositado. No hubo días con subas de más de 40%, que hubieran puesto en riesgo la garantía.
