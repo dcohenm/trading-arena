@@ -1,6 +1,6 @@
 {
  "created_ts": 1792452600000,
- "last_ts": 1792497600000,
+ "last_ts": 1792498500000,
  "exchange": "bingx",
  "generation": 0,
  "last_evolution_ts": null,
@@ -382,7 +382,7 @@
      "trades_today": 3,
      "halted_today": false,
      "killed": false,
-     "peak_equity": 10000.0
+     "peak_equity": 10001.958756587705
     },
     "last_ts": 1792495800000,
     "pending": [],
@@ -546,7 +546,7 @@
      "trades_today": 3,
      "halted_today": false,
      "killed": false,
-     "peak_equity": 10000.0
+     "peak_equity": 10002.075577487445
     },
     "last_ts": 1792495800000,
     "pending": [],

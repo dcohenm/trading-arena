@@ -4,7 +4,7 @@ Bots de trading cripto compitiendo con plata **simulada** sobre precios reales. 
 
 > Lleva 0.5 días. En las primeras semanas los números son ruido: todavía no se puede sacar ninguna conclusión.
 
-**Última actualización:** 2026-10-20 12:00 UTC · **Desde:** 2026-10-19 23:30 UTC · **Datos:** bingx · **Generación:** 0 · **Próxima evolución:** 2026-10-26 23:30 UTC
+**Última actualización:** 2026-10-20 12:15 UTC · **Desde:** 2026-10-19 23:30 UTC · **Datos:** bingx · **Generación:** 0 · **Próxima evolución:** 2026-10-26 23:30 UTC
 
 ## Ranking (bots activos)
 
