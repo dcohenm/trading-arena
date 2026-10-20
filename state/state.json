@@ -1,6 +1,6 @@
 {
  "created_ts": 1792452600000,
- "last_ts": 1792470600000,
+ "last_ts": 1792481400000,
  "exchange": "bingx",
  "generation": 0,
  "last_evolution_ts": null,
@@ -113,7 +113,7 @@
      "killed": false,
      "peak_equity": 10000.0
     },
-    "last_ts": 1792470600000,
+    "last_ts": 1792481400000,
     "pending": [],
     "bot": {}
    },
@@ -135,7 +135,7 @@
      "killed": false,
      "peak_equity": 10000.0
     },
-    "last_ts": 1792470600000,
+    "last_ts": 1792481400000,
     "pending": [],
     "bot": {}
    },
@@ -157,7 +157,7 @@
      "killed": false,
      "peak_equity": 10000.0
     },
-    "last_ts": 1792470600000,
+    "last_ts": 1792481400000,
     "pending": [],
     "bot": {}
    },
@@ -179,13 +179,13 @@
      "killed": false,
      "peak_equity": 10000.0
     },
-    "last_ts": 1792467000000,
+    "last_ts": 1792481400000,
     "pending": [],
     "bot": {
      "rng": {
       "bit_generator": "PCG64",
       "state": {
-       "state": 14521836613589679849773353642773551059,
+       "state": 160241350812991758078707419982683425008,
        "inc": 119065948144835586474643535142778641169
       },
       "has_uint32": 0,
@@ -328,13 +328,13 @@
      "killed": false,
      "peak_equity": 10000.0
     },
-    "last_ts": 1792467000000,
+    "last_ts": 1792481400000,
     "pending": [],
     "bot": {
      "rng": {
       "bit_generator": "PCG64",
       "state": {
-       "state": 18751900528500763977168073954992176992,
+       "state": 149193410357627334823236413388375872257,
        "inc": 87209435796639942783298437561837911585
       },
       "has_uint32": 0,
@@ -480,13 +480,38 @@
      "killed": false,
      "peak_equity": 10000.0
     },
-    "last_ts": 1792467000000,
-    "pending": [],
+    "last_ts": 1792481400000,
+    "pending": [
+     {
+      "bot": "_luck_08",
+      "symbol": "BTC/USDT",
+      "side": "sell",
+      "notional": 360.72422610495136,
+      "reason": "azar: afuera",
+      "stop": null
+     },
+     {
+      "bot": "_luck_08",
+      "symbol": "ETH/USDT",
+      "side": "sell",
+      "notional": 920.902939020407,
+      "reason": "azar: afuera",
+      "stop": null
+     },
+     {
+      "bot": "_luck_08",
+      "symbol": "SOL/USDT",
+      "side": "sell",
+      "notional": 1852.492652978924,
+      "reason": "azar: afuera",
+      "stop": null
+     }
+    ],
     "bot": {
      "rng": {
       "bit_generator": "PCG64",
       "state": {
-       "state": 290553924560998693122224998440597873028,
+       "state": 155553181319473274110202252751261470741,
        "inc": 337480822318074430338768326692577996673
       },
       "has_uint32": 0,
@@ -620,13 +645,38 @@
      "killed": false,
      "peak_equity": 10000.0
     },
-    "last_ts": 1792467000000,
-    "pending": [],
+    "last_ts": 1792481400000,
+    "pending": [
+     {
+      "bot": "_luck_12",
+      "symbol": "BTC/USDT",
+      "side": "sell",
+      "notional": 3406.7774063304714,
+      "reason": "azar",
+      "stop": null
+     },
+     {
+      "bot": "_luck_12",
+      "symbol": "ETH/USDT",
+      "side": "buy",
+      "notional": 434.07099820308724,
+      "reason": "azar",
+      "stop": 0.08
+     },
+     {
+      "bot": "_luck_12",
+      "symbol": "SOL/USDT",
+      "side": "buy",
+      "notional": 1652.8289402099615,
+      "reason": "azar",
+      "stop": 0.08
+     }
+    ],
     "bot": {
      "rng": {
       "bit_generator": "PCG64",
       "state": {
-       "state": 209953014403747910176890237552910079120,
+       "state": 11031351478171148947261822416906007331,
        "inc": 178385831028144661716924146491043988063
       },
       "has_uint32": 0,
@@ -796,13 +846,22 @@
      "killed": false,
      "peak_equity": 10000.0
     },
-    "last_ts": 1792467000000,
-    "pending": [],
+    "last_ts": 1792481400000,
+    "pending": [
+     {
+      "bot": "_luck_16",
+      "symbol": "ETH/USDT",
+      "side": "sell",
+      "notional": 1093.3419137649687,
+      "reason": "azar",
+      "stop": null
+     }
+    ],
     "bot": {
      "rng": {
       "bit_generator": "PCG64",
       "state": {
-       "state": 223399126961465106021864608627354527555,
+       "state": 79454074813891150978777921632494978214,
        "inc": 317042671548171294320325743098533005027
       },
       "has_uint32": 0,
