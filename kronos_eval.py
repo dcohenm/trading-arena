@@ -250,7 +250,8 @@ def conclusions(res: list[dict]) -> list[str]:
     big = [r for r in res if r["moments"] >= 200] or res       # las muestras chicas son puro ruido
     best = max(big, key=lambda r: r["ls_gross_kronos"])
     out.append(f"**Con costos no sirve:** la mejor ganancia bruta por operación fue {f(best['ls_gross_kronos'], 3)}% "
-               f"({best['input']}→{best['horizon']}, entre las combinaciones con suficientes datos), y entrar y salir cuesta {2 * COST * 100:.2f}%. Ninguna combinación le ganó "
+               f"({best['input']}→{best['horizon']}{', entre las combinaciones con suficientes datos' if big is not res else ''}), "
+               f"y entrar y salir cuesta {2 * COST * 100:.2f}%. Ninguna combinación le ganó "
                "a comprar y mantener después de costos de forma apreciable." if not any(r["ret_kronos_net"] > max(r["ret_buyhold"], 0.05) for r in res)
                else "**Con costos:** " + ", ".join(f"{r['input']}→{r['horizon']} ({f(r['ret_kronos_net'], 3)}% por operación)"
                                                    for r in res if r["ret_kronos_net"] > max(r["ret_buyhold"], 0.05))

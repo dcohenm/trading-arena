@@ -36,3 +36,8 @@
 [22:05:01] **Qué hace Kronos en el fondo:** sus predicciones se parecen mucho a la regla simple "lo que subió, baja" (correlación promedio 0.41). Gran parte de lo que acierta lo acierta también esa regla.
 [22:05:01] **Ojo:** en 1h→4h, 1h→1d todas las predicciones arrancan a la misma hora (00:00 UTC), así que el resultado vale para esa franja del día y no necesariamente para cualquier momento.
 [22:05:01] **Con costos no sirve:** la mejor ganancia bruta por operación fue 0.113% (1h→4h, entre las combinaciones con suficientes datos), y entrar y salir cuesta 0.30%. Ninguna combinación le ganó a comprar y mantener después de costos de forma apreciable.
+[22:05:15] Reportes escritos: KRONOS_MAC_SMALL.md, study/kronos_mac_small/, docs/kronos_mac_small/index.html
+[22:05:15] **Predice algo:** en 1h→4h (56.2% de aciertos) acertó la dirección más que el azar y que las reglas simples, con significancia aun corrigiendo por las 5 pruebas.
+[22:05:15] **Qué hace Kronos en el fondo:** sus predicciones se parecen mucho a la regla simple "lo que subió, baja" (correlación promedio 0.41). Gran parte de lo que acierta lo acierta también esa regla.
+[22:05:15] **Ojo:** en 1h→4h, 1h→1d todas las predicciones arrancan a la misma hora (00:00 UTC), así que el resultado vale para esa franja del día y no necesariamente para cualquier momento.
+[22:05:15] **Con costos no sirve:** la mejor ganancia bruta por operación fue 0.113% (1h→4h, entre las combinaciones con suficientes datos), y entrar y salir cuesta 0.30%. Ninguna combinación le ganó a comprar y mantener después de costos de forma apreciable.
