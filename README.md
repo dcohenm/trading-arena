@@ -1,34 +1,37 @@
-# Trading Arena — piloto automático
+# Trading Arena (proyecto terminado)
 
-Bots de trading cripto compitiendo con plata **simulada** sobre precios reales. Corre solo cada hora en GitHub. La evolución automática está **apagada**: el [estudio histórico](ESTUDIO.md) mostró que empeoraba los resultados. Quedan los bots fijos compitiendo contra los bots al azar.
+Un experimento para responder una pregunta: **¿se puede armar un bot que opere solo y le gane al mercado?**
+Se probó con rigor, con datos reales, costos incluidos, reglas fijadas antes de mirar los resultados y comparando siempre contra el azar y contra no hacer nada.
 
-> Lleva 1.0 días. En las primeras semanas los números son ruido: todavía no se puede sacar ninguna conclusión.
+**Respuesta corta: no encontramos ninguno.** Lo que más rindió en todas las pruebas fue lo más simple: comprar el índice S&P 500 y no tocarlo.
 
-**Última actualización:** 2026-10-20 23:45 UTC · **Desde:** 2026-10-19 23:30 UTC · **Datos:** bingx · **Evolución:** apagada
+Todo está apagado: no corre nada automático. Lo que queda es el registro de lo que se probó.
 
-## Ranking (bots activos)
+## Qué se probó y qué salió
 
-| Bot | Días | Retorno | Sharpe | Caída máx. | Trades | Veredicto |
-|---|---:|---:|---:|---:|---:|---|
-| `buy_and_hold` | 1 | +1.8% | 9.56 | 1.4% | 3 | Referencia |
-| `breakout` | 1 | +0.0% | — | 0.0% | 0 | En observación (1 de 30 días mínimos) |
-| `mean_reversion` | 1 | +0.0% | — | 0.0% | 0 | En observación (1 de 30 días mínimos) |
-| `momentum` | 1 | +0.0% | — | 0.0% | 1 | En observación (1 de 30 días mínimos) |
+| Prueba | Resultado | Detalle |
+|---|---|---|
+| Bots clásicos de cripto (tendencia, reversión, rupturas) compitiendo 24/7 contra bots al azar | Ninguno le ganó al azar ni a comprar y mantener | [ESTUDIO.md](ESTUDIO.md) |
+| Bots que "aprenden solos" (evolución semanal con examen fuera de muestra) | Empeoró los resultados: los elegidos rindieron peor que el azar | [ESTUDIO.md](ESTUDIO.md) |
+| Carry de futuros (cobrar la tasa de financiamiento sin apostar al precio) | Funcionó en 2023-24; hoy rinde menos que los bonos del Tesoro | [CARRY.md](CARRY.md) |
+| Kronos, un modelo de IA entrenado con 12.000 millones de velas | Ve algo muy chico (sobre todo "lo que subió, baja"); no cubre los costos | [KRONOS.md](KRONOS.md), [KRONOS_MAC_SMALL.md](KRONOS_MAC_SMALL.md) |
+| Soportes, resistencias y números redondos | Peor que entrar al azar; los números redondos no tienen nada especial | [SOPORTES.md](SOPORTES.md) |
+| Acciones de EE.UU.: comprar la caída en tendencia (idea de un post de Reddit) | En ETFs hay una ventaja real pero chica; no le gana a comprar el índice | [ACCIONES.md](ACCIONES.md) |
+| Cartera diversificada con filtro de tendencia mensual | Menos caídas (−19% vs −55% del S&P 500) a cambio de menos retorno | [CARTERA.md](CARTERA.md) |
 
-📊 **Tablero completo:** https://dcohenm.github.io/trading-arena/
+## Lecciones
 
-Para correr backtests o pruebas a mano en tu computadora: [GUIA.md](GUIA.md).
+1. **Los costos deciden casi todo.** Varias ideas ganaban un poquito antes de comisiones y perdían después.
+2. **Pocos datos engañan.** Resultados que parecían prometedores con muestras chicas desaparecieron con la muestra completa.
+3. **Optimizar sobre el pasado se paga en el futuro.** La evolución automática mejoraba el backtest y empeoraba lo que venía después.
+4. **La comparación justa es contra el azar y contra no hacer nada.** Ganar plata en un mercado que sube no prueba nada.
+5. **Errores de medición inflan resultados.** Dos veces se corrigió un error propio que hacía ver mejor un resultado; las versiones anteriores quedaron en [study/historial](study/historial/README.md).
 
-## Cómo leer esto
+## Qué hay en el repositorio
 
-- **Retorno**: cuánto ganó o perdió desde que entró a la arena (cada bot arranca con 10.000 USDT simulados).
-- **Sharpe**: retorno por unidad de riesgo. Más alto es mejor; negativo es perder.
-- **Veredicto**: un bot solo es *candidato* si después de al menos 30 días su ventaja es estadísticamente sólida, le gana al 95% de los bots que operan al azar y le gana a comprar y mantener. Lo normal es que durante mucho tiempo no haya ninguno.
-- Si algún bot pasa todos los filtros, se abre un *Issue* en este repositorio y GitHub te avisa por mail.
+- `*.md`: los reportes de cada prueba.
+- `study/`: datos y resultados de cada estudio.
+- `docs/`: tableros visuales (https://dcohenm.github.io/trading-arena/).
+- `arena/`, `*.py`: el código. Se puede volver a correr a mano; ver [GUIA.md](GUIA.md).
 
-## Cómo frenarlo
-
-Pestaña **Actions** → workflow **Arena** → botón **⋯** → **Disable workflow**. Para reanudar, el mismo lugar → **Enable workflow**.
-
----
-*Todo es simulado: no hay dinero real ni conexión a ninguna cuenta. No es asesoramiento financiero.*
+*Todo fue simulado: no se usó dinero real. Nada de esto es asesoramiento financiero.*
