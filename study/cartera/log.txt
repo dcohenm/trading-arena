@@ -1,0 +1,9 @@
+[00:11:21] Primer dato por activo: SPY 2003-01-02, EFA 2003-01-02, SHY 2003-01-02, GLD 2004-11-18, BTC-USD 2014-09-17, AGG 2003-09-29
+[00:11:21] La simulación arranca el 2005-09-01 (cuando todos tienen 10 meses de historia)
+[00:11:22]   tendencia: 7.7% anual, caída máx. 19%
+[00:11:23]   fija: 10.0% anual, caída máx. 35%
+[00:11:23]   tendencia_sin_btc: 5.8% anual, caída máx. 17%
+[00:11:23]   fija_sin_btc: 8.0% anual, caída máx. 35%
+[00:11:24]   spy: 11.1% anual, caída máx. 55%
+[00:11:24]   6040: 8.0% anual, caída máx. 35%
+[00:11:24] Reportes escritos: CARTERA.md, study/cartera/, docs/cartera/index.html
