@@ -14,7 +14,7 @@ Todo está apagado: no corre nada automático. Lo que queda es el registro de lo
 | Bots clásicos de cripto (tendencia, reversión, rupturas) compitiendo 24/7 contra bots al azar | Ninguno le ganó al azar ni a comprar y mantener | [ESTUDIO.md](ESTUDIO.md) |
 | Bots que "aprenden solos" (evolución semanal con examen fuera de muestra) | Empeoró los resultados: los elegidos rindieron peor que el azar | [ESTUDIO.md](ESTUDIO.md) |
 | Carry de futuros (cobrar la tasa de financiamiento sin apostar al precio) | Funcionó en 2023-24; hoy rinde menos que los bonos del Tesoro | [CARRY.md](CARRY.md) |
-| Kronos, un modelo de IA entrenado con 12.000 millones de velas | Ve algo muy chico (sobre todo "lo que subió, baja"); no cubre los costos | [KRONOS.md](KRONOS.md), [KRONOS_MAC_SMALL.md](KRONOS_MAC_SMALL.md) |
+| Kronos, un modelo de IA entrenado con 12.000 millones de velas (versión chica y versión 4 veces más grande) | Ve algo muy chico (sobre todo "lo que subió, baja"); el modelo grande no mejora; no cubre los costos | [KRONOS.md](KRONOS.md), [KRONOS_MAC_SMALL.md](KRONOS_MAC_SMALL.md), [KRONOS_MAC_BASE.md](KRONOS_MAC_BASE.md) |
 | Soportes, resistencias y números redondos | Peor que entrar al azar; los números redondos no tienen nada especial | [SOPORTES.md](SOPORTES.md) |
 | Acciones de EE.UU.: comprar la caída en tendencia (idea de un post de Reddit) | En ETFs hay una ventaja real pero chica; no le gana a comprar el índice | [ACCIONES.md](ACCIONES.md) |
 | Cartera diversificada con filtro de tendencia mensual | Menos caídas (−19% vs −55% del S&P 500) a cambio de menos retorno | [CARTERA.md](CARTERA.md) |

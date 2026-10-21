@@ -1,0 +1,33 @@
+[18:56:16] Cargando modelo NeoQuasar/Kronos-base…
+[18:57:02] Dispositivo: mps
+[18:58:02] 15m: 41103 velas de binance
+[18:58:02]   15m: 2490 momentos × 3 monedas para predecir
+[18:59:09]     64/7470 · 1.1 min · 1.0 pred/s
+[19:09:27]     704/7470 · 11.4 min · 1.0 pred/s
+[19:19:40]     1344/7470 · 21.6 min · 1.0 pred/s
+[19:29:51]     1984/7470 · 31.8 min · 1.0 pred/s
+[19:40:03]     2624/7470 · 42.0 min · 1.0 pred/s
+[19:50:13]     3264/7470 · 52.2 min · 1.0 pred/s
+[20:00:24]     3904/7470 · 62.4 min · 1.0 pred/s
+[20:10:39]     4544/7470 · 72.6 min · 1.0 pred/s
+[20:20:54]     5184/7470 · 82.9 min · 1.0 pred/s
+[20:31:15]     5824/7470 · 93.2 min · 1.0 pred/s
+[20:41:32]     6464/7470 · 103.5 min · 1.0 pred/s
+[20:51:45]     7104/7470 · 113.7 min · 1.0 pred/s
+[20:57:52] 1h: 10575 velas de binance
+[20:57:52]   1h: 415 momentos × 3 monedas para predecir
+[20:59:26]     64/1245 · 1.6 min · 0.7 pred/s
+[21:14:59]     704/1245 · 17.1 min · 0.7 pred/s
+[21:28:14] 1d: 823 velas de binance
+[21:28:14]   1d: 415 momentos × 3 monedas para predecir
+[21:28:43]     64/1245 · 0.5 min · 2.2 pred/s
+[21:33:11]     704/1245 · 5.0 min · 2.4 pred/s
+[21:37:07] Reportes escritos: KRONOS_MAC_BASE.md, study/kronos_mac_base/, docs/kronos_mac_base/index.html
+[21:37:07] **Hay indicios, pero no alcanzan:** en 15m→1h (51.1% de aciertos, p=0.023) acertó más que una moneda al aire, pero al corregir por haber probado 5 combinaciones hace falta p<0.010, y la muestra es chica (el servidor sin placa de video llegó a hacer pocas predicciones).
+[21:37:07] **Qué hace Kronos en el fondo:** sus predicciones se parecen mucho a la regla simple "lo que subió, baja" (correlación promedio 0.40). Gran parte de lo que acierta lo acierta también esa regla.
+[21:37:07] **Con costos no sirve:** la mejor ganancia bruta por operación fue 0.044% (1h→4h), y entrar y salir cuesta 0.30%. Ninguna combinación le ganó a comprar y mantener después de costos.
+[00:52:11] Reportes escritos: KRONOS_MAC_BASE.md, study/kronos_mac_base/, docs/kronos_mac_base/index.html
+[00:52:11] **Hay indicios, pero no alcanzan:** en 15m→1h (51.1% de aciertos, p=0.025) acertó más que una moneda al aire, pero al corregir por haber probado 5 combinaciones hace falta p<0.010.
+[00:52:11] **Qué hace Kronos en el fondo:** sus predicciones se parecen mucho a la regla simple "lo que subió, baja" (correlación promedio 0.40). Gran parte de lo que acierta lo acierta también esa regla.
+[00:52:11] **Ojo:** en 1h→4h, 1h→1d todas las predicciones arrancan a la misma hora (00:00 UTC), así que el resultado vale para esa franja del día y no necesariamente para cualquier momento.
+[00:52:11] **Con costos no sirve:** la mejor ganancia bruta por operación fue 0.044% (1h→4h, entre las combinaciones con suficientes datos), y entrar y salir cuesta 0.30%. Ninguna combinación le ganó a comprar y mantener después de costos de forma apreciable.

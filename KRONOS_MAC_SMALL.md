@@ -40,4 +40,4 @@ Kronos-small usado tal como viene, sin reentrenar, sobre BTC, ETH y SOL (corrido
 
 📊 Tablero: https://dcohenm.github.io/trading-arena/kronos_mac_small/
 
-*Generado el 2026-10-20 22:05 UTC (métricas recalculadas) en 41 minutos. Todo es simulado; no es asesoramiento financiero.*
+*Generado el 2026-10-21 00:52 UTC (métricas recalculadas) en 41 minutos. Todo es simulado; no es asesoramiento financiero.*

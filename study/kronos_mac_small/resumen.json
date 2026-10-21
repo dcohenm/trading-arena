@@ -9,7 +9,7 @@
   "device": "auto",
   "source": "binance",
   "minutes": 41.05514425436656,
-  "generated": "2026-10-20 22:05 UTC (métricas recalculadas)"
+  "generated": "2026-10-21 00:52 UTC (métricas recalculadas)"
  },
  "config": {
   "model": "NeoQuasar/Kronos-small",

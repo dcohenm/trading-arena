@@ -4,7 +4,7 @@ Kronos-small usado tal como viene, sin reentrenar, sobre BTC, ETH y SOL. Solo se
 
 ## Conclusiones
 
-- **Hay indicios, pero no alcanzan:** en 15m→1h (55.3% de aciertos, p=0.041), 15m→4h (56.6% de aciertos, p=0.026), 1h→1d (60.2% de aciertos, p=0.013) acertó más que una moneda al aire, pero al corregir por haber probado 5 combinaciones hace falta p<0.010, y la muestra es chica (el servidor sin placa de video llegó a hacer pocas predicciones).
+- **Hay indicios, pero no alcanzan:** en 15m→1h (55.3% de aciertos, p=0.041), 15m→4h (56.6% de aciertos, p=0.026), 1h→1d (60.2% de aciertos, p=0.013) acertó más que una moneda al aire, pero al corregir por haber probado 5 combinaciones hace falta p<0.010, y la muestra es chica.
 - **Qué hace Kronos en el fondo:** sus predicciones se parecen mucho a la regla simple "lo que subió, baja" (correlación promedio 0.49). Gran parte de lo que acierta lo acierta también esa regla.
 - **Con costos no sirve:** la mejor ganancia bruta por operación fue 0.145% (15m→4h), y entrar y salir cuesta 0.30%. Ninguna combinación le ganó a comprar y mantener después de costos de forma apreciable.
 
@@ -39,4 +39,4 @@ Kronos-small usado tal como viene, sin reentrenar, sobre BTC, ETH y SOL. Solo se
 
 📊 Tablero: https://dcohenm.github.io/trading-arena/kronos/
 
-*Generado el 2026-10-20 22:05 UTC (métricas recalculadas) en 216 minutos. Todo es simulado; no es asesoramiento financiero.*
+*Generado el 2026-10-21 00:52 UTC (métricas recalculadas) en 216 minutos. Todo es simulado; no es asesoramiento financiero.*

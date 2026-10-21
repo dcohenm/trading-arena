@@ -234,8 +234,8 @@ def conclusions(res: list[dict]) -> list[str]:
     elif hint:
         out.append("**Hay indicios, pero no alcanzan:** en " + ", ".join(
             f"{r['input']}→{r['horizon']} ({f(r['hit_kronos'])}% de aciertos, p={f(r['p_kronos'], 3)})" for r in hint)
-            + f" acertó más que una moneda al aire, pero al corregir por haber probado {len(res)} combinaciones hace falta p<{thr:.3f}, "
-            "y la muestra es chica (el servidor sin placa de video llegó a hacer pocas predicciones).")
+            + f" acertó más que una moneda al aire, pero al corregir por haber probado {len(res)} combinaciones hace falta p<{thr:.3f}"
+            + (", y la muestra es chica." if min(r["moments"] for r in hint) < 200 else "."))
     else:
         out.append(f"**No predice mejor que el azar** en ninguna de las {len(res)} combinaciones.")
     avg_corr = np.nanmean([r["corr_with_reversal"] for r in res])

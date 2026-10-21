@@ -34,3 +34,7 @@
 [22:05:14] **Hay indicios, pero no alcanzan:** en 15m→1h (55.3% de aciertos, p=0.041), 15m→4h (56.6% de aciertos, p=0.026), 1h→1d (60.2% de aciertos, p=0.013) acertó más que una moneda al aire, pero al corregir por haber probado 5 combinaciones hace falta p<0.010, y la muestra es chica (el servidor sin placa de video llegó a hacer pocas predicciones).
 [22:05:14] **Qué hace Kronos en el fondo:** sus predicciones se parecen mucho a la regla simple "lo que subió, baja" (correlación promedio 0.49). Gran parte de lo que acierta lo acierta también esa regla.
 [22:05:14] **Con costos no sirve:** la mejor ganancia bruta por operación fue 0.145% (15m→4h), y entrar y salir cuesta 0.30%. Ninguna combinación le ganó a comprar y mantener después de costos de forma apreciable.
+[00:52:12] Reportes escritos: KRONOS.md, study/kronos/, docs/kronos/index.html
+[00:52:12] **Hay indicios, pero no alcanzan:** en 15m→1h (55.3% de aciertos, p=0.041), 15m→4h (56.6% de aciertos, p=0.026), 1h→1d (60.2% de aciertos, p=0.013) acertó más que una moneda al aire, pero al corregir por haber probado 5 combinaciones hace falta p<0.010, y la muestra es chica.
+[00:52:12] **Qué hace Kronos en el fondo:** sus predicciones se parecen mucho a la regla simple "lo que subió, baja" (correlación promedio 0.49). Gran parte de lo que acierta lo acierta también esa regla.
+[00:52:12] **Con costos no sirve:** la mejor ganancia bruta por operación fue 0.145% (15m→4h), y entrar y salir cuesta 0.30%. Ninguna combinación le ganó a comprar y mantener después de costos de forma apreciable.
